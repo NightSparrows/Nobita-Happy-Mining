@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
             this.health.takeDamage(bulletController.getDamage());
 
             //hp -= 25f;
-            Debug.Log("collide");
+            //Debug.Log("collide");
 
             //if (hp <= 0)
             if (this.health.isDeath())
