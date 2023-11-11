@@ -10,15 +10,17 @@ public class Player : MonoBehaviour
 
 	// just public now dont know
 	public GameObject m_currentBulletPrefab;
+	public Health health;
 
 	private bool m_canMove = true;
 	public bool m_canShoot = true;
 	private float m_moveSpeed = 10f;
+	public int m_exp = 0;
 
 	private void Awake()
 	{
 		this.m_camera = new PlayerCamera(this);
-		this.gameObject.AddComponent<Health>();
+		this.health = GetComponent<Health>();
 	}
 
 	// Start is called before the first frame update
@@ -61,13 +63,21 @@ public class Player : MonoBehaviour
 			if (Input.GetKey(KeyCode.Space))
 			{
 				GameObject bullet = Instantiate(this.m_currentBulletPrefab, this.transform.position, Quaternion.identity, null);
-
-				Rigidbody rb = bullet.GetComponent<Rigidbody>();
-
-				rb.velocity = this.transform.forward * 10f;
 			}
 		}
 
 		this.m_camera.update();
+
+
 	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Exp")
+		{
+			this.m_exp += 10;       // ¥ý³o¼Ë
+			Destroy(other.gameObject);
+		}
+	}
+
 }

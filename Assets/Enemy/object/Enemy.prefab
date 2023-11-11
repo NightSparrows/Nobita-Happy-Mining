@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 532218722929112802}
   - component: {fileID: 2744167918298636817}
   - component: {fileID: 2834255957934119336}
+  - component: {fileID: 2532857546289848271}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -150,6 +151,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   exp: {fileID: 3361008469445427220, guid: 6a5d0ce819ee64741a96b50b226530cd, type: 3}
-  speed: 3
+  speed: 10
   hp: 100
   atk: 10
+--- !u!114 &2532857546289848271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110288748009197490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e407bb49d500597489dc2804751ccdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100

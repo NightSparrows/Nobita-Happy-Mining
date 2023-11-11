@@ -12,7 +12,7 @@ public class HealthBar : MonoBehaviour
     public void Start()
     {
         slider = GetComponent<Slider>();
-        healthListen = GetComponent<Health>();
+        healthListen = listen.GetComponent<Health>();
     }
 
     public void LateUpdate()
