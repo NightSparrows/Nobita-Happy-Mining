@@ -4,37 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Health : Component
+public class Health : MonoBehaviour
 {
-	private int m_maxHealth;
-	private int m_currentHealth;
+	public int maxHealth;
+	public int currentHealth;
 
 	public void init(int maxHealth)
 	{
 		Debug.Assert(maxHealth > 0, "Max health can't be negative!");
-		this.m_maxHealth = maxHealth;
-		this.m_currentHealth = maxHealth;
+		this.maxHealth = maxHealth;
+		this.currentHealth = maxHealth;
 	}
 
 	public void takeDamage(int damage)
 	{
 		Debug.Assert(damage >= 0, "Damage can't be negative!");
 
-		this.m_currentHealth -= damage;
+		this.currentHealth -= damage;
 	}
 
 	public void heal(int heal)
 	{
-		this.m_currentHealth += heal;
+		this.currentHealth += heal;
+		if (this.currentHealth > this.maxHealth)
+		{
+			this.currentHealth = this.maxHealth;
+		}
 	}
 
 	public bool isDeath()
 	{
-		return this.m_currentHealth <= 0;
+		return this.currentHealth <= 0;
 	}
 
-	public int getCurrentHealth() { return this.m_currentHealth; }
+	public int getCurrentHealth() { return this.currentHealth; }
 
-	public int getMaxHealth() { return this.m_maxHealth; }
+	public int getMaxHealth() { return this.maxHealth; }
 
 }

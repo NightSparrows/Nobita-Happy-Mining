@@ -15,20 +15,20 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody rig;
 
     [SerializeField] float speed = 3f;
-    [SerializeField] float hp = 100f;
+    //[SerializeField] int hp = 100;
+    Health health;
     public float atk = 10f;
 
+	private void Awake()
+	{
+		rig = GetComponent<Rigidbody>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rig = GetComponent<Rigidbody>();
+		//player = GameObject.Find("Player");
+		agent = GetComponent<NavMeshAgent>();
 
-        //player = GameObject.Find("Player");
-        agent = GetComponent<NavMeshAgent>();
-
-        SelfDestroy();
-    }
+        health = GetComponent<Health>();
+        //SelfDestroy();
+	}
 
     // Update is called once per frame
     void Update()
@@ -61,9 +61,14 @@ public class EnemyAI : MonoBehaviour
         // hit by bullet
         if (collision.tag == "PlayerBullet")
         {
-            hp -= 25f;
+			BulletController bulletController = collision.gameObject.GetComponent<BulletController>();
+            this.health.takeDamage(bulletController.getDamage());
 
-            if (hp <= 0)
+            //hp -= 25f;
+            Debug.Log("collide");
+
+            //if (hp <= 0)
+            if (this.health.isDeath())
             {
                 //GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
                 //e.GetComponent<Exp>().SetPlayer(player);
