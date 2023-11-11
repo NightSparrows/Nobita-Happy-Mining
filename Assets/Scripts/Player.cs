@@ -58,10 +58,13 @@ public class Player : MonoBehaviour
 
 			this.transform.Translate(vector * Time.deltaTime);
 		}
+		
 		if (this.m_canShoot)
 		{
+			Debug.Log(Input.GetKey(KeyCode.Space));
 			if (Input.GetKey(KeyCode.Space))
 			{
+				Debug.Log("new bullet");
 				GameObject bullet = Instantiate(this.m_currentBulletPrefab, this.transform.position, Quaternion.identity, null);
 			}
 		}
@@ -75,7 +78,7 @@ public class Player : MonoBehaviour
 	{
 		if (other.tag == "Exp")
 		{
-			this.m_exp += 10;       // ¥ý³o¼Ë
+			this.m_exp += 10;       // ï¿½ï¿½ï¿½oï¿½ï¿½
 			Destroy(other.gameObject);
 		}
 	}

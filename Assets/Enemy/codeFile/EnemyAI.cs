@@ -70,8 +70,8 @@ public class EnemyAI : MonoBehaviour
             //if (hp <= 0)
             if (this.health.isDeath())
             {
-                //GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
-                //e.GetComponent<Exp>().SetPlayer(player);
+                GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
+                e.GetComponent<Exp>().SetPlayer(player);
                 Destroy(gameObject);
             }
                 
@@ -92,8 +92,8 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
-        e.GetComponent<Exp>().SetPlayer(player);
+        // GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
+        // e.GetComponent<Exp>().SetPlayer(player);
         //Destroy(gameObject);
     }
 }
