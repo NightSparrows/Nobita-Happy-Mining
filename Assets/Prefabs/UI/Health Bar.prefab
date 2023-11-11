@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6980225784556842103}
   - component: {fileID: 3844840212219846229}
-  - component: {fileID: 5672625907652952385}
+  - component: {fileID: 829334670307058554}
   m_Layer: 5
   m_Name: Health Bar
   m_TagString: Untagged
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -115.4028, y: -17.4513}
-  m_SizeDelta: {x: 273.2023, y: 65.0972}
+  m_AnchoredPosition: {x: -226.68681, y: 95.52031}
+  m_SizeDelta: {x: 233.2287, y: 26.0566}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3844840212219846229
 MonoBehaviour:
@@ -85,11 +85,11 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 30
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5672625907652952385
+--- !u!114 &829334670307058554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460f510d3b5f6a841b60b567ccbca9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listen: {fileID: 0}
 --- !u!1 &2344484604383250657
 GameObject:
   m_ObjectHideFlags: 0
