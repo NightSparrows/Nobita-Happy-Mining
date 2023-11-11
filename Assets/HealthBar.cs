@@ -12,14 +12,11 @@ public class HealthBar : MonoBehaviour
     public void Start()
     {
         slider = GetComponent<Slider>();
-        
-        int maxHealth = listen.GetMaxHealth();
-        SetMaxHealth(maxHealth);
-        UpdateHealth(maxHealth);
     }
 
     public void LateUpdate()
     {
+        SetMaxHealth(listen.GetMaxHealth());
         UpdateHealth(listen.GetHealth());
     }
 
