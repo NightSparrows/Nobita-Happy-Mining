@@ -21,7 +21,7 @@ public class BulletController : MonoBehaviour
 	{
 		if (this.m_currentTime >= this.m_lifeTime)
 		{
-            Destroy(this);
+			Destroy(this.gameObject);
 		}
         this.m_currentTime += Time.deltaTime;
 	}

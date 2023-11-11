@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	private Health m_health;
 	private PlayerCamera m_camera;
 	public Camera m_gameCamera;
 
@@ -19,6 +18,7 @@ public class Player : MonoBehaviour
 	private void Awake()
 	{
 		this.m_camera = new PlayerCamera(this);
+		this.gameObject.AddComponent<Health>();
 	}
 
 	// Start is called before the first frame update
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
 		{
 			if (Input.GetKey(KeyCode.Space))
 			{
-				GameObject bullet = Instantiate(this.m_currentBulletPrefab, this.transform);
+				GameObject bullet = Instantiate(this.m_currentBulletPrefab, this.transform.position, Quaternion.identity, null);
 
 				Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
