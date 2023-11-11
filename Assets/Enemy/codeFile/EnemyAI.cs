@@ -26,12 +26,14 @@ public class EnemyAI : MonoBehaviour
 
         //player = GameObject.Find("Player");
         agent = GetComponent<NavMeshAgent>();
+
+        SelfDestroy();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //EnemyMove1();
+        EnemyMove1();
         //EnemyMove2();
     }
 
@@ -63,8 +65,8 @@ public class EnemyAI : MonoBehaviour
 
             if (hp <= 0)
             {
-                GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
-                e.GetComponent<Exp>().SetPlayer(player);
+                //GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
+                //e.GetComponent<Exp>().SetPlayer(player);
                 Destroy(gameObject);
             }
                 
@@ -76,5 +78,17 @@ public class EnemyAI : MonoBehaviour
     public void SetPlayer(GameObject obj)
     {
         player = obj;
+    }
+
+    void SelfDestroy()
+    {
+        Destroy(gameObject, 5);
+    }
+
+    private void OnDestroy()
+    {
+        GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
+        e.GetComponent<Exp>().SetPlayer(player);
+        //Destroy(gameObject);
     }
 }

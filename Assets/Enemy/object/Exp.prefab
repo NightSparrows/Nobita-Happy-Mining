@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8195641275921933853}
   m_Layer: 0
   m_Name: Exp
-  m_TagString: Untagged
+  m_TagString: Exp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,3 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca2927464389cc40a19467268482e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amount: 10
+  radius: 2
+  speed: 7
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 64
