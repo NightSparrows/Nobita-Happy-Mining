@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5360896395548035295, guid: 96a83bfa62547944287d3e4aacb8a20c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5360896395548035295, guid: 96a83bfa62547944287d3e4aacb8a20c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -211,6 +211,10 @@ PrefabInstance:
     - target: {fileID: 1438617926849887536, guid: 4f67e74cf96b10647aaf9b9476b48e9b, type: 3}
       propertyPath: m_Name
       value: PlayerInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790359156741418364, guid: 4f67e74cf96b10647aaf9b9476b48e9b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 2259835154827466758, guid: 4f67e74cf96b10647aaf9b9476b48e9b, type: 3}
       propertyPath: m_Pivot.x
@@ -307,6 +311,10 @@ PrefabInstance:
     - target: {fileID: 5084865612060004445, guid: 4f67e74cf96b10647aaf9b9476b48e9b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371173401964113369, guid: 4f67e74cf96b10647aaf9b9476b48e9b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 86
       objectReference: {fileID: 0}
     - target: {fileID: 8807080984169621408, guid: 4f67e74cf96b10647aaf9b9476b48e9b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -788,7 +796,6 @@ GameObject:
   - component: {fileID: 1026835403}
   - component: {fileID: 1026835404}
   - component: {fileID: 1026835405}
-  - component: {fileID: 1026835406}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -808,6 +815,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0264bce0e21be654b8d07af99d6c4f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_gameCamera: {fileID: 963194227}
+  m_currentBulletPrefab: {fileID: 709167806812668423, guid: aaeb6828d520df642ad4cda8a774eba7, type: 3}
+  health: {fileID: 0}
+  m_canShoot: 1
+  m_exp: 0
 --- !u!4 &1026835402
 Transform:
   m_ObjectHideFlags: 0
@@ -888,23 +900,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
---- !u!114 &1026835406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026835400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ea660c88151e774f9c6a24e1e210b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_gameCamera: {fileID: 963194227}
-  m_currentBulletPrefab: {fileID: 709167806812668423, guid: aaeb6828d520df642ad4cda8a774eba7, type: 3}
-  health: {fileID: 0}
-  m_canShoot: 1
-  m_exp: 0
 --- !u!1 &1071610392
 GameObject:
   m_ObjectHideFlags: 0

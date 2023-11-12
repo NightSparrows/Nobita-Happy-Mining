@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviour
+public class PlayerCamera //: MonoBehaviour
 {
 	public float m_followSpeed = 2.0f;
 	public Player m_player;
@@ -11,7 +11,7 @@ public class PlayerCamera : MonoBehaviour
 	public PlayerCamera(Player player)
 	{
 		this.m_player = player;
-		this.m_object = new GameObject("PlayerCamera");
+		//this.m_object = new GameObject("PlayerCamera");
 		this.m_object.transform.LookAt(new Vector3(10, -20, -20));
 	}
 

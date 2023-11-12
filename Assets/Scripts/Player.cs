@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
 	// just public now dont know
 	public GameObject m_currentBulletPrefab;
-	public Health health;
+	[HideInInspector] public Health health;
 
 	private bool m_canMove = true;
 	public bool m_canShoot = true;
@@ -19,11 +19,12 @@ public class Player : MonoBehaviour
 
 	private void Awake()
 	{
-		this.m_camera = new PlayerCamera(this);
+		//this.m_camera = new PlayerCamera(this);
 		this.health = GetComponent<Health>();
 		// test just follow
 
-		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
+		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
+		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
 	}
 
 	// Start is called before the first frame update
@@ -67,7 +68,7 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		this.m_camera.update();
+		//this.m_camera.update();
 
 
 	}

@@ -72,6 +72,7 @@ public class EnemyAI : MonoBehaviour
             {
                 GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
                 e.GetComponent<Exp>().SetPlayer(player);
+                e.transform.Translate(0f, -2.5f, 0f);
                 Destroy(gameObject);
             }
                 
