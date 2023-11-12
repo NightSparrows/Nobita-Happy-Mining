@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCamera
+public class PlayerCamera : MonoBehaviour
 {
 	public float m_followSpeed = 2.0f;
 	public Player m_player;

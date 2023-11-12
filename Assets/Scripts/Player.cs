@@ -21,14 +21,14 @@ public class Player : MonoBehaviour
 	{
 		this.m_camera = new PlayerCamera(this);
 		this.health = GetComponent<Health>();
+		// test just follow
+
+		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
 	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		// test just follow
-
-		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
     }
 
     // Update is called once per frame
@@ -61,10 +61,8 @@ public class Player : MonoBehaviour
 		
 		if (this.m_canShoot)
 		{
-			Debug.Log(Input.GetKey(KeyCode.Space));
 			if (Input.GetKey(KeyCode.Space))
 			{
-				Debug.Log("new bullet");
 				GameObject bullet = Instantiate(this.m_currentBulletPrefab, this.transform.position, Quaternion.identity, null);
 			}
 		}
