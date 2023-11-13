@@ -9,25 +9,23 @@ public class HealthBar : MonoBehaviour
     Health healthListen;
     private Slider slider;
 
-    public void Start()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
+        listen = GameManager.Instance.player;
         healthListen = listen.GetComponent<Health>();
+
+        healthListen.OnHealthChanged += UpdateHealth;
+        healthListen.OnMaxHealthChanged += UpdateMaxHealth;
     }
 
-    public void LateUpdate()
+    public void UpdateHealth(int newHealth)
     {
-        SetMaxHealth(healthListen.getMaxHealth());
-        UpdateHealth(healthListen.getCurrentHealth());
+        slider.value = newHealth;
     }
 
-    public void SetMaxHealth(int maxHealth)
+    private void UpdateMaxHealth(int newMaxHealth)
     {
-        slider.maxValue = maxHealth >= 0? maxHealth : 0;
-    }
-
-    public void UpdateHealth(int health)
-    {
-        slider.value = health >= 0? health : 0;
+        slider.maxValue = newMaxHealth;
     }
 }
