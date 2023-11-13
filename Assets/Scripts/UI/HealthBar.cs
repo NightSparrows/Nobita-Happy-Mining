@@ -11,13 +11,20 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         slider = GetComponent<Slider>();
-        healthListen = GameManager.Instance.player.GetComponent<Health>();
-        healthListen.OnMaxHealthChanged += UpdateMaxHealth;
-        healthListen.OnHealthChanged += UpdateHealth;
+    }
+
+    private void OnDestroy()
+    {
+        healthListen.OnMaxHealthChanged -= UpdateMaxHealth;
+        healthListen.OnHealthChanged -= UpdateHealth;
     }
 
     private void Start()
     {
+        healthListen = GameManager.Instance.player.GetComponent<Health>();
+        healthListen.OnMaxHealthChanged += UpdateMaxHealth;
+        healthListen.OnHealthChanged += UpdateHealth;
+
         UpdateMaxHealth(healthListen.MaxHealth);
         UpdateHealth(healthListen.CurrentHealth);
     }

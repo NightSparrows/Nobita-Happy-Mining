@@ -12,13 +12,20 @@ public class StaminaBar : MonoBehaviour
     private void Awake()
     {
         slider = GetComponent<Slider>();
-        staminaListen = GameManager.Instance.player.GetComponent<Stamina>();
-        staminaListen.OnMaxStaminaChanged += UpdateMaxStamina;
-        staminaListen.OnStaminaChanged += UpdateStamina;
+    }
+
+    private void OnDestroy()
+    {
+        staminaListen.OnMaxStaminaChanged -= UpdateMaxStamina;
+        staminaListen.OnStaminaChanged -= UpdateStamina;
     }
 
     private void Start()
     {
+        staminaListen = GameManager.Instance.player.GetComponent<Stamina>();
+        staminaListen.OnMaxStaminaChanged += UpdateMaxStamina;
+        staminaListen.OnStaminaChanged += UpdateStamina;
+
         UpdateMaxStamina(staminaListen.MaxStamina);
         UpdateStamina(staminaListen.CurrentStamina);
     }

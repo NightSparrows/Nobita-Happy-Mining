@@ -12,13 +12,20 @@ public class ExperienceBar : MonoBehaviour
     private void Awake()
     {
         slider = GetComponent<Slider>();
-        expListen = GameManager.Instance.player.GetComponent<PlayerExperience>();
-        expListen.OnMaxPlayerExpChanged += UpdateMaxExp;
-        expListen.OnPlayerExpChanged += UpdateExp;
+    }
+
+    private void OnDestroy()
+    {
+        expListen.OnMaxPlayerExpChanged -= UpdateMaxExp;
+        expListen.OnPlayerExpChanged -= UpdateExp;
     }
 
     private void Start()
     {
+        expListen = GameManager.Instance.player.GetComponent<PlayerExperience>();
+        expListen.OnMaxPlayerExpChanged += UpdateMaxExp;
+        expListen.OnPlayerExpChanged += UpdateExp;
+
         UpdateMaxExp(expListen.MaxPlayerExp);
         UpdateExp(expListen.CurrentPlayerExp);
     }

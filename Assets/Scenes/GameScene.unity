@@ -819,9 +819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameCamera: {fileID: 963194227}
   m_currentBulletPrefab: {fileID: 709167806812668423, guid: aaeb6828d520df642ad4cda8a774eba7, type: 3}
-  health: {fileID: 0}
   m_canShoot: 1
-  m_exp: 0
 --- !u!4 &1026835402
 Transform:
   m_ObjectHideFlags: 0
