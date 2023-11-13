@@ -6,22 +6,30 @@ using UnityEngine.UI;
 public class StaminaBar : MonoBehaviour
 {
 
-    public GameObject player;
+    private Stamina staminaListen;
     private Slider slider;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         slider = GetComponent<Slider>();
+        staminaListen = GameManager.Instance.player.GetComponent<Stamina>();
+        staminaListen.OnMaxStaminaChanged += UpdateMaxStamina;
+        staminaListen.OnStaminaChanged += UpdateStamina;
     }
 
-    void FixedUpdate()
+    private void Start()
     {
-        slider.value -= 1;
+        UpdateMaxStamina(staminaListen.MaxStamina);
+        UpdateStamina(staminaListen.CurrentStamina);
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void UpdateMaxStamina(int newMaxStamina)
     {
-        
+        slider.maxValue = newMaxStamina;
+    }
+
+    private void UpdateStamina(int newStamina)
+    {
+        slider.value = newStamina;
     }
 }

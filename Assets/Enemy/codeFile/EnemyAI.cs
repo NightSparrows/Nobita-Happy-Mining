@@ -68,7 +68,7 @@ public class EnemyAI : MonoBehaviour
             //Debug.Log("collide");
 
             //if (hp <= 0)
-            if (this.health.isDeath())
+            if (this.health.isDead())
             {
                 GameObject e = Instantiate(exp, transform.position, Quaternion.identity);
                 e.GetComponent<Exp>().SetPlayer(player);
