@@ -6,13 +6,18 @@ using UnityEngine.Assertions;
 
 public class Health : MonoBehaviour
 {
-	public int maxHealth;
-	public int currentHealth;
+	[SerializeField] private int maxHealth;
+	private int currentHealth;
 
 	public event Action<int> OnMaxHealthChanged;
 	public event Action<int> OnHealthChanged;
 
-	public int MaxHealth
+    private void Awake()
+    {
+		currentHealth = maxHealth;    
+    }
+
+    public int MaxHealth
     {
 		get
         {

@@ -5,27 +5,30 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public GameObject listen;
-    Health healthListen;
+    private Health healthListen;
     private Slider slider;
 
     private void Awake()
     {
         slider = GetComponent<Slider>();
-        listen = GameManager.Instance.player;
-        healthListen = listen.GetComponent<Health>();
-
-        healthListen.OnHealthChanged += UpdateHealth;
+        healthListen = GameManager.Instance.player.GetComponent<Health>();
         healthListen.OnMaxHealthChanged += UpdateMaxHealth;
+        healthListen.OnHealthChanged += UpdateHealth;
     }
 
-    public void UpdateHealth(int newHealth)
+    private void Start()
     {
-        slider.value = newHealth;
+        UpdateMaxHealth(healthListen.MaxHealth);
+        UpdateHealth(healthListen.CurrentHealth);
     }
 
     private void UpdateMaxHealth(int newMaxHealth)
     {
         slider.maxValue = newMaxHealth;
+    }
+
+    private void UpdateHealth(int newHealth)
+    {
+        slider.value = newHealth;
     }
 }

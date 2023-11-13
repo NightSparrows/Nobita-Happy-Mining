@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,17 +11,21 @@ public class Player : MonoBehaviour
 
 	// just public now dont know
 	public GameObject m_currentBulletPrefab;
-	[HideInInspector] public Health health;
+	
+	private Health health;
+	private Stamina stamina;
+	private PlayerExperience exp;
 
 	private bool m_canMove = true;
 	public bool m_canShoot = true;
 	private float m_moveSpeed = 10f;
-	public int m_exp = 0;
 
 	private void Awake()
 	{
 		//this.m_camera = new PlayerCamera(this);
-		this.health = GetComponent<Health>();
+		health = GetComponent<Health>();
+		stamina = GetComponent<Stamina>();
+		exp = GetComponent<PlayerExperience>();
 		// test just follow
 
 		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
@@ -70,14 +75,32 @@ public class Player : MonoBehaviour
 
 		//this.m_camera.update();
 
-
+		/*
+		 * ---- Test the Update of Health, Stamina, Exp ----
+		 * 
+		 *		Remove anytime you want
+		 *		
+		 * -------------------------------------------------
+		 */
+		if (Input.GetKey(KeyCode.Z))
+        {
+			stamina.CurrentStamina -= 1;
+        }
+		if (Input.GetKey(KeyCode.X))
+        {
+			health.takeDamage(1);
+        }
+		if (Input.GetKey(KeyCode.C))
+        {
+			exp.CurrentPlayerExp += 1;
+        }
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Exp")
 		{
-			this.m_exp += 10;       // ���o��
+			exp.CurrentPlayerExp += 1;
 			Destroy(other.gameObject);
 		}
 	}

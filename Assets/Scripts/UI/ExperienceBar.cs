@@ -6,30 +6,30 @@ using UnityEngine.UI;
 public class ExperienceBar : MonoBehaviour
 {
 
-    public GameObject player;
+    private PlayerExperience expListen;
     private Slider slider;
 
-    private int counter = 0;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
+        expListen = GameManager.Instance.player.GetComponent<PlayerExperience>();
+        expListen.OnMaxPlayerExpChanged += UpdateMaxExp;
+        expListen.OnPlayerExpChanged += UpdateExp;
     }
 
-    void FixedUpdate()
+    private void Start()
     {
-        counter += 1;
-        if (counter == 10)
-        {
-            slider.value += 1;
-            counter = 0;
-        }
-        
+        UpdateMaxExp(expListen.MaxPlayerExp);
+        UpdateExp(expListen.CurrentPlayerExp);
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void UpdateMaxExp(int newMaxExp)
     {
-        
+        slider.maxValue = newMaxExp;
+    }
+
+    private void UpdateExp(int newExp)
+    {
+        slider.value = newExp;
     }
 }
