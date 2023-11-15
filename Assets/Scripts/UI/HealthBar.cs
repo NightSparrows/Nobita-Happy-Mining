@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private Health healthListen;
+    [SerializeField] private Health healthListen;
     private Slider slider;
 
     private void Awake()
@@ -21,7 +21,13 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        healthListen = GameManager.Instance.player.GetComponent<Health>();
+        if (healthListen == null)
+        {
+            if (GameManager.Instance.player != null)
+                healthListen = GameManager.Instance.player.GetComponent<Health>();
+            else
+                Debug.LogError("The target of Health Bar is missing!");
+        }
         healthListen.OnMaxHealthChanged += UpdateMaxHealth;
         healthListen.OnHealthChanged += UpdateHealth;
 
