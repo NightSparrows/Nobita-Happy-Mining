@@ -30,54 +30,6 @@ public class TileMapManager : MonoBehaviour
         }
 	}
 
-	public class GridLocation
-	{
-		public bool m_filled, m_impassable, m_unPathable, m_hasBeenUsed, m_isViewable;
-		public float m_fscore, m_cost, m_currentDist;
-		public Vector2Int m_parent, m_pos;
-
-		public GridLocation(float cost, bool filled)
-		{
-			this.m_cost = cost;
-			this.m_filled = filled;
-
-			this.m_hasBeenUsed = false;
-			this.m_isViewable = false;
-			this.m_unPathable = false;
-			this.m_impassable = false;
-		}
-		public GridLocation(Vector2Int pos, float cost, bool filled, float fscore)
-		{
-			this.m_pos = pos;
-			this.m_fscore = fscore;
-			this.m_cost = cost;
-			this.m_filled = filled;
-
-			this.m_hasBeenUsed = false;
-			this.m_isViewable = false;
-			this.m_unPathable = false;
-		}
-
-		public void setNode(Vector2Int parent, float fscore, float currentDist)
-		{
-			this.m_parent = parent;
-			this.m_fscore = fscore;
-			this.m_currentDist = currentDist;
-		}
-
-		public virtual void setToFilled(bool impassable)
-		{
-			this.m_filled = true;
-			this.m_impassable = impassable;
-		}
-
-	}
-
-	public List<Vector2Int> findPathV2(Vector2Int start, Vector2Int end, int maxSearchNodes = 1000)
-	{
-
-		return null;
-	}
 
 	// return the tile id( not actual position for path finding)
 	public List<Vector2Int> findPath(Vector2Int start, Vector2Int goal, int maxSearchNodes = 1000)
