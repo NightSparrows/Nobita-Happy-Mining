@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 	private Health health;
 	private Stamina stamina;
 	private PlayerExperience exp;
+	private CharacterController characterController;
 
 	private bool m_canMove = true;
 	public bool m_canShoot = true;
@@ -26,10 +27,12 @@ public class Player : MonoBehaviour
 		health = GetComponent<Health>();
 		stamina = GetComponent<Stamina>();
 		exp = GetComponent<PlayerExperience>();
+		characterController = this.GetComponent<CharacterController>();
 		// test just follow
 
 		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
 		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
+
 	}
 
 	// Start is called before the first frame update
@@ -40,31 +43,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (this.m_canMove)
-		{
-			Vector3 vector = new Vector3(0, 0, 0);
-			if (Input.GetKey(KeyCode.W))
-			{
-				vector.z -= 1;
-			}
-			if (Input.GetKey(KeyCode.S))
-			{
-				vector.z += 1;
-			}
-			if (Input.GetKey(KeyCode.A))
-			{
-				vector.x += 1;
-			}
-			if (Input.GetKey(KeyCode.D))
-			{
-				vector.x -= 1;
-			}
-			vector.Normalize();
-			vector *= this.m_moveSpeed;
-
-			this.transform.Translate(vector * Time.deltaTime);
-		}
-		
 		if (this.m_canShoot)
 		{
 			if (Input.GetKey(KeyCode.Space))
@@ -94,6 +72,40 @@ public class Player : MonoBehaviour
         {
 			exp.CurrentPlayerExp += 1;
         }
+	}
+
+	private void FixedUpdate()
+	{
+
+		if (this.m_canMove)
+		{
+			Vector3 vector = new Vector3(0, 0, 0);
+			if (Input.GetKey(KeyCode.W))
+			{
+				vector.z -= 1;
+			}
+			if (Input.GetKey(KeyCode.S))
+			{
+				vector.z += 1;
+			}
+			if (Input.GetKey(KeyCode.A))
+			{
+				vector.x += 1;
+			}
+			if (Input.GetKey(KeyCode.D))
+			{
+				vector.x -= 1;
+			}
+			vector.Normalize();
+			vector *= this.m_moveSpeed;
+			vector *= Time.deltaTime;
+
+			this.characterController.Move(vector);
+
+			//rb.MovePosition(this.transform.position + vector * Time.deltaTime);
+			//this.transform.Translate(vector * Time.deltaTime);
+		}
+
 	}
 
 	private void OnTriggerEnter(Collider other)
