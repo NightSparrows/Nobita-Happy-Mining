@@ -5,38 +5,38 @@ using UnityEngine.UI;
 
 public class ExperienceBar : MonoBehaviour
 {
+    [SerializeField] private PlayerExperience _listen; // set to Player in default
+    [SerializeField] private ValueBar _valueBar;
 
-    private PlayerExperience expListen;
-    private Slider slider;
-
-    private void Awake()
+    private void Start()
     {
-        slider = GetComponent<Slider>();
+        if (_listen == null)
+        {
+            if (GameManager.Instance.player != null)
+                _listen = GameManager.Instance.player.GetComponent<PlayerExperience>();
+            else
+                Debug.LogError("The target of Health Bar is missing!");
+        }
+        _listen.OnMaxPlayerExpChanged += UpdateMaxValue;
+        _listen.OnPlayerExpChanged += UpdateValue;
+
+        UpdateMaxValue(_listen.MaxPlayerExp);
+        UpdateValue(_listen.CurrentPlayerExp);
     }
 
     private void OnDestroy()
     {
-        expListen.OnMaxPlayerExpChanged -= UpdateMaxExp;
-        expListen.OnPlayerExpChanged -= UpdateExp;
+        _listen.OnMaxPlayerExpChanged -= UpdateMaxValue;
+        _listen.OnPlayerExpChanged -= UpdateValue;
     }
 
-    private void Start()
+    private void UpdateMaxValue(int newMaxValue)
     {
-        expListen = GameManager.Instance.player.GetComponent<PlayerExperience>();
-        expListen.OnMaxPlayerExpChanged += UpdateMaxExp;
-        expListen.OnPlayerExpChanged += UpdateExp;
-
-        UpdateMaxExp(expListen.MaxPlayerExp);
-        UpdateExp(expListen.CurrentPlayerExp);
+        _valueBar.MaxValue = newMaxValue;
     }
 
-    private void UpdateMaxExp(int newMaxExp)
+    private void UpdateValue(int newValue)
     {
-        slider.maxValue = newMaxExp;
-    }
-
-    private void UpdateExp(int newExp)
-    {
-        slider.value = newExp;
+        _valueBar.Value = newValue;
     }
 }
