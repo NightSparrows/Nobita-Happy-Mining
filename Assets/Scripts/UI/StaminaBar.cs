@@ -5,38 +5,35 @@ using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
+    [SerializeField] private Stamina _listen; // set to Player in default
+    [SerializeField] private ValueBar _valueBar;
 
-    private Stamina staminaListen;
-    private Slider slider;
-
-    private void Awake()
+    private void Start()
     {
-        slider = GetComponent<Slider>();
+        if (_listen == null)
+        {
+            _listen = GameManager.Instance.player.GetComponent<Stamina>();
+        }
+        _listen.OnMaxStaminaChanged += UpdateMaxValue;
+        _listen.OnStaminaChanged += UpdateValue;
+
+        UpdateMaxValue(_listen.MaxStamina);
+        UpdateValue(_listen.CurrentStamina);
     }
 
     private void OnDestroy()
     {
-        staminaListen.OnMaxStaminaChanged -= UpdateMaxStamina;
-        staminaListen.OnStaminaChanged -= UpdateStamina;
+        _listen.OnMaxStaminaChanged -= UpdateMaxValue;
+        _listen.OnStaminaChanged -= UpdateValue;
     }
 
-    private void Start()
+    private void UpdateMaxValue(int newMaxValue)
     {
-        staminaListen = GameManager.Instance.player.GetComponent<Stamina>();
-        staminaListen.OnMaxStaminaChanged += UpdateMaxStamina;
-        staminaListen.OnStaminaChanged += UpdateStamina;
-
-        UpdateMaxStamina(staminaListen.MaxStamina);
-        UpdateStamina(staminaListen.CurrentStamina);
+        _valueBar.MaxValue = newMaxValue;
     }
 
-    private void UpdateMaxStamina(int newMaxStamina)
+    private void UpdateValue(int newValue)
     {
-        slider.maxValue = newMaxStamina;
-    }
-
-    private void UpdateStamina(int newStamina)
-    {
-        slider.value = newStamina;
+        _valueBar.Value = newValue;
     }
 }
