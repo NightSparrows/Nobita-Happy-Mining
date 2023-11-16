@@ -90,7 +90,6 @@ public class TileMapManager : MonoBehaviour
 
 	float HeuristicCostEstimate(Vector2Int from, Vector2Int to)
 	{
-		// 使用曼哈顿距离（Manhattan Distance）作为启发函数
 		return (from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y);
 	}
 

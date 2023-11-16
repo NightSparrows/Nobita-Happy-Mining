@@ -9,6 +9,14 @@ public class TestEnemyController : MonoBehaviour, IEnemyController
 	private Health health;
 	private CharacterController characterController;
 
+	// TODO add enemy status
+	// walk to player, attacking, idling, sleeping, ... etc
+
+	// movement para.
+	private bool hasTarget = false;
+	private float reachRadiis = 1f;
+	private Vector3 targetPosition;
+
 	// TODO move to enemy attribute
 	private float moveSpeed = 10f;
 	public int dealDamage()
@@ -53,39 +61,63 @@ public class TestEnemyController : MonoBehaviour, IEnemyController
 
 	private void FixedUpdate()
 	{
-		Vector2Int gridPosition = FindNearestDiscretePoint(new Vector2(transform.position.x, transform.position.z), TileController.Size);
-		gridPosition /= TileController.Size;
-
-		Vector2Int playerGridPosition = FindNearestDiscretePoint(new Vector2(this.player.transform.position.x, this.player.transform.position.z), TileController.Size);
-		playerGridPosition /= TileController.Size;
-
-		List<Vector2Int> pathToPlayer = this.tileMapManager.findPath(gridPosition, playerGridPosition, 5000);
-		if (pathToPlayer != null && pathToPlayer.Count >= 2)
+		//////////////////////////////////////////////////////////////////////////////////
+		/// need to move to walk to player state
+		//////////////////////////////////////////////////////////////////////////////////
+		if (!this.hasTarget)
 		{
-			if (pathToPlayer.Count >= 2)
-			{
-				Vector2 moveDir = pathToPlayer[1];
-				Vector3 motion = new Vector3((moveDir.x * TileController.Size) - transform.position.x, 0, (moveDir.y * TileController.Size) - transform.position.z);
-				motion.Normalize();
-				motion *= this.moveSpeed;
-				motion *= Time.deltaTime;
-				this.characterController.Move(motion);
-			}
-			else if (pathToPlayer.Count == 1)
+			Vector3 toPlayerVector = this.player.transform.position - this.transform.position;
+			if (toPlayerVector.magnitude < 2f)
 			{
 				// just move to player
-				Vector3 motion = new Vector3(this.player.transform.position.x - transform.position.x, 0, this.player.transform.position.z - transform.position.z);
-				motion.Normalize();
-				motion *= this.moveSpeed;
-				motion *= Time.deltaTime;
-				this.characterController.Move(motion);
+				this.targetPosition = this.player.transform.position;
+				this.hasTarget = true;
+			} else
+			{
+				Vector2Int gridPosition = FindNearestDiscretePoint(new Vector2(transform.position.x, transform.position.z), TileController.Size);
+				gridPosition /= TileController.Size;
+
+				Vector2Int playerGridPosition = FindNearestDiscretePoint(new Vector2(this.player.transform.position.x, this.player.transform.position.z), TileController.Size);
+				playerGridPosition /= TileController.Size;
+
+				List<Vector2Int> pathToPlayer = this.tileMapManager.findPath(gridPosition, playerGridPosition, 5000);
+				if (pathToPlayer != null)
+				{
+					if (pathToPlayer.Count >= 2)
+					{
+						Vector2 moveDir = pathToPlayer[1];
+						this.targetPosition = new Vector3(moveDir.x * TileController.Size, 0, moveDir.y * TileController.Size);
+					}
+					else if (pathToPlayer.Count == 1)
+					{
+						// just move to player
+						this.targetPosition = this.player.transform.position;
+					}
+					this.hasTarget = true;
+				}
+				else
+				{
+					Debug.LogWarning("Path error");
+					Debug.LogWarning("Player grid position: " + playerGridPosition);
+				}
 			}
-		}
-		else
+		} else
 		{
-			Debug.LogWarning("Path error");
-			Debug.LogWarning("Player grid position: " + playerGridPosition);
+			Vector3 motion = this.targetPosition - this.transform.position;
+			motion.y = 0;
+			if (motion.magnitude < reachRadiis)
+			{
+				this.hasTarget = false;
+			}
+			motion.Normalize();
+			motion *= this.moveSpeed;
+			motion *= Time.deltaTime; 
+			this.characterController.Move(motion);
 		}
+		//////////////////////////////////////////////////////////////////////////////////
+		/// END: need to move to walk to player state
+		//////////////////////////////////////////////////////////////////////////////////
+
 	}
 
 	private void OnTriggerEnter(Collider other)
