@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] public int BaseDamage { get; set; } = 0;
-    [SerializeField] public float DamageMultiplier { get; set; } = 1.0f;
-    [SerializeField] public float CriticalChance { get; set; } = 0.0f;
-    [SerializeField] public float CriticalDamageMultiplier { get; set; } = 1.0f;
+    [field: SerializeField] public int BaseDamage { get; set; } = 0;
+    [field: SerializeField] public float DamageMultiplier { get; set; } = 1.0f;
+    [field: SerializeField] public float CriticalChance { get; set; } = 0.0f;
+    [field: SerializeField] public float CriticalDamageMultiplier { get; set; } = 1.0f;
 
     public int Damage
     {
@@ -20,10 +20,5 @@ public class Attack : MonoBehaviour
             }
             return damage;
         }
-    }
-
-    public void GetBuffed(DamageBuff buff)
-    {
-        buff.BuffTo(this);
     }
 }
