@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent agent;
     //public Transform player;
 
-    GameObject player;
+    [SerializeField] GameObject player;
     GameObject bullet;
     [SerializeField] GameObject exp = null;
 
@@ -28,13 +28,15 @@ public class EnemyAI : MonoBehaviour
 
         health = GetComponent<Health>();
         //SelfDestroy();
-	}
+
+        //EnemyMove2();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        EnemyMove1();
-        //EnemyMove2();
+        //EnemyMove1();
+        EnemyMove2();
     }
 
     void EnemyMove1()
@@ -79,6 +81,11 @@ public class EnemyAI : MonoBehaviour
         }
 
         //bullet = collision.gameObject;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        rig.velocity = Vector3.zero;
     }
 
     public void SetPlayer(GameObject obj)
