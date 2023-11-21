@@ -11,7 +11,9 @@ public class Player : MonoBehaviour
 
 	// just public now dont know
 	public GameObject m_currentBulletPrefab;
-	
+
+	private CharacterController m_characterController;
+
 	private Health health;
 	private Stamina stamina;
 	private PlayerExperience exp;
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
 	private void Awake()
 	{
 		//this.m_camera = new PlayerCamera(this);
+		this.m_characterController = GetComponent<CharacterController>();
 		health = GetComponent<Health>();
 		stamina = GetComponent<Stamina>();
 		exp = GetComponent<PlayerExperience>();
@@ -35,7 +38,8 @@ public class Player : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-    }
+		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PlayerBullet"));
+	}
 
     // Update is called once per frame
     void Update()
@@ -62,7 +66,8 @@ public class Player : MonoBehaviour
 			vector.Normalize();
 			vector *= this.m_moveSpeed;
 
-			this.transform.Translate(vector * Time.deltaTime);
+			this.m_characterController.Move(vector * Time.deltaTime);
+			//this.transform.Translate(vector * Time.deltaTime);
 		}
 		
 		if (this.m_canShoot)
