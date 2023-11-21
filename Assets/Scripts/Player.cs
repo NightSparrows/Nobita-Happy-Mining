@@ -72,10 +72,16 @@ public class Player : MonoBehaviour
 		
 		if (this.m_canShoot)
 		{
-			if (Input.GetKey(KeyCode.Space))
+			///
+			/// remove in future
+			///
+			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				GameObject bullet = Instantiate(this.m_currentBulletPrefab, this.transform.position, Quaternion.identity, null);
 			}
+			///
+			/// end remove in future
+			///
 		}
 
 		//this.m_camera.update();
