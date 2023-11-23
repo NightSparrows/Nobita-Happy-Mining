@@ -25,9 +25,9 @@ public class PortalManager : MonoBehaviour
 		Portal portal2Control = this.portal2.GetComponent<Portal>();
 		Portal portal3Control = this.portal3.GetComponent<Portal>();
 		Portal portal4Control = this.portal4.GetComponent<Portal>();
-		portal1Control.targetPortal = portal2Control;
+		portal1Control.targetPortal = portal4Control;
 		portal2Control.targetPortal = portal1Control;
-		portal3Control.targetPortal = portal4Control;
+		portal3Control.targetPortal = portal2Control;
 		portal4Control.targetPortal = portal3Control;
 
 	}
