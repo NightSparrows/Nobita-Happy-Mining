@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6974829382051464905}
   - component: {fileID: 4522870662923723560}
   - component: {fileID: 2377772543745017247}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2695106543813854800}
   - component: {fileID: 2054056679086466117}
   - component: {fileID: 7552565881975956742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletPrefab
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
