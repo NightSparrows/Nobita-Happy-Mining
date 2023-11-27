@@ -14,11 +14,20 @@ public class PlayerControl : MonoBehaviour
     int level = 1;
     float exp = 1f;
 
+    Health health;
+    Attack attack;
+    Defense defense;
 
 
     float horizontalMove;
     float verticalMove;
 
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+        attack = GetComponent<Attack>();
+        defense = GetComponent<Defense>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +61,8 @@ public class PlayerControl : MonoBehaviour
            //new Vector3(horizontalMove * speed, 0, verticalMove * speed);
            new Vector3(horizontalMove, 0, verticalMove).normalized * speed;
 
+        Vector3 dir = transform.position + rig.velocity;
+        //transform.LookAt(dir);
     }
 
     void Attack()

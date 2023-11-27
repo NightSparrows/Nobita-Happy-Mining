@@ -9,11 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6145396021656150768}
+  - component: {fileID: 3283377644599384941}
+  - component: {fileID: 5196972206892922063}
+  - component: {fileID: 2251660529643093519}
+  - component: {fileID: 8731835966550328629}
   - component: {fileID: 7891494391501940351}
   - component: {fileID: 217924593888634289}
   - component: {fileID: 4181422647994624671}
   - component: {fileID: 3999433219181857854}
-  - component: {fileID: 3283377644599384941}
+  - component: {fileID: 2737386272317391660}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -37,6 +41,65 @@ Transform:
   - {fileID: 3776083441240192880}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3283377644599384941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171568564652146646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd7b0ac638eada4fb24a5e835005337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet1: {fileID: 5155640777389575246, guid: 41aa3ad2942a7bb4e9d40bd8d3f3fc6b, type: 3}
+  speed: 5
+  hp: 100
+  atk: 1
+--- !u!114 &5196972206892922063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171568564652146646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e407bb49d500597489dc2804751ccdb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &2251660529643093519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171568564652146646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24217d144bfb764e99c896e4705b35f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BaseDamage>k__BackingField: 10
+  <DamageMultiplier>k__BackingField: 1
+  <CriticalChance>k__BackingField: 0
+  <CriticalDamageMultiplier>k__BackingField: 1
+--- !u!114 &8731835966550328629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171568564652146646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f2005b3256aa245bee0c63d9ca449e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor: 0
+  damageReduceRate: 0
 --- !u!33 &7891494391501940351
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -135,7 +198,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3283377644599384941
+--- !u!114 &2737386272317391660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,13 +207,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7171568564652146646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd7b0ac638eada4fb24a5e835005337, type: 3}
+  m_Script: {fileID: 11500000, guid: f24217d144bfb764e99c896e4705b35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet1: {fileID: 5155640777389575246, guid: 41aa3ad2942a7bb4e9d40bd8d3f3fc6b, type: 3}
-  speed: 5
-  hp: 100
-  atk: 1
+  <BaseDamage>k__BackingField: 10
+  <DamageMultiplier>k__BackingField: 1
+  <CriticalChance>k__BackingField: 0
+  <CriticalDamageMultiplier>k__BackingField: 1
 --- !u!1 &7513531681935562443
 GameObject:
   m_ObjectHideFlags: 0
