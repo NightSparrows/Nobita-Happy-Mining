@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMovement : MonoBehaviour
+abstract public class BaseMovement : MonoBehaviour
 {
     [SerializeField] protected float _speed;
-    public float Speed
+    public virtual float Speed
     {
         get
         {

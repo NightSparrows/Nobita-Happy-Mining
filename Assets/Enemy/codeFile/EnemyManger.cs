@@ -33,7 +33,7 @@ public class EnemyManger : MonoBehaviour
             --numOfEnemy1;
             //生成物件(物件名稱,物件位置,物件角度)
             GameObject enemy = Instantiate(enemy1, transform.position, Quaternion.identity);
-            enemy.GetComponent<EnemyAI>().SetPlayer(player);
+            //enemy.GetComponent<Enemy>().SetPlayer(player);
         }
     }
 }

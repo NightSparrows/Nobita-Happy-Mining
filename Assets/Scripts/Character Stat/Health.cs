@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
 
 	public event Action<int> OnMaxHealthChanged;
 	public event Action<int> OnHealthChanged;
+	public event Action OnDead;
 
     private void Awake()
     {
@@ -43,6 +44,8 @@ public class Health : MonoBehaviour
 	public void takeDamage(int damage)
 	{
 		Debug.Assert(damage >= 0, "Damage can't be negative!");
+		//
+		Debug.Log("player be hit");
 
 		UpdateHealth(currentHealth - damage);
 	}
@@ -65,6 +68,12 @@ public class Health : MonoBehaviour
     {
 		currentHealth = newHealth;
 		OnHealthChanged?.Invoke(newHealth);
+        if (isDead())
+        {
+			OnDead?.Invoke();
+        }
+
+		Debug.Log(currentHealth);
     }
 
 	private void UpdateMaxHealth(int newMaxHealth)
@@ -72,6 +81,8 @@ public class Health : MonoBehaviour
 		maxHealth = newMaxHealth;
 		OnMaxHealthChanged?.Invoke(newMaxHealth);
     }
+
+
 
 	// public int getCurrentHealth() { return this.currentHealth; }
 

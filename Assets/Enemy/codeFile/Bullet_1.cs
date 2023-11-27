@@ -10,30 +10,38 @@ public class Bullet_1 : MonoBehaviour
 
     private Rigidbody rig;
 
-    [SerializeField] float speed = 3f;
+    [SerializeField] float speed = 5f;
     [SerializeField] float atk = 25f;
     int level = 1;
+
+    Attack attack;
 
     Vector3 enemyPos;
 
     Vector3 direction;
+
+    private void Awake()
+    {
+        attack = GetComponent<Attack>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
 
-        enemy = GameObject.Find("Enemy").transform;
-        if (enemy == null)
-        {
-            enemyPos = enemy.position;
-            SetDirection();
-        }
-        else
-        {
-            direction = new Vector3(1, 0, 0);
-        }
-        
+        //enemy = GameObject.Find("Enemy").transform;
+        //if (enemy == null)
+        //{
+        //    enemyPos = enemy.position;
+        //    SetDirection();
+        //}
+        //else
+        //{
+        //    direction = new Vector3(1, 0, 0);
+        //}
+
+        rig.velocity = Vector3.forward * speed;
 
         Destroy(gameObject, 5);
     }
@@ -43,12 +51,13 @@ public class Bullet_1 : MonoBehaviour
     {
         //transform.Translate(Vector3.up * speed * Time.deltaTime, Space.World);
 
-        Bullet1_Move();
+        //Bullet1_Move();
     }
 
     void Bullet1_Move()
-    { 
+    {
         transform.Translate(direction * speed * Time.deltaTime);
+        
     }
 
     void SetDirection()
@@ -66,4 +75,14 @@ public class Bullet_1 : MonoBehaviour
     {
         return atk;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("bullet hit enemy");
+            other.gameObject.GetComponent<Defense>().BeAttacked(attack);
+        }
+    }
+
 }

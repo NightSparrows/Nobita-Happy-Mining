@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7498509610747976849}
+  - component: {fileID: 8195641275921933853}
+  - component: {fileID: 5749738438996190502}
   - component: {fileID: 1641838866970039917}
   - component: {fileID: 4945976299174033388}
   - component: {fileID: 7638982033240170556}
-  - component: {fileID: 8195641275921933853}
   m_Layer: 0
   m_Name: Exp
   m_TagString: Exp
@@ -35,6 +36,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8195641275921933853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3361008469445427220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca2927464389cc40a19467268482e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 10
+  radius: 5
+  speed: 7
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &5749738438996190502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3361008469445427220}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375556cc59853c3409f3a1e229989034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 12
+  _forward: {x: 0, y: 0, z: 0}
+  _normalize: 1
 --- !u!33 &1641838866970039917
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -106,21 +140,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8195641275921933853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3361008469445427220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ca2927464389cc40a19467268482e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 10
-  radius: 5
-  speed: 7
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 64

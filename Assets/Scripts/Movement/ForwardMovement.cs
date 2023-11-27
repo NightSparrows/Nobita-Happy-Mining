@@ -22,7 +22,7 @@ public class ForwardMovement : BaseMovement
     }
     [SerializeField] protected bool _normalize = true;
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         transform.Translate(Forward * Speed * Time.deltaTime);
 
