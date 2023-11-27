@@ -7,7 +7,7 @@ public class BulletController : MonoBehaviour
     public float m_lifeTime = 1.5f;
     public float m_currentTime = 0f;
 	public Vector3 m_velocity;
-	protected int m_damage = 25;
+	public int m_damage = 25;
 
 	/*
 	 * 用來減少bullet作用次數，以達到穿透效果，
@@ -17,8 +17,13 @@ public class BulletController : MonoBehaviour
 
 	private void Awake()
 	{
+		this.init();
+	}
+
+	public void init()
+	{
 		this.m_currentTime = 0;
-		this.m_velocity = new Vector3(10, 0, 0);
+		this.m_velocity = new Vector3(10, 0, 0); // can be remove
 	}
 
 	public void setVelocity(Vector3 velocity)
@@ -40,6 +45,7 @@ public class BulletController : MonoBehaviour
 			Destroy(this.gameObject);
 		}
         this.m_currentTime += Time.deltaTime;
+		Debug.Log("position: " + this.transform.position);
 		this.transform.Translate(this.m_velocity * Time.deltaTime);
 	}
 
@@ -58,6 +64,7 @@ public class BulletController : MonoBehaviour
 				Destroy(this.gameObject);
 			}
 		}
+		// ??
 
 	}
 }
