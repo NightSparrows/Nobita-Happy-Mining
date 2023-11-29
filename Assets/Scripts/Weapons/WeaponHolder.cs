@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
-    public event Action<Weapon> OnGetNewWeapon;
+    public event Action<Weapon> OnRecievewWeapon, OnDiscardWeapon;
 
     [SerializeField] private Transform _container;
 
@@ -31,6 +31,13 @@ public class WeaponHolder : MonoBehaviour
     public void RecieveWeapon(Weapon newWeapon)
     {
         newWeapon.gameObject.transform.parent = _container.transform;
-        OnGetNewWeapon?.Invoke(newWeapon);
+        newWeapon.holder = this;
+        OnRecievewWeapon?.Invoke(newWeapon);
+    }
+
+    public void DiscardWeapon(Weapon weapon)
+    {
+        OnDiscardWeapon?.Invoke(weapon);
+        Destroy(weapon.gameObject);
     }
 }

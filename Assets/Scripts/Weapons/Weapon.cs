@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public event Action<Bullet> OnInstantiateBullet;
+    public event Action<GameObject> OnInstantiateBullet;
 
-    protected void HandleInstantiateBullet(Bullet bullet)
+    public WeaponHolder holder { get; set; }
+
+
+    protected void InvokeInstantiateBullet(GameObject bullet)
     {
         OnInstantiateBullet?.Invoke(bullet);
     }

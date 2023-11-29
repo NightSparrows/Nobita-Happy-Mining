@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ForwardMovement : BaseMovement
 {
-    [SerializeField] private Vector3 _forward = Vector3.zero;
+    [SerializeField] private Vector3 _forward = Vector3.forward;
     public Vector3 Forward
     {
         get
