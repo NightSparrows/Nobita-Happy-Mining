@@ -17,12 +17,6 @@ public class UpgradeManager : MonoBehaviour
 
     private List<(GameObject, Buff, object)> availibles;
 
-    private void Awake()
-    {
-        PlayerExperience exp = GetComponent<PlayerExperience>();
-        exp.OnPlayerLevelChanged += x => Upgrade();
-    }
-
     private void Upgrade()
     {
         GeneratePool();
@@ -38,6 +32,9 @@ public class UpgradeManager : MonoBehaviour
 
     private void Awake()
     {
+        PlayerExperience exp = GetComponent<PlayerExperience>();
+        exp.OnPlayerLevelChanged += x => Upgrade();
+
         weaponHolder = GetComponent<WeaponHolder>();
         if (menu == null)
         {
