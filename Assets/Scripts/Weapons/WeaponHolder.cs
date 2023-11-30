@@ -5,15 +5,21 @@ using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
-    public event Action<Weapon> OnGetNewWeapon;
+    public event Action<GameObject> OnRecievewWeapon, OnDiscardWeapon;
 
     [SerializeField] private Transform _container;
 
-    public Weapon[] WeaponList
+    public GameObject[] WeaponList
     {
         get
         {
-            return _container.GetComponentsInChildren<Weapon>();
+            int n = _container.childCount;
+            GameObject[] objs = new GameObject[n];
+            for (int i = 0; i < n; ++i)
+            {
+                objs[i] = _container.GetChild(i).gameObject;
+            }
+            return objs;
         }
     }
 
@@ -28,9 +34,16 @@ public class WeaponHolder : MonoBehaviour
         _container.parent = transform;
     }
 
-    public void RecieveWeapon(Weapon newWeapon)
+    public void RecieveWeapon(GameObject newWeapon)
     {
-        newWeapon.gameObject.transform.parent = _container.transform;
-        OnGetNewWeapon?.Invoke(newWeapon);
+        newWeapon.transform.parent = _container.transform;
+        newWeapon.GetComponent<Weapon>().holder = this;
+        OnRecievewWeapon?.Invoke(newWeapon);
+    }
+
+    public void DiscardWeapon(GameObject weapon)
+    {
+        OnDiscardWeapon?.Invoke(weapon);
+        Destroy(weapon.gameObject);
     }
 }
