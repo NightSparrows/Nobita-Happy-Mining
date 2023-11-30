@@ -10,6 +10,19 @@ public class AttackBuff : Buff
     public float criticalChanceIncrement = 0.0f;
     public float criticalDamageIncrement = 0.0f;
 
+    public override string description
+    {
+        get
+        {
+            Debug.Log("AttackBuff GenerateDescription");
+            return
+                ((baseDamageIncrement != 0) ? "Base Damage " + ToText(baseDamageIncrement) + "\n" : "") +
+                ((damageIncrement != 0) ? "Damage " + ToText(damageIncrement * 100) + "%\n" : "") +
+                ((criticalChanceIncrement != 0) ? "Critical Change " + ToText(criticalChanceIncrement) + "\n" : "") +
+                ((criticalDamageIncrement != 0) ? "Critical Damage " + ToText(criticalDamageIncrement * 100) + "%\n" : "");
+        }
+    }
+
     public override void ApplyTo(GameObject target)
     {
         Attack atk = target.GetComponent<Attack>();
@@ -23,17 +36,5 @@ public class AttackBuff : Buff
         atk.DamageMultiplier += damageIncrement;
         atk.CriticalChance += criticalChanceIncrement;
         atk.CriticalDamageMultiplier += criticalDamageIncrement;
-    }
-
-    public override string description
-    {
-        get
-        {
-            return
-                ((baseDamageIncrement != 0) ? "Base Damage " + baseDamageIncrement + "\n": "") +
-                ((damageIncrement != 0) ? "Damage " + (baseDamageIncrement * 100) + "%\n" : "") +
-                ((criticalChanceIncrement != 0) ? "Critical Change " + criticalChanceIncrement + "\n": "") +
-                ((criticalDamageIncrement != 0) ? "Critical Damage " + (criticalDamageIncrement * 100) + "%\n": "");
-        }
     }
 }

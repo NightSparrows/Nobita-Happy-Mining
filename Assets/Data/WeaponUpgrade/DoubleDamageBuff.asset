@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DoubleDamageBuff
   m_EditorClassIdentifier: 
   baseDamageIncrement: 0
-  damageIncrement: 0
+  damageIncrement: 1
   criticalChanceIncrement: 0
   criticalDamageIncrement: 0

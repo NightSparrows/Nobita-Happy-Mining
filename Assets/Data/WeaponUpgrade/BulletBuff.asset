@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512e4839ed5dbb54a9fc0e0ae6faabb7, type: 3}
-  m_Name: UltimateUpgradeSystem
+  m_Script: {fileID: 11500000, guid: f0bf0861dba65bd42b7d04960150d8b8, type: 3}
+  m_Name: BulletBuff
   m_EditorClassIdentifier: 
-  upgrades: []
+  <buff>k__BackingField: {fileID: 11400000, guid: 00575b6537a389a418d44ad01b1136a2, type: 2}

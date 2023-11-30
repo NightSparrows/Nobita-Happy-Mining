@@ -5,10 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New BulletBuff", menuName = "Buff/Bullet Buff")]
 public class BulletBuff : Buff
 {
-    public Buff buff { get; set; }
+    [field: SerializeField] public Buff buff { get; set; }
 
-    protected virtual bool WeaponFilter(Weapon weapon) => true;
+    protected virtual bool WeaponFilter(GameObject weapon) => true;
     protected virtual bool BulletFilter(GameObject bullet) => true;
+
+    public override string description
+    {
+        get
+        {
+            Debug.Log("BulletBuff GenerateDescription");
+            return buff.description;
+        }
+    }
 
     public override void ApplyTo(GameObject target)
     {
@@ -46,16 +55,16 @@ public class BulletBuff : Buff
         holder.OnDiscardWeapon -= DeattachBulletBuff;
     }
 
-    private void AttachBulletBuff(Weapon newWeapon)
+    private void AttachBulletBuff(GameObject newWeapon)
     {
         if (WeaponFilter(newWeapon))
-            newWeapon.OnInstantiateBullet += BuffBullet;
+            newWeapon.GetComponent<Weapon>().OnInstantiateBullet += BuffBullet;
     }
 
-    private void DeattachBulletBuff(Weapon weapon)
+    private void DeattachBulletBuff(GameObject weapon)
     {
-        if (WeaponFilter(weapon))
-            weapon.OnInstantiateBullet -= BuffBullet;
+        if (WeaponFilter(weapon.gameObject))
+            weapon.GetComponent<Weapon>().OnInstantiateBullet -= BuffBullet;
     }
 
     private void BuffBullet(GameObject bullet)

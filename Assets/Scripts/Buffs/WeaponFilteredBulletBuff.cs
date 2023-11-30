@@ -5,8 +5,8 @@ using UnityEngine;
 public class WeaponFilteredBulletBuff<T> : BulletBuff
 {
 
-    protected override bool WeaponFilter(Weapon weapon)
+    protected override bool WeaponFilter(GameObject weapon)
     {
-        return weapon is T;
+        return weapon.GetComponent<T>() != null;
     }
 }

@@ -17,6 +17,6 @@ public class WeaponTestPlayer : MonoBehaviour
     private void Start()
     {
         GameObject weapon = Instantiate(weaponPrefab);
-        holder.RecieveWeapon(weapon.GetComponent<Weapon>());
+        holder.RecieveWeapon(weapon);
     }
 }

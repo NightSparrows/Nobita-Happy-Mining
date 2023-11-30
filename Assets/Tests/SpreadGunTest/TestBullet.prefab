@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8678915872743994228}
   - component: {fileID: 4094243513735686002}
   - component: {fileID: 6993474784739865349}
+  - component: {fileID: 6695893237937967133}
   - component: {fileID: 4003832437180943316}
   - component: {fileID: 7051231378662399153}
   - component: {fileID: 5054624255976949505}
@@ -63,6 +64,22 @@ MonoBehaviour:
   _speed: 1
   _forward: {x: 0, y: 0, z: 1}
   _normalize: 1
+--- !u!114 &6695893237937967133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293405924681549928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24217d144bfb764e99c896e4705b35f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BaseDamage>k__BackingField: 0
+  <DamageMultiplier>k__BackingField: 1
+  <CriticalChance>k__BackingField: 0
+  <CriticalDamageMultiplier>k__BackingField: 1
 --- !u!33 &4003832437180943316
 MeshFilter:
   m_ObjectHideFlags: 0
