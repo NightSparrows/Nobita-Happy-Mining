@@ -478,10 +478,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1229658980}
+  - component: {fileID: 1229658987}
   - component: {fileID: 1229658984}
   - component: {fileID: 1229658983}
   - component: {fileID: 1229658981}
   - component: {fileID: 1229658985}
+  - component: {fileID: 1229658986}
   - component: {fileID: 1229658979}
   - component: {fileID: 1229658978}
   - component: {fileID: 1229658977}
@@ -634,6 +636,36 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59b54d0522085ed4e822010cb6a9625e, type: 2}
   - {fileID: 11400000, guid: 59b54d0522085ed4e822010cb6a9625e, type: 2}
   menu: {fileID: 387568403}
+--- !u!114 &1229658986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229658975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a835f58cdad1e641aababbffebc154b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxExp: 0
+  _level: 0
+--- !u!114 &1229658987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229658975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0264bce0e21be654b8d07af99d6c4f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gameCamera: {fileID: 0}
+  m_currentBulletPrefab: {fileID: 0}
+  m_canShoot: 1
+  rangeDetector: {fileID: 0}
 --- !u!1001 &1344532482
 PrefabInstance:
   m_ObjectHideFlags: 0
