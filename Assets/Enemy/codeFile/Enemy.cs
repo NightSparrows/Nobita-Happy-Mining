@@ -20,18 +20,23 @@ public class Enemy : MonoBehaviour
 	{
 		rig = GetComponent<Rigidbody>();
 
-		//player = GameObject.Find("Player");
+        //player = GameObject.Find("Player");
 
         health = GetComponent<Health>();
         attack = GetComponent<Attack>();
         defense = GetComponent<Defense>();
         //SelfDestroy();
 
-        player = GameManager.Instance.player;
+        //player = GameManager.Instance.player;
+       // GetComponent<NavigationMove>().SetTarget(player.transform);
+
     }
 
     private void Start()
     {
+        player = GameManager.Instance.player;
+
+
         health.OnDead += HandleDeath;
         GetComponent<NavigationMove>().SetTarget(player.transform);
     }
@@ -105,6 +110,7 @@ public class Enemy : MonoBehaviour
 
     void HandleDeath()
     {
+        Debug.Log("Enemy.HandleDeath");
         CreateExp();
         SelfDestroy();
     }

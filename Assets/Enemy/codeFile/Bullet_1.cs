@@ -82,6 +82,7 @@ public class Bullet_1 : MonoBehaviour
         {
             Debug.Log("bullet hit enemy");
             other.gameObject.GetComponent<Defense>().BeAttacked(attack);
+            //other.gameObject.GetComponent<Health>().takeDamage(attack.Damage);
         }
     }
 
