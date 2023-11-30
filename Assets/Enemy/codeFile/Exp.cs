@@ -14,23 +14,50 @@ public class Exp : MonoBehaviour
 
     bool playerInRange;
 
+    private void Awake()
+    {
+        //player = GameManager.Instance.player;
+        //GetComponent<TargetMovement>().SetTarget(player.transform);
+
+    }
+
+    private void Start()
+    {
+        player = GameManager.Instance.player;
+        GetComponent<TargetMovement>().SetTarget(player.transform);
+    }
+
     // Update is called once per frame
     void Update()
     {
         // check if player is near enough
-        playerInRange = Physics.CheckSphere(transform.position, radius, PlayerLayer);
+        //playerInRange = Physics.CheckSphere(transform.position, radius, PlayerLayer);
 
-        if (playerInRange)
+        //if (playerInRange)
+        //{
+        //    Move();
+        //}
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
         {
-            Move();
+            //TODO:add exp to player
+            Debug.Log("Add Exp");
+            Destroy(gameObject);
         }
     }
+
 
     // return amount of Exp
     public float getAmount()
     {
         return amount;
     }
+
+
 
     public void SetPlayer(GameObject obj)
     {
@@ -51,4 +78,6 @@ public class Exp : MonoBehaviour
 
         transform.Translate(v);
     }
+
+
 }

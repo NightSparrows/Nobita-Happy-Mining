@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
 	public bool m_canShoot = true;
 	private float m_moveSpeed = 10f;
 
+	// Range Detector
+	[SerializeField] RangeDetector rangeDetector;
+
 	private void Awake()
 	{
 		//this.m_camera = new PlayerCamera(this);
@@ -33,12 +36,16 @@ public class Player : MonoBehaviour
 
 		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
 		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
+
 	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PlayerBullet"));
+
+		// Range Detector
+		rangeDetector.OnRangeEnter += CollectExp;
 	}
 
     // Update is called once per frame
@@ -107,13 +114,22 @@ public class Player : MonoBehaviour
         }
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
+	//private void OnTriggerEnter(Collider other)
+	//{
+	//	if (other.tag == "Exp")
+	//	{
+	//		exp.CurrentPlayerExp += 1;
+	//		Destroy(other.gameObject);
+	//	}
+	//}
+
+	// Exp event
+	void CollectExp(Collider other)
+    {
 		if (other.tag == "Exp")
 		{
-			exp.CurrentPlayerExp += 1;
-			Destroy(other.gameObject);
+			Debug.Log("exp in range");
+			other.gameObject.GetComponent<TargetMovement>().enabled = true;
 		}
 	}
-
 }

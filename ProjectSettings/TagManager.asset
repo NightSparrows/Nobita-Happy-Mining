@@ -17,13 +17,13 @@ TagManager:
   - UI
   - Player
   - PlayerBullet
-  - 
+  - Enemy
   - 
   - 
   - Mineral
   - 
-  - 
-  - 
+  - Exp
+  - ExpDetector
   - 
   - 
   - 

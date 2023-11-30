@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
         //rig的數值從unity的Rigidbody取得(前面添加的Rigidbody)
         rig = GetComponent<Rigidbody>();
         //反覆的呼叫"Attack"一秒後開始,反覆時間為一秒
-        //InvokeRepeating("Attack", 1f, 1f);
+        InvokeRepeating("Attack", 1f, 1f);
     }
 
     // Update is called once per frame
