@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class PlayerExperience : MonoBehaviour
 {
-    [SerializeField] private int _maxExp;
+    private int _maxExp;
     private int _exp = 0;
     [SerializeField] private int _level;
+
+    [SerializeField] public LevelUpSystem levelUpSystem { get; set; }
 
     public int MaxPlayerExp
     {
@@ -18,8 +20,10 @@ public class PlayerExperience : MonoBehaviour
 
         set
         {
+            if (_maxExp == value) return;
             _maxExp = value;
             OnMaxPlayerExpChanged?.Invoke(value);
+            if (_exp >= _maxExp) LevelUp();
         }
     }
 
@@ -32,8 +36,10 @@ public class PlayerExperience : MonoBehaviour
 
         set
         {
+            if (_exp == value) return;
             _exp = value;
             OnPlayerExpChanged?.Invoke(value);
+            if (_exp >= _maxExp) LevelUp();
         }
     }
 
@@ -43,6 +49,22 @@ public class PlayerExperience : MonoBehaviour
         {
             return _level;
         }
+
+        set
+        {
+            if (_level == value) return;
+            _level = value;
+            OnPlayerLevelChanged?.Invoke(value);
+        }
+    }
+
+    private void LevelUp()
+    {
+        _exp -= _maxExp;
+        _maxExp = levelUpSystem.ExpRequired(_level + 1);
+        OnPlayerExpChanged?.Invoke(_exp);
+        OnMaxPlayerExpChanged?.Invoke(_maxExp);
+        ++PlayerLevel;
     }
 
     public event Action<int> OnMaxPlayerExpChanged;
