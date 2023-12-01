@@ -13,6 +13,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private UpgradeSystemMenu menu;
 
     private WeaponHolder weaponHolder;
+    private ItemHolder itemHolder;
     
 
     private List<(GameObject, Buff, object)> availibles;
@@ -37,6 +38,8 @@ public class UpgradeManager : MonoBehaviour
         exp.OnPlayerLevelChanged += x => Upgrade();
 
         weaponHolder = GetComponent<WeaponHolder>();
+        itemHolder = GetComponent<ItemHolder>();
+
         if (menu == null)
         {
             Debug.LogError("UpgradeSystemMenu not found for UpgradeManager");
@@ -71,13 +74,14 @@ public class UpgradeManager : MonoBehaviour
         availibles = new List<(GameObject, Buff, object)>();
 
         GenerateWeaponPoll();
-        // GenerateItemPoll
+        GenerateItemPoll();
         // GenerateEvolutionPoll
         GenerateGuaranteePoll();
     }
 
     private void GenerateWeaponPoll()
     {
+        if (weaponHolder == null) return;
         foreach (var weapon in weaponHolder.WeaponList)
         {
             UpgraderHelper helper = weapon.GetComponent<UpgraderHelper>();
@@ -85,6 +89,20 @@ public class UpgradeManager : MonoBehaviour
             foreach (var (buff, indicator) in helper.GetAvailableUpgrades())
             {
                 availibles.Add((weapon, buff, indicator));
+            }
+        }
+    }
+
+    private void GenerateItemPoll()
+    {
+        if (itemHolder == null) return;
+        foreach (var item in itemHolder.itemList)
+        {
+            UpgraderHelper helper = item.GetComponent<UpgraderHelper>();
+            if (helper == null) continue;
+            foreach (var (buff, indicator) in helper.GetAvailableUpgrades())
+            {
+                availibles.Add((item, buff, indicator));
             }
         }
     }

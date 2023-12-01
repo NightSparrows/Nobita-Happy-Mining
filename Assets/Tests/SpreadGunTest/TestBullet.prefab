@@ -61,7 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f965b7ac84bee444081340c12c55fd5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _baseValue: 10
+  _valueMultiplier: 1
   _forward: {x: 0, y: 0, z: 1}
   _normalize: 1
 --- !u!114 &6695893237937967133
