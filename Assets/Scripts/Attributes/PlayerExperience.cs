@@ -5,11 +5,24 @@ using UnityEngine;
 
 public class PlayerExperience : MonoBehaviour
 {
-    private int _maxExp;
-    private int _exp = 0;
-    [SerializeField] private int _level;
+    [SerializeField] private int _maxExp;
+    [SerializeField] private int _exp = 0;
+    [SerializeField] private int _level = 1;
 
-    [SerializeField] public LevelUpSystem levelUpSystem { get; set; }
+    [field: SerializeField] public LevelUpSystem levelUpSystem { get; set; }
+
+    private void Awake()
+    {
+        _maxExp = levelUpSystem.ExpRequired(_level);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            CurrentPlayerExp += MaxPlayerExp - CurrentPlayerExp;
+        }
+    }
 
     public int MaxPlayerExp
     {

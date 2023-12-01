@@ -19,6 +19,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Upgrade()
     {
+        Time.timeScale = 0f;
         GeneratePool();
         var choicesNumber = GenerateChoices();
         List<(GameObject, Buff, object)> choices = new List<(GameObject, Buff, object)>();
@@ -53,6 +54,7 @@ public class UpgradeManager : MonoBehaviour
             buff.ApplyTo(gameObject);
         }
         menu.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public List<int> GenerateChoices()
