@@ -24,9 +24,9 @@ public class ForwardMovement : BaseMovement
 
     protected virtual void FixedUpdate()
     {
-        transform.Translate(Forward * Speed * Time.deltaTime);
+        transform.Translate(Forward * speed * Time.deltaTime);
 
-        IsMovingInThisTick = Forward != Vector3.zero && Speed != 0;
+        IsMovingInThisTick = Forward != Vector3.zero && speed != 0f;
         HandleMoveEvents();
     }
 }
