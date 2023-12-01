@@ -5,6 +5,7 @@ using System.Linq;
 
 [RequireComponent(typeof(PlayerExperience))]
 [RequireComponent(typeof(WeaponHolder))]
+[RequireComponent(typeof(ItemHolder))]
 public class UpgradeManager : MonoBehaviour
 {
     public int numberOfChoices { get; set; } = 3;
@@ -18,6 +19,8 @@ public class UpgradeManager : MonoBehaviour
 
     private List<(GameObject, Buff, object)> availibles;
 
+    // Pause the game, Generate upgrade choices and Show the choices
+    // Intended to be Called when Player Level up
     private void Upgrade()
     {
         Time.timeScale = 0f;
@@ -46,6 +49,8 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    // the Player choose a certain Upgrade, we apply it
+    // Intended to be called by Upgrade Menu
     public void ChooseBuff(GameObject owner, Buff buff, object indicator)
     {
         if (owner != null)

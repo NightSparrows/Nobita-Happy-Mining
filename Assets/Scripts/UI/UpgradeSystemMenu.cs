@@ -20,6 +20,7 @@ public class UpgradeSystemMenu : MonoBehaviour
         buttonWidth = optionButtomPrefab.GetComponent<RectTransform>().sizeDelta.x;
     }
 
+    // called by UpgradeManager, where the choices are given
     public void ShowChoices(List<(GameObject, Buff, object)> choices)
     {
         optionButtons = new List<GameObject>();
@@ -44,6 +45,7 @@ public class UpgradeSystemMenu : MonoBehaviour
         }
     }
 
+    // callback function from Choice Buttons
     public void Choose(int index)
     {
         ClearButton();
