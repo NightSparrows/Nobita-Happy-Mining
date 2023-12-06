@@ -12,7 +12,7 @@ public class PlayerCamera //: MonoBehaviour
 	{
 		this.m_player = player;
 		//this.m_object = new GameObject("PlayerCamera");
-		this.m_object.transform.LookAt(new Vector3(10, -20, -20));
+		this.m_object.transform.LookAt(new Vector3(7.5f, -15, -15));
 	}
 
 	public Transform getTransform()
@@ -24,9 +24,9 @@ public class PlayerCamera //: MonoBehaviour
     public void update()
 	{
 		Vector3 newPos = new Vector3(this.m_player.transform.position.x, this.m_player.transform.position.y, this.m_player.transform.position.z);
-		newPos.x -= 10f;
-		newPos.z += 20f;
-		newPos.y += 20f;
+		newPos.x -= 7.5f;
+		newPos.z += 15f;
+		newPos.y += 15f;
 		this.m_object.transform.position = newPos;
 	}
 }

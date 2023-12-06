@@ -14,13 +14,17 @@ public class Player : MonoBehaviour
 
 	private CharacterController m_characterController;
 
+	public GameObject playerModelGameObject;
+
 	private Health health;
 	private Stamina stamina;
 	private PlayerExperience exp;
+	private Animator animator;
 
 	private bool m_canMove = true;
 	public bool m_canShoot = true;
-	private float m_moveSpeed = 10f;
+	private float m_moveSpeed = 5f;
+	private float rotationSpeed = 10;
 
 	private void Awake()
 	{
@@ -29,6 +33,7 @@ public class Player : MonoBehaviour
 		health = GetComponent<Health>();
 		stamina = GetComponent<Stamina>();
 		exp = GetComponent<PlayerExperience>();
+		animator = playerModelGameObject.GetComponent<Animator>();
 		// test just follow
 
 		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
@@ -39,6 +44,7 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PlayerBullet"));
+		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ignore"));
 	}
 
     // Update is called once per frame
@@ -64,6 +70,17 @@ public class Player : MonoBehaviour
 				vector.x -= 1;
 			}
 			vector.Normalize();
+			if (vector.magnitude != 0)
+			{
+				animator.SetBool("isWalking", true);
+				// smooth rotation to direction
+				Quaternion targetRotation = Quaternion.LookRotation(vector, Vector3.up);
+				transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+			}
+			else
+			{
+				animator.SetBool("isWalking", false);
+			}
 			vector *= this.m_moveSpeed;
 
 			this.m_characterController.Move(vector * Time.deltaTime);
