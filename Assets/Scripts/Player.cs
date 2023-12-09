@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
 	private int m_miningDamage = 10;			// each mine take how many damage
 	private float m_miningSpeed = 2f;           // the speed of mine down
 	private float m_miningRange = 3f;
+	// Range Detector
+	[SerializeField] RangeDetector rangeDetector;
+
 	private void Awake()
 	{
 		this.m_state = PlayerState.Idle;
@@ -55,6 +58,7 @@ public class Player : MonoBehaviour
 
 		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
 		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
+
 	}
 
 	// Start is called before the first frame update
@@ -62,6 +66,9 @@ public class Player : MonoBehaviour
 	{
 		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PlayerBullet"));
 		Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Ignore"));
+
+		// Range Detector
+		rangeDetector.OnRangeEnter += CollectExp;
 	}
 
     // Update is called once per frame
@@ -150,7 +157,7 @@ public class Player : MonoBehaviour
 			this.m_currentMineObject = null;
 			this.m_isMining = false;
 		}
-		// ¿W¥ß©óplayer state
+		// ï¿½Wï¿½ß©ï¿½player state
 		if (this.m_isMining)
 		{
 			this.m_currentMiningTime += Time.deltaTime;
@@ -186,12 +193,22 @@ public class Player : MonoBehaviour
         }
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
+	//private void OnTriggerEnter(Collider other)
+	//{
+	//	if (other.tag == "Exp")
+	//	{
+	//		exp.CurrentPlayerExp += 1;
+	//		Destroy(other.gameObject);
+	//	}
+	//}
+
+	// Exp event
+	void CollectExp(Collider other)
+    {
 		if (other.tag == "Exp")
 		{
-			exp.CurrentPlayerExp += 1;
-			Destroy(other.gameObject);
+			Debug.Log("exp in range");
+			other.gameObject.GetComponent<TargetMovement>().enabled = true;
 		}
 	}
 }

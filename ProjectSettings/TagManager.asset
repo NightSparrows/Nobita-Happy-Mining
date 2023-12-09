@@ -18,12 +18,13 @@ TagManager:
   - Player
   - PlayerBullet
   - Ignore
+  - Enemy
   - 
   - 
   - Mineral
   - 
-  - 
-  - 
+  - Exp
+  - ExpDetector
   - 
   - 
   - 
