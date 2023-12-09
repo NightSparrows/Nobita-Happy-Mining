@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
 		if (Physics.Raycast(transform.position, transform.forward, out hit, this.m_miningRange))
 		{
 			Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
-			if (hit.collider.gameObject.CompareTag("Mineral"))
+			if (hit.collider.gameObject.CompareTag("Mineral") && this.m_state != PlayerState.Sleep)
 			{
 				this.m_currentMineObject = hit.collider.gameObject;
 				this.m_isMining = true;
