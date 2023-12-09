@@ -17,15 +17,22 @@ public class NSTileController : MonoBehaviour
 	/// Can be delete just use cube for prototype
 	/// </summary>
 	private GameObject cube;
+	private Health m_health;
 
 	public void init()
 	{
+		this.tag = "Mineral";
+		BoxCollider collider = this.AddComponent<BoxCollider>();
+		collider.center = new Vector3(0, 1, 0);
+		collider.size = new Vector3(2, 2, 2);
+		collider.isTrigger = true;
+
+		this.m_health = this.AddComponent<Health>();
 
 		/// test for changing this game object
 		/// ex add mineral model base on the tile type
 		cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		cube.transform.parent = this.transform;
-		cube.AddComponent<BoxCollider>();
 		if (cube == null)
 		{
 			Debug.LogError("Failed to create rock cube mesh");
@@ -42,20 +49,15 @@ public class NSTileController : MonoBehaviour
 		{
 			case 0:
 				cube.GetComponent<Renderer>().material.color = Color.gray;
+				this.m_health.init(100);
 				break;
 			case 1:
 				cube.GetComponent<Renderer>().material.color = Color.red;
+				this.m_health.init(200);
 				break;
 			default:
 				break;
 		}
-
-		/// 
-		NavMeshObstacle navMeshObstacle = this.AddComponent<NavMeshObstacle>();
-		navMeshObstacle.shape = NavMeshObstacleShape.Box;
-		navMeshObstacle.height = Size;
-		navMeshObstacle.radius = Size;
-
 	}
 
 	private void Awake()

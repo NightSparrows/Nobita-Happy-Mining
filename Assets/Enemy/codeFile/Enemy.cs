@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         health.OnDead += HandleDeath;
-        GetComponent<NavigationMove>().SetTarget(player.transform);
+        //GetComponent<NavigationMove>().SetTarget(player.transform);
     }
 
     // Update is called once per frame
