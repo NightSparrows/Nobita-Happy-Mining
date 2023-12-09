@@ -94,8 +94,8 @@ public class Health : MonoBehaviour
 
 
 
-	// public int getCurrentHealth() { return this.currentHealth; }
+	public int getCurrentHealth() { return this.currentHealth; }
 
-	// public int getMaxHealth() { return this.maxHealth; }
+	public int getMaxHealth() { return this.maxHealth; }
 
 }
