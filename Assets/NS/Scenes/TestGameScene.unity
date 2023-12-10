@@ -701,6 +701,10 @@ PrefabInstance:
       propertyPath: m_gameCamera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 8407585401517298662, guid: 4bbd425ff1e6fa1418797c7ab5781764, type: 3}
+      propertyPath: rangeDetector
+      value: 
+      objectReference: {fileID: 1682939723}
     - target: {fileID: 8428512709091971832, guid: 4bbd425ff1e6fa1418797c7ab5781764, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -746,6 +750,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bbd425ff1e6fa1418797c7ab5781764, type: 3}
+--- !u!114 &1682939723 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8322983465867298743, guid: 4bbd425ff1e6fa1418797c7ab5781764, type: 3}
+  m_PrefabInstance: {fileID: 1682939722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79efa8d07636a548aaeea711093e3e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1900178405
 GameObject:
   m_ObjectHideFlags: 0

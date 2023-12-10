@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
 	private PlayerState m_state;
 	private PlayerCamera m_camera;
+	public MiningPickaxe m_miningPickaxe;
 	public Camera m_gameCamera;
 
 	// just public now dont know
@@ -132,6 +133,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("isWalking", false);
 					animator.SetBool("isSleeping", true);
 					Debug.Log("sleeping");
+					/// TODO: 回復Stamina
 					if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
 						this.m_state = PlayerState.Walk;
 				}
@@ -150,12 +152,14 @@ public class Player : MonoBehaviour
 			{
 				this.m_currentMineObject = hit.collider.gameObject;
 				this.m_isMining = true;
+				this.m_miningPickaxe.startMining();
 			}
 		} else
 		{
 			//Debug.Log("not mining");
 			this.m_currentMineObject = null;
 			this.m_isMining = false;
+			this.m_miningPickaxe.stopMining();
 		}
 		// �W�ߩ�player state
 		if (this.m_isMining)
