@@ -133,6 +133,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("isWalking", false);
 					animator.SetBool("isSleeping", true);
 					Debug.Log("sleeping");
+					this.m_miningPickaxe.stopMining();
 					/// TODO: 回復Stamina
 					if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
 						this.m_state = PlayerState.Walk;
@@ -145,7 +146,7 @@ public class Player : MonoBehaviour
 		}
 
 		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.forward, out hit, this.m_miningRange))
+		if (Physics.Raycast(transform.position, transform.forward * Time.deltaTime, out hit, this.m_miningRange))
 		{
 			Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
 			if (hit.collider.gameObject.CompareTag("Mineral") && this.m_state != PlayerState.Sleep)
