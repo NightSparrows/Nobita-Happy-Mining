@@ -14,7 +14,7 @@ public class AttackBuff : Buff
     {
         get
         {
-            Debug.Log("AttackBuff GenerateDescription");
+            //Debug.Log("AttackBuff GenerateDescription");
             return
                 ((baseDamageIncrement != 0) ? "Base Damage " + ToText(baseDamageIncrement) + "\n" : "") +
                 ((damageIncrement != 0) ? "Damage " + ToText(damageIncrement * 100) + "%\n" : "") +

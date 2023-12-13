@@ -11,7 +11,7 @@ public class BuffPack : Buff
     {
         get
         {
-            Debug.Log("BuffPack GenerateDescription");
+            //Debug.Log("BuffPack GenerateDescription");
             string des = string.Empty;
             foreach (var buff in buffs)
             {

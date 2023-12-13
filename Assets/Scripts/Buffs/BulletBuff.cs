@@ -14,7 +14,7 @@ public class BulletBuff : Buff
     {
         get
         {
-            Debug.Log("BulletBuff GenerateDescription");
+            //Debug.Log("BulletBuff GenerateDescription");
             return buff.description;
         }
     }

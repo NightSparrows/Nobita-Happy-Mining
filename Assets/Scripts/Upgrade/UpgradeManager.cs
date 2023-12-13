@@ -19,6 +19,14 @@ public class UpgradeManager : MonoBehaviour
 
     private List<(GameObject, Buff, object)> availibles;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //Upgrade();
+        }
+    }
+
     // Pause the game, Generate upgrade choices and Show the choices
     // Intended to be Called when Player Level up
     private void Upgrade()
