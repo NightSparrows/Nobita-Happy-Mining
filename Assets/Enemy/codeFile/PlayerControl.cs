@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
     Attack attack;
     Defense defense;
 
+    [SerializeField] RangeDetector expDetector;
 
     float horizontalMove;
     float verticalMove;
@@ -36,6 +37,9 @@ public class PlayerControl : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         //反覆的呼叫"Attack"一秒後開始,反覆時間為一秒
         InvokeRepeating("Attack", 1f, 1f);
+
+
+        expDetector.OnRangeEnter += CollectExp;
     }
 
     // Update is called once per frame
@@ -71,4 +75,12 @@ public class PlayerControl : MonoBehaviour
         Instantiate(bullet1, transform.position, Quaternion.identity);
     }
 
+    void CollectExp(Collider other)
+    {
+        if (other.tag == "Exp")
+        {
+            Debug.Log("exp in range");
+            other.gameObject.GetComponent<TargetMovement>().enabled = true;
+        }
+    }
 }

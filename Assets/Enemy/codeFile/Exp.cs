@@ -8,6 +8,7 @@ public class Exp : MonoBehaviour
     [SerializeField] float radius = 10f;
     [SerializeField] float speed = 10f;
 
+    [SerializeField] private Buff buff;
 
     GameObject player;
     public LayerMask PlayerLayer; // player's layer name
@@ -45,6 +46,7 @@ public class Exp : MonoBehaviour
         if (other.tag == "Player")
         {
             //TODO:add exp to player
+            buff.ApplyTo(other.gameObject);
             Debug.Log("Add Exp");
             Destroy(gameObject);
         }
