@@ -5,6 +5,8 @@ using UnityEngine;
 
 abstract public class BaseMovement : FloatAttribute
 {
+    public bool enableMove { get; set; } = true;
+
     public virtual float speed
     {
         get

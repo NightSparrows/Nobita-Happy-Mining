@@ -145,7 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxExp: 0
+  _exp: 0
   _level: 0
+  <levelUpSystem>k__BackingField: {fileID: 11400000, guid: 85a19517edaa3fe4c9c391c97747a1d1, type: 2}
 --- !u!1001 &5846916941825313679
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 		animator = playerModelGameObject.GetComponent<Animator>();
 		// test just follow
 
-		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
+		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
 		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
 
 	}
