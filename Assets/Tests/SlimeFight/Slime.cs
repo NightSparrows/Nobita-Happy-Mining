@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(Attack))]
 public class Slime : MonoBehaviour
 {
     [SerializeField] private GameObject explosionOnDead;
+    [SerializeField] private SoundEffectSO deadSound;
+    [SerializeField] private SoundEffectSO getHitSound;
 
     private Animator anim;
     private TargetMovement movement;
+    private Health health;
+    private Attack attack;
 
     private static readonly int animIsMoving = Animator.StringToHash("is moving");
     private static readonly int animAttack = Animator.StringToHash("attack");
@@ -23,11 +30,58 @@ public class Slime : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         movement = GetComponent<TargetMovement>();
+        attack = GetComponent<Attack>();
 
         AnimationEndHandler[] animHandlers = anim.GetBehaviours<AnimationEndHandler>();
         foreach (var handler in animHandlers)
         {
             handler.OnAnimationEnd += OnAnimationEnd;
+        }
+
+        health = GetComponent<Health>();
+        health.OnDead += OnDead;
+        health.OnHealthChanged += OnHealthChanged;
+    }
+
+    void OnDead()
+    {
+        GetComponent<SphereCollider>().enabled = false;
+        anim.SetBool(animIsAlive, false);
+        movement.enableMove = false;
+        Instantiate(explosionOnDead, transform.position, Quaternion.identity);
+        deadSound.Play();
+    }
+
+    void OnGetHit()
+    {
+        anim.SetTrigger(animGetHit);
+        movement.enableMove = false;
+        getHitSound.Play();
+    }
+
+    void OnHealthChanged(int newValue)
+    {
+        if (health.isDead()) return;
+
+        // get hit
+        OnGetHit();
+    }
+
+    void OnAttack()
+    {
+        anim.SetTrigger(animAttack);
+        movement.enableMove = false;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("slime hit " + collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Health playerHealth = collision.gameObject.GetComponent<Health>();
+            playerHealth.takeDamage(attack.Damage);
+
+            OnAttack();
         }
     }
 
@@ -37,18 +91,15 @@ public class Slime : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            anim.SetTrigger(animAttack);
-            movement.enableMove = false;
+            OnAttack();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            anim.SetTrigger(animGetHit);
-            movement.enableMove = false;
+            OnGetHit();
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            anim.SetBool(animIsAlive, false);
-            movement.enableMove = false;
+            OnDead();
         }
     }
 
@@ -62,7 +113,6 @@ public class Slime : MonoBehaviour
         }
         else if (state == animDieState)
         {
-            Instantiate(explosionOnDead, transform.position, Quaternion.identity);
             Destroy(gameObject); 
         }
     }

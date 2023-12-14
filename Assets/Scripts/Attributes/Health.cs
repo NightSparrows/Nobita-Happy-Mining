@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 public class Health : MonoBehaviour
 {
 	[SerializeField] private int maxHealth;
-	private int currentHealth;
+	[SerializeField] private int currentHealth;
 
 	public event Action<int> OnMaxHealthChanged;
 	public event Action<int> OnHealthChanged;
@@ -55,7 +55,7 @@ public class Health : MonoBehaviour
 	{
 		Debug.Assert(damage >= 0, "Damage can't be negative!");
 		//
-		Debug.Log("player be hit");
+		//Debug.Log("player be hit");
 
 		UpdateHealth(currentHealth - damage);
 	}
@@ -83,7 +83,7 @@ public class Health : MonoBehaviour
 			OnDead?.Invoke();
         }
 
-		Debug.Log(currentHealth);
+		//Debug.Log(currentHealth);
     }
 
 	private void UpdateMaxHealth(int newMaxHealth)
