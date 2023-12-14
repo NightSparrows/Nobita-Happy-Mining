@@ -3,18 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract public class BaseMovement : MonoBehaviour
+abstract public class BaseMovement : FloatAttribute
 {
-    [SerializeField] protected float _speed;
-    public virtual float Speed
+    public bool enableMove { get; set; } = true;
+
+    public virtual float speed
     {
         get
         {
-            return _speed;
+            return this.value;
+        }
+    }
+
+    public virtual float baseSpeed
+    {
+        get
+        {
+            return baseValue;
         }
         set
         {
-            _speed = value;
+            baseValue = value;
+        }
+    }
+
+    public virtual float speedMultiplier
+    {
+        get
+        {
+            return valueMultiplier;
+        }
+        set
+        {
+            valueMultiplier = value;
         }
     }
 

@@ -7,6 +7,7 @@ using UnityEngine;
 public class PeriodicSpreadGun : PeriodicGun
 {
     [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] private SoundEffectSO shootSound;
 
     protected BulletNumber bulletNumber;
     protected BulletSpread bulletSpread;
@@ -21,11 +22,15 @@ public class PeriodicSpreadGun : PeriodicGun
     protected override void Shoot()
     {
         int n = bulletNumber.value;
+        if (n == 0) return;
+
+        shootSound.Play();
 
         if (n == 1)
         {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            InvokeInstantiateBullet(bullet);
+            ShootBullet();
+            //GameObject bullet = Instantiate(bulletPrefab, transform.position + bulletPrefab.transform.position, transform.rotation);
+            //InvokeInstantiateBullet(bullet);
             return;
         }
 
@@ -34,10 +39,20 @@ public class PeriodicSpreadGun : PeriodicGun
         float stepAngle = allAngle / (n - 1);
         for (int i = 0; i < n; ++i)
         {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             float curAngle = minAngle + i * stepAngle;
-            bullet.transform.Rotate(0f, curAngle, 0f);
-            InvokeInstantiateBullet(bullet);
+            ShootBullet(curAngle);
+            //GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            //bullet.transform.Rotate(0f, curAngle, 0f);
+            //InvokeInstantiateBullet(bullet);
         }
+    }
+
+    protected void ShootBullet(float rotation = 0f)
+    {
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + bulletPrefab.transform.position, transform.rotation);
+        bullet.transform.Rotate(0f, rotation, 0f);
+        InvokeInstantiateBullet(bullet);
+        
+        //fx.transform.Rotate(0f, rotation, 0f);
     }
 }

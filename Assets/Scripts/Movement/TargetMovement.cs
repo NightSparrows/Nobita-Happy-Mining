@@ -5,7 +5,8 @@ using UnityEngine;
 public class TargetMovement : ForwardMovement
 {
     //private Transform target;
-    [SerializeField] Transform target;
+    [SerializeField] public Transform target;
+    [SerializeField] private float rotateSpeed = 80;
 
     protected override void FixedUpdate()
     {
@@ -15,7 +16,10 @@ public class TargetMovement : ForwardMovement
 
         v.y = 0;
 
-        Forward = v;
+        //Forward = v;
+        //Debug.Log(transform.position + ", " + target.position);
+        //Debug.Log("Dis = " + v);
+        transform.rotation = Quaternion.LookRotation(v);
         base.FixedUpdate();
     }
 

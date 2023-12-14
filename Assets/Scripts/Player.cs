@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 		animator = playerModelGameObject.GetComponent<Animator>();
 		// test just follow
 
-		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
+		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
 		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
 
 	}
@@ -146,7 +146,9 @@ public class Player : MonoBehaviour
 		}
 
 		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.forward * Time.deltaTime, out hit, this.m_miningRange))
+		int miniralLayer = 1 << LayerMask.NameToLayer("Mineral");
+		//Debug.Log("miniral layer " + miniralLayer);
+		if (Physics.Raycast(transform.position, transform.forward * Time.deltaTime, out hit, this.m_miningRange, miniralLayer))
 		{
 			Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
 			if (hit.collider.gameObject.CompareTag("Mineral") && this.m_state != PlayerState.Sleep)

@@ -14,7 +14,7 @@ public class NavigationMove : BaseMovement
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        
+        agent.speed = speed;
     }
 
     // Update is called once per frame
@@ -23,15 +23,29 @@ public class NavigationMove : BaseMovement
         //agent.SetDestination(target.position);
     }
 
-    public override float Speed
+    public override float baseSpeed
     {
         get
         {
-            return agent.speed;
+            return baseValue;
         }
         set
         {
-            agent.speed = value;
+            baseValue = value;
+            agent.speed = speed;
+        }
+    }
+
+    public override float speedMultiplier
+    {
+        get
+        {
+            return valueMultiplier;
+        }
+        set
+        {
+            valueMultiplier = value;
+            agent.speed = speed;
         }
     }
 

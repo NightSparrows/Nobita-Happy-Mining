@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: UltimateLinearUpgrader
   m_EditorClassIdentifier: 
   upgrades:
-  - {fileID: 11400000, guid: 59b54d0522085ed4e822010cb6a9625e, type: 2}
-  - {fileID: 11400000, guid: 59b54d0522085ed4e822010cb6a9625e, type: 2}
+  - {fileID: 11400000, guid: 084b824cf742a604585d303a495517fe, type: 2}
+  - {fileID: 11400000, guid: 6701a3a4d3b39e14b96bd28a864039be, type: 2}
+  - {fileID: 11400000, guid: c23c316f5de5dc94082f5a14ada27c5d, type: 2}
+  - {fileID: 11400000, guid: b33430e28cb504841b6345cfeaaf4688, type: 2}
+  - {fileID: 11400000, guid: aeee702c8f729b040bf7c9210d4dbd5d, type: 2}

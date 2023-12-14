@@ -20,8 +20,10 @@ public class UpgradeSystemMenu : MonoBehaviour
         buttonWidth = optionButtomPrefab.GetComponent<RectTransform>().sizeDelta.x;
     }
 
+    // called by UpgradeManager, where the choices are given
     public void ShowChoices(List<(GameObject, Buff, object)> choices)
     {
+        Debug.Log("Choice count= " + choices.Count);
         optionButtons = new List<GameObject>();
         this.choices = choices;
 
@@ -37,13 +39,26 @@ public class UpgradeSystemMenu : MonoBehaviour
             OptionButton option = button.GetComponent<OptionButton>();
             var (source, buff, _) = choices[i];
             option.buffText = buff.description;
-            option.ownerText = (source != null)? source.name : "";
+            option.ownerText = "Default";// (source != null)? source.name : "";
+            if (source != null)
+            {
+                if (source.GetComponent<Weapon>())
+                {
+                    option.ownerText = "Weapon";
+                }
+                else if (source.GetComponent<Item>())
+                {
+                    option.ownerText = "Item";
+                }
+            }
+            
 
             int cur = i;
             option.OnClick += () => Choose(cur);
         }
     }
 
+    // callback function from Choice Buttons
     public void Choose(int index)
     {
         ClearButton();
