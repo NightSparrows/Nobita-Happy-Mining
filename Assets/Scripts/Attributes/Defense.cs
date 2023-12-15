@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Defense : MonoBehaviour
 {
-    [SerializeField] int armor;
-    [SerializeField] float damageReduceRate;
+    [field: SerializeField] public int armor { get; set; } = 0;
+    [field: SerializeField] public float damageReduceRate { get; set; } = 0f;
 
     Health health;
 

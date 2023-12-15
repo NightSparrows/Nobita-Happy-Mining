@@ -6,17 +6,23 @@ using UnityEngine;
 public class WeaponTestPlayer : MonoBehaviour
 {
     [SerializeField] GameObject weaponPrefab;
+    [SerializeField] GameObject itemPrefab;
 
-    private WeaponHolder holder;
+    private WeaponHolder weaponHolder;
+    private ItemHolder itemHolder;
 
     private void Awake()
     {
-        holder = GetComponent<WeaponHolder>();
+        weaponHolder = GetComponent<WeaponHolder>();
+        itemHolder = GetComponent<ItemHolder>();
     }
 
     private void Start()
     {
         GameObject weapon = Instantiate(weaponPrefab);
-        holder.RecieveWeapon(weapon);
+        weaponHolder.RecieveWeapon(weapon);
+
+        GameObject item = Instantiate(itemPrefab);
+        itemHolder.RecieveItem(item);
     }
 }

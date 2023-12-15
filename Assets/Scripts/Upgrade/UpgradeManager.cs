@@ -5,6 +5,7 @@ using System.Linq;
 
 [RequireComponent(typeof(PlayerExperience))]
 [RequireComponent(typeof(WeaponHolder))]
+[RequireComponent(typeof(ItemHolder))]
 public class UpgradeManager : MonoBehaviour
 {
     public int numberOfChoices { get; set; } = 3;
@@ -13,12 +14,24 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private UpgradeSystemMenu menu;
 
     private WeaponHolder weaponHolder;
+    private ItemHolder itemHolder;
     
 
     private List<(GameObject, Buff, object)> availibles;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //Upgrade();
+        }
+    }
+
+    // Pause the game, Generate upgrade choices and Show the choices
+    // Intended to be Called when Player Level up
     private void Upgrade()
     {
+        Time.timeScale = 0f;
         GeneratePool();
         var choicesNumber = GenerateChoices();
         List<(GameObject, Buff, object)> choices = new List<(GameObject, Buff, object)>();
@@ -36,12 +49,16 @@ public class UpgradeManager : MonoBehaviour
         exp.OnPlayerLevelChanged += x => Upgrade();
 
         weaponHolder = GetComponent<WeaponHolder>();
+        itemHolder = GetComponent<ItemHolder>();
+
         if (menu == null)
         {
             Debug.LogError("UpgradeSystemMenu not found for UpgradeManager");
         }
     }
 
+    // the Player choose a certain Upgrade, we apply it
+    // Intended to be called by Upgrade Menu
     public void ChooseBuff(GameObject owner, Buff buff, object indicator)
     {
         if (owner != null)
@@ -53,6 +70,7 @@ public class UpgradeManager : MonoBehaviour
             buff.ApplyTo(gameObject);
         }
         menu.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public List<int> GenerateChoices()
@@ -69,13 +87,14 @@ public class UpgradeManager : MonoBehaviour
         availibles = new List<(GameObject, Buff, object)>();
 
         GenerateWeaponPoll();
-        // GenerateItemPoll
+        GenerateItemPoll();
         // GenerateEvolutionPoll
         GenerateGuaranteePoll();
     }
 
     private void GenerateWeaponPoll()
     {
+        if (weaponHolder == null) return;
         foreach (var weapon in weaponHolder.WeaponList)
         {
             UpgraderHelper helper = weapon.GetComponent<UpgraderHelper>();
@@ -83,6 +102,20 @@ public class UpgradeManager : MonoBehaviour
             foreach (var (buff, indicator) in helper.GetAvailableUpgrades())
             {
                 availibles.Add((weapon, buff, indicator));
+            }
+        }
+    }
+
+    private void GenerateItemPoll()
+    {
+        if (itemHolder == null) return;
+        foreach (var item in itemHolder.itemList)
+        {
+            UpgraderHelper helper = item.GetComponent<UpgraderHelper>();
+            if (helper == null) continue;
+            foreach (var (buff, indicator) in helper.GetAvailableUpgrades())
+            {
+                availibles.Add((item, buff, indicator));
             }
         }
     }
