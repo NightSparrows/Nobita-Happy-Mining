@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c301aafe850fda74fbc8f24b83d7417c, type: 3}
   m_Name: PlayerGetHit
   m_EditorClassIdentifier: 
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: 6ffcc3e8e1f9aad41be71068c563e0f1, type: 3}
   volumn: {x: 0.5, y: 0.7}
   pitch: {x: 0.8, y: 1}
