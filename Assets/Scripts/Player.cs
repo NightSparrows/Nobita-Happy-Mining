@@ -49,16 +49,15 @@ public class Player : MonoBehaviour
 	{
 		this.m_state = PlayerState.Idle;
 
-		//this.m_camera = new PlayerCamera(this);
 		this.m_characterController = GetComponent<CharacterController>();
 		health = GetComponent<Health>();
 		stamina = GetComponent<Stamina>();
 		exp = GetComponent<PlayerExperience>();
 		animator = playerModelGameObject.GetComponent<Animator>();
-		// test just follow
 
-		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.transform);
-		//this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
+		// test just follow
+		this.m_camera = new PlayerCamera(this);
+		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
 
 	}
 
@@ -177,7 +176,7 @@ public class Player : MonoBehaviour
 
 		}
 
-		//this.m_camera.update();
+		this.m_camera.update();
 
 		/*
 		 * ---- Test the Update of Health, Stamina, Exp ----

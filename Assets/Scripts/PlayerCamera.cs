@@ -5,14 +5,21 @@ using UnityEngine;
 public class PlayerCamera //: MonoBehaviour
 {
 	public float m_followSpeed = 2.0f;
-	public Player m_player;
-	private GameObject m_object;		// my virtual object
+	private Player m_player;
+	private GameObject m_object;        // my virtual object
+
+	private SmoothFloat m_distance;
+	private SmoothFloat m_pitch;
+	private SmoothFloat m_yaw;
 
 	public PlayerCamera(Player player)
 	{
 		this.m_player = player;
-		//this.m_object = new GameObject("PlayerCamera");
-		this.m_object.transform.LookAt(new Vector3(7.5f, -15, -15));
+		this.m_object = new GameObject("PlayerCamera");
+
+		this.m_distance = new SmoothFloat(50f);
+		this.m_pitch = new SmoothFloat(45f);
+		this.m_yaw = new SmoothFloat(-45f);
 	}
 
 	public Transform getTransform()
@@ -23,10 +30,15 @@ public class PlayerCamera //: MonoBehaviour
     // Update is called once per frame
     public void update()
 	{
-		Vector3 newPos = new Vector3(this.m_player.transform.position.x, this.m_player.transform.position.y, this.m_player.transform.position.z);
-		newPos.x -= 7.5f;
-		newPos.z += 15f;
-		newPos.y += 15f;
+		float horizontalDistance = this.m_distance * Mathf.Cos(Mathf.Deg2Rad * this.m_pitch);
+		float verticalDistance = this.m_distance * Mathf.Sin(Mathf.Deg2Rad * this.m_pitch);
+
+		Vector3 newPos = this.m_player.transform.position;
+		newPos.y += verticalDistance;
+		newPos.x += horizontalDistance * Mathf.Sin(Mathf.Deg2Rad * this.m_yaw);
+		newPos.z += horizontalDistance * Mathf.Cos(Mathf.Deg2Rad * this.m_yaw);
+
 		this.m_object.transform.position = newPos;
+		this.m_object.transform.LookAt(this.m_player.transform.position);
 	}
 }
