@@ -3,10 +3,11 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class SmoothFloat : MonoBehaviour
+public class SmoothFloat
 {
 	private float m_target;
 	private float m_currentValue;
+	private float m_speed = 1f;
 
 	public SmoothFloat()
 	{
@@ -20,14 +21,21 @@ public class SmoothFloat : MonoBehaviour
 		this.m_currentValue = value;
 	}
 
-	public void setTarget(float target )
+	public void setTarget(float target)
 	{
 		this.m_target = target;
 	}
 
-	private void Update()
+	public float getTarget()
 	{
-		
+		return this.m_target;
+	}
+
+	public void update(float deltaTime)
+	{
+		float delta = this.m_target - this.m_currentValue;
+		delta = delta * deltaTime * this.m_speed;
+		this.m_currentValue += delta;
 	}
 
 	public static implicit operator float(SmoothFloat smoothFloat)

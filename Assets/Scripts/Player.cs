@@ -176,7 +176,17 @@ public class Player : MonoBehaviour
 
 		}
 
-		this.m_camera.update();
+		float scrollInput = -Input.mouseScrollDelta.y;
+		float targetDistance = this.m_camera.getDistance() + Time.deltaTime * scrollInput * 50f/* scroll speed */;
+        if ( targetDistance >= 50f)
+        {
+			targetDistance = 50f;
+        } else if (targetDistance <= 10f)
+		{
+			targetDistance = 10f;
+		}
+		this.m_camera.setDistance(targetDistance);
+        this.m_camera.update(Time.deltaTime);
 
 		/*
 		 * ---- Test the Update of Health, Stamina, Exp ----

@@ -17,19 +17,18 @@ public class PlayerCamera //: MonoBehaviour
 		this.m_player = player;
 		this.m_object = new GameObject("PlayerCamera");
 
-		this.m_distance = new SmoothFloat(50f);
+		this.m_distance = new SmoothFloat(10f);
 		this.m_pitch = new SmoothFloat(45f);
 		this.m_yaw = new SmoothFloat(-45f);
 	}
 
-	public Transform getTransform()
-	{
-		return this.m_object.transform;
-	}
-
     // Update is called once per frame
-    public void update()
+    public void update(float deltaTime)
 	{
+		this.m_distance.update(deltaTime);
+		this.m_pitch.update(deltaTime);
+		this.m_yaw.update(deltaTime);
+
 		float horizontalDistance = this.m_distance * Mathf.Cos(Mathf.Deg2Rad * this.m_pitch);
 		float verticalDistance = this.m_distance * Mathf.Sin(Mathf.Deg2Rad * this.m_pitch);
 
@@ -41,4 +40,27 @@ public class PlayerCamera //: MonoBehaviour
 		this.m_object.transform.position = newPos;
 		this.m_object.transform.LookAt(this.m_player.transform.position);
 	}
+
+	public float getDistance() { return this.m_distance.getTarget(); }
+
+	public void setDistance(float distance)
+	{
+		this.m_distance.setTarget(distance);
+	}
+
+	public float getPitch()
+	{
+		return this.m_pitch.getTarget();
+	}
+
+	public void setPitch(float pitch)
+	{
+		this.m_pitch.setTarget(pitch);
+	}
+
+	public Transform getTransform()
+	{
+		return this.m_object.transform;
+	}
+
 }
