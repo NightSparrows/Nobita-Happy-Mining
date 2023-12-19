@@ -25,7 +25,11 @@ public class GameManager : MonoBehaviour
         get
         {
             if (_instance == null)
+            {
                 Debug.LogError("GameManager instance is missing");
+                return null;
+            }
+                
             return _instance;
         }
     }
