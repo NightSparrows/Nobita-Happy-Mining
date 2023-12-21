@@ -40,6 +40,7 @@ public class ValueBar : MonoBehaviour
         set
         {
             _maxValue = value;
+            _valueText.text = _value.ToString() + "/" + _maxValue.ToString();
             _targetRatio = (float)_value / _maxValue;
             //Debug.Log(string.Format("MaxValue {0} {1} {2} {3}", _value, _maxValue, _targetRatio, _fill.fillAmount));
         }
@@ -54,7 +55,7 @@ public class ValueBar : MonoBehaviour
         set
         {
             _value = value;
-            _valueText.text = _value.ToString();
+            _valueText.text = _value.ToString() + "/" + _maxValue.ToString();
             _targetRatio = (float)_value / _maxValue;
             //Debug.Log(string.Format("Value {0} {1} {2} {3}", _value, _maxValue, _targetRatio, _fill.fillAmount));
         }

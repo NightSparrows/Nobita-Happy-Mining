@@ -67,8 +67,12 @@ PrefabInstance:
       value: Stamina Bar
       objectReference: {fileID: 0}
     - target: {fileID: 2036988763385461430, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 108.4372
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036988763385461430, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.900024
+      value: 57.7635
       objectReference: {fileID: 0}
     - target: {fileID: 3100255518198973206, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
       propertyPath: m_Pivot.x
@@ -268,6 +272,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Experience Bar
       objectReference: {fileID: 0}
+    - target: {fileID: 4357103413833788766, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120.2974
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357103413833788766, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 63.693626
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -369,6 +381,14 @@ PrefabInstance:
     - target: {fileID: 2323764241877357145, guid: b3856fe77a42db5429f23688328a461a, type: 3}
       propertyPath: m_Name
       value: Health Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160425955764318256, guid: b3856fe77a42db5429f23688328a461a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 121.3756
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160425955764318256, guid: b3856fe77a42db5429f23688328a461a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 64.23272
       objectReference: {fileID: 0}
     - target: {fileID: 3618582614584317655, guid: b3856fe77a42db5429f23688328a461a, type: 3}
       propertyPath: m_fontSize
