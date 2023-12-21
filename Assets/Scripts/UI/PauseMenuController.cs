@@ -16,12 +16,12 @@ public class PauseMenuController : MonoBehaviour
             if (GameManager.Instance.isPaused)
             {
                 GameManager.Instance.ResumeTime();
-                pauseMenuUI.SetActive(true);
+                pauseMenuUI.SetActive(false);
             }
             else
             {
                 GameManager.Instance.PauseTime();
-                pauseMenuUI.SetActive(false);
+                pauseMenuUI.SetActive(true);
             }
         }
 

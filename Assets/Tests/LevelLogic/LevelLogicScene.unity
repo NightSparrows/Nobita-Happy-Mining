@@ -656,6 +656,18 @@ PrefabInstance:
       propertyPath: initValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7955952165294662498, guid: b591742456067ce4e970f1a76d483583, type: 3}
+      propertyPath: _enableText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660041194149224132, guid: b591742456067ce4e970f1a76d483583, type: 3}
+      propertyPath: _enableText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046330137469088507, guid: b591742456067ce4e970f1a76d483583, type: 3}
+      propertyPath: _enableText
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1293,6 +1305,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 374396736}
     m_Modifications:
+    - target: {fileID: 591274825135550500, guid: 4610614ca58f95744a4e07f5444ba372, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4655634129067523294, guid: 4610614ca58f95744a4e07f5444ba372, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1393,6 +1409,10 @@ PrefabInstance:
     - target: {fileID: 852565427598272075, guid: ca5f179c97d39c347a862f1e2209a97f, type: 3}
       propertyPath: m_Name
       value: DeadMenuController
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206313191802001394, guid: ca5f179c97d39c347a862f1e2209a97f, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6409132602510850128, guid: ca5f179c97d39c347a862f1e2209a97f, type: 3}
       propertyPath: m_Pivot.x

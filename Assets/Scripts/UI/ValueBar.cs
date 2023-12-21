@@ -88,6 +88,6 @@ public class ValueBar : MonoBehaviour
 
     private void UpdateValue()
     {
-        _fill.fillAmount = Mathf.MoveTowards(_fill.fillAmount, _targetRatio, _changeSpeed * Time.deltaTime);
+        _fill.fillAmount = Mathf.MoveTowards(_fill.fillAmount, _targetRatio, _changeSpeed * Time.unscaledDeltaTime);
     }
 }
