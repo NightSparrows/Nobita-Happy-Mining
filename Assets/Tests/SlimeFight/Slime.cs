@@ -12,7 +12,7 @@ public class Slime : MonoBehaviour
     [SerializeField] private SoundEffectSO getHitSound;
 
     private Animator anim;
-    private TargetMovement movement;
+    private NavigationMove movement;
     private Health health;
     private Attack attack;
 
@@ -29,7 +29,10 @@ public class Slime : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        movement = GetComponent<TargetMovement>();
+        //movement = GetComponent<TargetMovement>();
+        var player = GameManager.Instance.player;
+        movement = GetComponent<NavigationMove>();
+        movement.SetTarget(player.transform);
         attack = GetComponent<Attack>();
 
         AnimationEndHandler[] animHandlers = anim.GetBehaviours<AnimationEndHandler>();

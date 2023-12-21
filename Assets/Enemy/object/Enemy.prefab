@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ee3edf717ec1240b24665c09d159b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
+  _baseValue: 3.5
+  _valueMultiplier: 1
   target: {fileID: 0}
 --- !u!114 &7657575381821568051
 MonoBehaviour:
@@ -82,10 +83,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375556cc59853c3409f3a1e229989034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
+  _baseValue: 0
+  _valueMultiplier: 1
   _forward: {x: 0, y: 0, z: 0}
   _normalize: 1
   target: {fileID: 0}
+  rotateSpeed: 80
 --- !u!114 &2532857546289848271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!114 &2662101853215897408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f2005b3256aa245bee0c63d9ca449e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armor: 0
-  damageReduceRate: 0
+  <armor>k__BackingField: 0
+  <damageReduceRate>k__BackingField: 0
 --- !u!114 &6974165455570966531
 MonoBehaviour:
   m_ObjectHideFlags: 0

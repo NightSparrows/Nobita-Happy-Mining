@@ -8,7 +8,7 @@ public class NavigationMove : BaseMovement
 
     private NavMeshAgent agent;
 
-    [SerializeField] Transform target;
+    [SerializeField] public Transform target;
 
     // Start is called before the first frame update
     void Start()
