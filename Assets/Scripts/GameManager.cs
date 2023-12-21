@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static bool DoesInstanceExit() => _instance != null;
+
     private void Awake()
     {
         if (_instance)
@@ -93,10 +95,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //UpdateGameState(GameState.Playing);
+        FindPlayer();
+        SubscribeEndEvents();
     }
 
     public void PauseTime()
     {
+        if (isPaused) return;
         isPaused = true;
         timeScale = Time.timeScale;
         Time.timeScale = 0f;
@@ -104,24 +109,79 @@ public class GameManager : MonoBehaviour
 
     public void ResumeTime()
     {
+        if (!isPaused) return;
         isPaused = false;
         Time.timeScale = timeScale;
     }
 
     public void Restart()
     {
-        // TODO: load scene
         SceneManager.LoadScene("LevelLogicScene");
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        state = GameState.Playing;
         FindPlayer();
+        SubscribeEndEvents();
+
+        if (isPaused)
+        {
+            ResumeTime();
+        }
     }
 
     private void FindPlayer()
     {
         player = GameObject.FindWithTag("Player");
+    }
+
+    private void SubscribeEndEvents()
+    {
+        if (player == null)
+        {
+            Debug.LogWarning("player in GameManager not found, SubscribeEndEvents() failed");
+            return;
+        }
+
+        Health playerHealth = player.GetComponent<Health>();
+        if (playerHealth == null)
+        {
+            Debug.LogWarning("player don't have Health, SubscribeEndEvents() failed");
+            return;
+        }
+        playerHealth.OnDead += OnPlayerDead;
+
+        Stamina playerStamina = player.GetComponent<Stamina>();
+        if (playerHealth == null)
+        {
+            Debug.LogWarning("player don't have Stamina, SubscribeEndEvents() failed");
+            return;
+        }
+        playerStamina.OnStaminaChanged += OnPlayerStaminaChanged;
+
+        // TODO: subscribe victory(escape) event
+    }
+
+    private void OnPlayerDead()
+    {
+        UpdateGameState(GameState.Dead);
+    }
+
+    private void OnPlayerStaminaChanged(int value)
+    {
+        if (value == 0)
+        {
+            // player timeout
+            UpdateGameState(GameState.Timeout);
+        }
+    }
+
+    // Called by Teleporter
+    public void OnPlayerEscape()
+    {
+        PauseTime();
+        UpdateGameState(GameState.Victory);
     }
 }
 

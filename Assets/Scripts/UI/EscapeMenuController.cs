@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EscapeMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject escapeMenuUI;
 
     private void Start()
     {
@@ -14,6 +14,7 @@ public class EscapeMenuController : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!GameManager.DoesInstanceExit()) return;
         GameManager.Instance.OnGameStateEnter -= OnGameStateEnter;
         GameManager.Instance.OnGameStateExit -= OnGameStateExit;
     }
@@ -22,7 +23,8 @@ public class EscapeMenuController : MonoBehaviour
     {
         if (curState == GameState.Victory)
         {
-            pauseMenuUI.SetActive(true);
+            GameManager.Instance.PauseTime();
+            escapeMenuUI.SetActive(true);
         }
     }
 
@@ -30,7 +32,13 @@ public class EscapeMenuController : MonoBehaviour
     {
         if (curState == GameState.Victory)
         {
-            pauseMenuUI.SetActive(false);
+            GameManager.Instance.ResumeTime();
+            escapeMenuUI.SetActive(false);
         }
+    }
+
+    public void OnRestartButtonPressed()
+    {
+        GameManager.Instance.Restart();
     }
 }

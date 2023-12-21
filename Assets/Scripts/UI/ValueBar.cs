@@ -41,7 +41,7 @@ public class ValueBar : MonoBehaviour
         {
             _maxValue = value;
             _targetRatio = (float)_value / _maxValue;
-            Debug.Log(string.Format("MaxValue {0} {1} {2} {3}", _value, _maxValue, _targetRatio, _fill.fillAmount));
+            //Debug.Log(string.Format("MaxValue {0} {1} {2} {3}", _value, _maxValue, _targetRatio, _fill.fillAmount));
         }
     }
 
@@ -56,7 +56,7 @@ public class ValueBar : MonoBehaviour
             _value = value;
             _valueText.text = _value.ToString();
             _targetRatio = (float)_value / _maxValue;
-            Debug.Log(string.Format("Value {0} {1} {2} {3}", _value, _maxValue, _targetRatio, _fill.fillAmount));
+            //Debug.Log(string.Format("Value {0} {1} {2} {3}", _value, _maxValue, _targetRatio, _fill.fillAmount));
         }
     }
 
@@ -75,7 +75,7 @@ public class ValueBar : MonoBehaviour
                 _fill.fillAmount = 1f;
                 break;
         }
-        Debug.Log(string.Format("Start {0} {1} {2} {3}", _value, _maxValue, _targetRatio, _fill.fillAmount));
+        //Debug.Log(string.Format("Start {0} {1} {2} {3}", _value, _maxValue, _targetRatio, _fill.fillAmount));
     }
     private void Update()
     {

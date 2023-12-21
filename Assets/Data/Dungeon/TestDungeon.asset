@@ -15,3 +15,5 @@ MonoBehaviour:
   levelPrefabs:
   - {fileID: 8538169981251136955, guid: 8e8bddd0f08f7a544afc22b48e32518c, type: 3}
   initLevelIdx: 0
+  escapeLevelIndex: 00000000
+  escapeTeleporterIndex: 00000000
