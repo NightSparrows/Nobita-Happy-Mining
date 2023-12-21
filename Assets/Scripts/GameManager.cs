@@ -2,11 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public GameObject player;
+    public GameObject player;
+    public DungeonManager dungeonManager;
 
+    public GameState state { get; private set; } = GameState.Playing;
+
+    public bool isPaused { get; private set; } = false;
+    private float timeScale;
 
     /*
      * ---- Singleton Pattern of GameManager ----
@@ -41,6 +47,8 @@ public class GameManager : MonoBehaviour
         else
             _instance = this;
         DontDestroyOnLoad(gameObject);
+        FindPlayer();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     #endregion
 
@@ -55,11 +63,12 @@ public class GameManager : MonoBehaviour
      *         
      * ----                                  ----
      */
-    public static event Action<GameState> OnGameStateChanged;
+    public event Action<GameState, GameState> OnGameStateEnter;
+    public event Action<GameState, GameState> OnGameStateExit;
 
     public void UpdateGameState(GameState newState)
     {
-        switch (newState)
+        /*switch (newState)
         {
             case GameState.Playing:
                 break;
@@ -73,14 +82,46 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, "Unknown Game State");
-        }
+        }*/
 
-        OnGameStateChanged?.Invoke(newState);
+        OnGameStateExit?.Invoke(state, newState);
+        var prevState = state;
+        state = newState;
+        OnGameStateEnter?.Invoke(prevState, state);
     }
 
     void Start()
     {
-        UpdateGameState(GameState.Playing);
+        //UpdateGameState(GameState.Playing);
+    }
+
+    public void PauseTime()
+    {
+        isPaused = true;
+        timeScale = Time.timeScale;
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeTime()
+    {
+        isPaused = false;
+        Time.timeScale = timeScale;
+    }
+
+    public void Restart()
+    {
+        // TODO: load scene
+        SceneManager.LoadScene("LevelLogicScene");
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        FindPlayer();
+    }
+
+    private void FindPlayer()
+    {
+        player = GameObject.FindWithTag("Player");
     }
 }
 

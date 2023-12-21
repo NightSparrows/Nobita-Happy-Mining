@@ -23,5 +23,7 @@ public class Dungeon : ScriptableObject
         return levels;
     }
 
+    // BindTeleporter is responsible to subscribe DungeonManager.OnLevelChanged
+    //      for every teleporter switching level
     public virtual void BindTeleporter(DungeonManager manager, GameObject[] levels) { }
 }

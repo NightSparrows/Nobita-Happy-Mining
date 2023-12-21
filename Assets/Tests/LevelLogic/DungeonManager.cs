@@ -1,29 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DungeonManager : MonoBehaviour
 {
     [SerializeField] private Dungeon dungeonSO;
     [SerializeField] private GameObject player;
 
+    public event Action OnLevelChanged;
+
+    public Level currentLevel
+    {
+        get
+        {
+            return levels[currentLevelIdx].GetComponent<Level>();
+        }
+    }
+
     private GameObject[] levels;
     private int currentLevelIdx;
 
     private void Start()
     {
-        currentLevelIdx = dungeonSO.initLevelIdx;
-        levels = dungeonSO.Generate(this);
-    }
-
-    private void Restart()
-    {
-        foreach (var lvl in levels)
-        {
-            Destroy(lvl);
-        }
-        levels = dungeonSO.Generate(this);
-        // TODO: restart player
+        GenerateDungeon();
+        OnLevelChanged += () => DestroyByTag("PlayerBullet");
+        OnLevelChanged += () => DestroyByTag("Exp");
     }
 
     private void Teleport(int newLevelIdx, Teleporter teleporter)
@@ -42,7 +44,23 @@ public class DungeonManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            Restart();
+            //Restart();
+        }
+    }
+
+    private void GenerateDungeon()
+    {
+        currentLevelIdx = dungeonSO.initLevelIdx;
+        levels = dungeonSO.Generate(this);
+        // TODO: set up player inital state
+    }
+
+    private void DestroyByTag(string tag)
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
+        foreach (var obj in objs)
+        {
+            Destroy(obj);
         }
     }
 }
