@@ -116,7 +116,8 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("LevelLogicScene");
+        SceneLoadingManager.Instance.LoadScene("LevelLogicScene");
+        //SceneManager.LoadScene("LevelLogicScene");
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
