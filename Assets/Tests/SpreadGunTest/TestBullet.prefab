@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4094243513735686002}
   - component: {fileID: 6993474784739865349}
   - component: {fileID: 6695893237937967133}
+  - component: {fileID: -1923468270730424975}
   - component: {fileID: 8080409288203589927}
   - component: {fileID: 4117967314142156128}
   m_Layer: 7
@@ -83,6 +84,20 @@ MonoBehaviour:
   <DamageMultiplier>k__BackingField: 1
   <CriticalChance>k__BackingField: 0
   <CriticalDamageMultiplier>k__BackingField: 1
+--- !u!114 &-1923468270730424975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293405924681549928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ed936d531d6a24aa590c249bce600e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseValue: 5
+  _valueMultiplier: 1
 --- !u!136 &8080409288203589927
 CapsuleCollider:
   m_ObjectHideFlags: 0
