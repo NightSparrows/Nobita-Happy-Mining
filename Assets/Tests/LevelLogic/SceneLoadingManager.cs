@@ -73,7 +73,7 @@ public class SceneLoadingManager : MonoBehaviour
                 progressBar.fillAmount, targetProgress,
                 progressBarSpeed * Time.unscaledDeltaTime
             );
-            Debug.Log("amout " + progressBar.fillAmount);
+            //Debug.Log("amout " + progressBar.fillAmount);
             yield return new WaitForSecondsRealtime(0.017f);
         }
     }
