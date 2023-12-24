@@ -64,7 +64,7 @@ public class Slime : MonoBehaviour
         getHitSound.Play();
     }
 
-    void OnHealthChanged(int newValue)
+    void OnHealthChanged(int orgValue, int newValue)
     {
         if (health.isDead()) return;
 

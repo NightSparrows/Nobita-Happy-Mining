@@ -20,8 +20,8 @@ public class HealthBar : MonoBehaviour
         _listen.OnMaxHealthChanged += UpdateMaxValue;
         _listen.OnHealthChanged += UpdateValue;
 
-        UpdateMaxValue(_listen.MaxHealth);
-        UpdateValue(_listen.CurrentHealth);
+        UpdateMaxValue(0, _listen.MaxHealth);
+        UpdateValue(0, _listen.CurrentHealth);
     }
 
     private void OnDestroy()
@@ -30,12 +30,12 @@ public class HealthBar : MonoBehaviour
         _listen.OnHealthChanged -= UpdateValue;
     }
 
-    private void UpdateMaxValue(int newMaxValue)
+    private void UpdateMaxValue(int orgMaxValue, int newMaxValue)
     {
         _valueBar.MaxValue = newMaxValue;
     }
 
-    private void UpdateValue(int newValue)
+    private void UpdateValue(int orgValue, int newValue)
     {
         _valueBar.Value = newValue;
     }

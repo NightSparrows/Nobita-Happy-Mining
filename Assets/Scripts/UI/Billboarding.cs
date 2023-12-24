@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowingCamera : MonoBehaviour
+public class Billboarding : MonoBehaviour
 {
     private Transform _camTransform;
 
@@ -14,7 +14,8 @@ public class FollowingCamera : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(_camTransform.position);
+        //transform.LookAt(_camTransform.position);
         //transform.rotation = Quaternion.LookRotation(transform.position - _camTransform.position);
+        transform.forward = _camTransform.forward;
     }
 }

@@ -9,8 +9,8 @@ public class Health : MonoBehaviour
 	[SerializeField] private int maxHealth;
 	[SerializeField] private int currentHealth;
 
-	public event Action<int> OnMaxHealthChanged;
-	public event Action<int> OnHealthChanged;
+	public event Action<int, int> OnMaxHealthChanged;
+	public event Action<int, int> OnHealthChanged;
 	public event Action OnDead;
 
     private void Awake()
@@ -76,8 +76,10 @@ public class Health : MonoBehaviour
 
 	private void UpdateHealth(int newHealth)
     {
+		int orgHealth = currentHealth;
 		currentHealth = newHealth;
-		OnHealthChanged?.Invoke(newHealth);
+		if (orgHealth != newHealth)
+			OnHealthChanged?.Invoke(orgHealth, newHealth);
         if (isDead())
         {
 			OnDead?.Invoke();
@@ -88,8 +90,10 @@ public class Health : MonoBehaviour
 
 	private void UpdateMaxHealth(int newMaxHealth)
     {
+		int orgMaxHealth = maxHealth;
 		maxHealth = newMaxHealth;
-		OnMaxHealthChanged?.Invoke(newMaxHealth);
+		if (orgMaxHealth != newMaxHealth)
+			OnMaxHealthChanged?.Invoke(orgMaxHealth, newMaxHealth);
     }
 
 
