@@ -16,6 +16,8 @@ public class EnemyManger : MonoBehaviour
     [SerializeField] float creatRate = 3f;
     [SerializeField] int numOfEnemy1 = 3;
 
+    public WavePack waves;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +27,10 @@ public class EnemyManger : MonoBehaviour
 
         //Invoke("Wave1", 5f);
         //Invoke("Wave2", 12f);
-        //InvokeRepeating("Wave1", 5f, 5f);
+        //InvokeRepeating("Wave1", 5f, 20f);
         GenerateWaves();
     }
 
-    public WavePack waves;
     void GenerateWaves()
     {
         foreach (var wave in waves.waves)
