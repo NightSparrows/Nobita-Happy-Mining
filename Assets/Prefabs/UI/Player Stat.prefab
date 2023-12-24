@@ -48,15 +48,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 409556408195816529, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
       propertyPath: m_fontSize
-      value: 25.6
+      value: 28.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 409556408195816529, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c8bbfcea0730f5a4a8c8d06f23a7daf7, type: 2}
+    - target: {fileID: 409556408195816529, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 159963040789704751, guid: c8bbfcea0730f5a4a8c8d06f23a7daf7, type: 2}
+    - target: {fileID: 409556408195816529, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1704449255698471135, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
       propertyPath: m_Name
       value: Stamina Bar
       objectReference: {fileID: 0}
     - target: {fileID: 2036988763385461430, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 108.4372
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036988763385461430, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.900024
+      value: 57.7635
       objectReference: {fileID: 0}
     - target: {fileID: 3100255518198973206, guid: 5668297ece65ef24d94a7ea89ca78cf0, type: 3}
       propertyPath: m_Pivot.x
@@ -238,11 +254,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2710134974690233273, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
       propertyPath: m_fontSize
-      value: 22.2
+      value: 24.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710134974690233273, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c8bbfcea0730f5a4a8c8d06f23a7daf7, type: 2}
+    - target: {fileID: 2710134974690233273, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 159963040789704751, guid: c8bbfcea0730f5a4a8c8d06f23a7daf7, type: 2}
+    - target: {fileID: 2710134974690233273, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004887085716541239, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
       propertyPath: m_Name
       value: Experience Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357103413833788766, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120.2974
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357103413833788766, guid: 79e67daee3e5fc34abef0e1a65a20e31, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 63.693626
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -346,9 +382,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Bar
       objectReference: {fileID: 0}
+    - target: {fileID: 3160425955764318256, guid: b3856fe77a42db5429f23688328a461a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 121.3756
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160425955764318256, guid: b3856fe77a42db5429f23688328a461a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 64.23272
+      objectReference: {fileID: 0}
     - target: {fileID: 3618582614584317655, guid: b3856fe77a42db5429f23688328a461a, type: 3}
       propertyPath: m_fontSize
-      value: 22.2
+      value: 24.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618582614584317655, guid: b3856fe77a42db5429f23688328a461a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c8bbfcea0730f5a4a8c8d06f23a7daf7, type: 2}
+    - target: {fileID: 3618582614584317655, guid: b3856fe77a42db5429f23688328a461a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 159963040789704751, guid: c8bbfcea0730f5a4a8c8d06f23a7daf7, type: 2}
+    - target: {fileID: 3618582614584317655, guid: b3856fe77a42db5429f23688328a461a, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

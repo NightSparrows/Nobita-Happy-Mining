@@ -19,7 +19,7 @@ TagManager:
   - PlayerBullet
   - Ignore
   - Enemy
-  - 
+  - Teleporter
   - 
   - Mineral
   - 
@@ -30,7 +30,6 @@ TagManager:
   - Plane
   - 
   - Obstacle
-  - 
   - 
   - 
   - 

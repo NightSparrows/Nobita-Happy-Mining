@@ -10,6 +10,11 @@ public class TargetMovement : ForwardMovement
 
     protected override void FixedUpdate()
     {
+        if (target == null)
+        {
+            Debug.LogWarning("Target movement's target not found");
+            return;
+        }
         Vector3 p1 = transform.position;
         Vector3 p2 = target.position;
         Vector3 v = p2 - p1;

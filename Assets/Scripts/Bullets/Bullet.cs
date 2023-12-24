@@ -37,5 +37,16 @@ public class Bullet : MonoBehaviour
             health.takeDamage(attack.Damage);
             Destroy(gameObject);
         }
+
+        else if (collision.gameObject.CompareTag("Mineral"))
+        {
+            //Debug.Log("Bullet hit mineral");
+            Instantiate(hitFX, transform.position, Quaternion.Inverse(transform.rotation));
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("Bullet hit unknown object: " + collision.gameObject.name);
+        }
     }
 }

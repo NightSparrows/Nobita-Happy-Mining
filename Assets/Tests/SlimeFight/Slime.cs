@@ -44,6 +44,11 @@ public class Slime : MonoBehaviour
         health = GetComponent<Health>();
         health.OnDead += OnDead;
         health.OnHealthChanged += OnHealthChanged;
+
+        if (movement.target == null)
+        {
+            movement.target = GameManager.Instance.player.transform;
+        }
     }
 
     void OnDead()
@@ -62,7 +67,7 @@ public class Slime : MonoBehaviour
         getHitSound.Play();
     }
 
-    void OnHealthChanged(int newValue)
+    void OnHealthChanged(int orgValue, int newValue)
     {
         if (health.isDead()) return;
 
@@ -78,7 +83,7 @@ public class Slime : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("slime hit " + collision.gameObject.name);
+        //Debug.Log("slime hit " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
             Health playerHealth = collision.gameObject.GetComponent<Health>();

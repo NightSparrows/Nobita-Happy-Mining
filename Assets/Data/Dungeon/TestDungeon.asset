@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dd8aca8e0b40f4abafebd8380c6cbf, type: 3}
+  m_Name: TestDungeon
+  m_EditorClassIdentifier: 
+  levelPrefabs:
+  - {fileID: 8538169981251136955, guid: 8e8bddd0f08f7a544afc22b48e32518c, type: 3}
+  initLevelIdx: 0
+  escapeLevelIndex: 00000000
+  escapeTeleporterIndex: 00000000
