@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8f53d1ff9a6644d85f60640a94b909, type: 3}
+  m_Name: LinearWaveSO1
+  m_EditorClassIdentifier: 
+  enemyGenerator: {fileID: 6494507192331502893, guid: 2d4a36c700d9e0c499007d5b6b495e58, type: 3}
+  duration: 5
+  startTime: 5
+  enemy: {fileID: 7905510326996118867, guid: 108523f16b1fa47468733f7dc7ec3eae, type: 3}
+  spawnArea: {fileID: 2076986632165806887, guid: a4e09ea9e04ae144b82e4ce42399b891, type: 3}
+  coolDown: 0.7

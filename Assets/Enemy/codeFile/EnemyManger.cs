@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyManger : MonoBehaviour
 {
 
-    [SerializeField] GameObject player = null;
+    [SerializeField] public GameObject player = null;
 
     [SerializeField] GameObject enemy1 = null;
     [SerializeField] GameObject enemy2 = null;
@@ -16,16 +16,33 @@ public class EnemyManger : MonoBehaviour
     [SerializeField] float creatRate = 3f;
     [SerializeField] int numOfEnemy1 = 3;
 
+    public WavePack waves;
+
     // Start is called before the first frame update
     void Start()
     {
         //反覆的呼叫"CreatEnemy"一秒後開始,反覆時間為一秒
         //InvokeRepeating("CreatEnemy", 0f, 5f);
-        InvokeRepeating("CreatEnemy", 0f, creatRate);
+        //InvokeRepeating("CreatEnemy", 0f, creatRate);
 
-        Invoke("Wave1", 5f);
-        Invoke("Wave2", 12f);
-        //InvokeRepeating("Wave1", 5f, 5f);
+        //Invoke("Wave1", 5f);
+        //Invoke("Wave2", 12f);
+        //InvokeRepeating("Wave1", 5f, 20f);
+        GenerateWaves();
+    }
+
+    void GenerateWaves()
+    {
+        foreach (var wave in waves.waves)
+        {
+            StartCoroutine(GenerateWave(wave));
+        }
+    }
+
+    IEnumerator GenerateWave(WaveSO wave)
+    {
+        yield return new WaitForSeconds(wave.startTime);
+        wave.Activate(this);
     }
 
     // Update is called once per frame

@@ -8,7 +8,7 @@ public class NavigationMove : BaseMovement
 
     private NavMeshAgent agent;
 
-    [SerializeField] Transform target;
+    [SerializeField] public Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class NavigationMove : BaseMovement
     // Update is called once per frame
     void Update()
     {
-        //agent.SetDestination(target.position);
+        agent.SetDestination(target.position);
     }
 
     public override float baseSpeed

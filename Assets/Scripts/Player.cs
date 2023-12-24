@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
 						transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 						vector *= this.m_moveSpeed;
 
-						this.m_characterController.Move(vector * Time.deltaTime);
+						this.m_characterController.SimpleMove(vector);
 					}
 					else
 					{
@@ -225,6 +225,8 @@ public class Player : MonoBehaviour
 		{
 			Debug.Log("exp in range");
 			other.gameObject.GetComponent<TargetMovement>().enabled = true;
+			//
+			//other.gameObject.GetComponent<BaseMovement>().enableMove = true;
 		}
 	}
 }
