@@ -7,33 +7,17 @@ public class NSTileMapManager : MonoBehaviour
 {
 	[SerializeField] public int gridSizeX = 100;
 	[SerializeField] public int gridSizeZ = 100;
-	public GameObject[,] tiles;
+	public GameObject[,] m_tiles;
 
 	private void Awake()
 	{
-		tiles = new GameObject[gridSizeX, gridSizeZ];
+		m_tiles = new GameObject[gridSizeX, gridSizeZ];
 
-		///
-		// test for spawning tiles
-		for (int i = 0; i < 100; i++)
-		{
-			int x;
-			int z;
-			do
-			{
-				x = Random.Range(1, this.gridSizeX - 1);
-				z = Random.Range(1, this.gridSizeZ - 1);
-			} while (tiles[x, z] != null);
-			NSTileController tileController = this.createTile(x, z);
-			tileController.type = (uint)Random.Range(0, 2);
-			tileController.init();
-		}
-		/// end tile
 	}
 
-	NSTileController createTile(int x, int z)
+	public NSTileController createTile(int x, int z)
 	{
-		if (tiles[x,z] != null)
+		if (this.m_tiles[x,z] != null)
 		{
 			// Tile is created!
 			return null;
@@ -42,9 +26,28 @@ public class NSTileMapManager : MonoBehaviour
 		GameObject tile = Instantiate(new GameObject(), tilePosition, Quaternion.identity);
 
 		NSTileController tileController = tile.AddComponent<NSTileController>();
-		this.tiles[x, z] = tile;
+		tileController.init(this, new Vector2Int(x,z));
+		this.m_tiles[x, z] = tile;
 
 		return tileController;
+	}
+
+	public void destroyTile(int x, int z)
+	{
+		GameObject tile = this.m_tiles[x, z];
+		if (tile == null)
+		{
+			Debug.LogWarning("the tile is nothing");
+			return;
+		}
+		NSTileController tileController = tile.GetComponent<NSTileController>();
+		if (tileController == null)
+		{
+			Debug.LogError("the tile has no controller!");
+			return;
+		}
+		tileController.destroyTile();
+
 	}
 
 
@@ -95,7 +98,7 @@ public class NSTileMapManager : MonoBehaviour
 
 			foreach (Vector2Int neighbor in neighbors)
 			{
-				if (closedSet.Contains(neighbor) || tiles[neighbor.x, neighbor.y] != null)  // 不是 null 為障礙物
+				if (closedSet.Contains(neighbor) || m_tiles[neighbor.x, neighbor.y] != null)  // 不是 null 為障礙物
 					continue;
 
 				float tentativeGScore = gScore[current] + 1; // 在这里，代价为1，你可以根据实际情况调整
@@ -120,7 +123,8 @@ public class NSTileMapManager : MonoBehaviour
 
 	float HeuristicCostEstimate(Vector2Int from, Vector2Int to)
 	{
-		return (from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y);
+		//return (from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y);
+		return Mathf.Abs(from.x - to.x) + Mathf.Abs(from.y - to.y);
 	}
 
 	List<Vector2Int> GetNeighbors(Vector2Int position)
@@ -138,8 +142,8 @@ public class NSTileMapManager : MonoBehaviour
 		{
 			Vector2Int neighbor = position + dir;
 
-			if (neighbor.x >= 0 && neighbor.x < tiles.GetLength(0) &&
-				neighbor.y >= 0 && neighbor.y < tiles.GetLength(1))
+			if (neighbor.x >= 0 && neighbor.x < m_tiles.GetLength(0) &&
+				neighbor.y >= 0 && neighbor.y < m_tiles.GetLength(1))
 			{
 				neighbors.Add(neighbor);
 			}

@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
 	private int m_miningDamage = 10;			// each mine take how many damage
 	private float m_miningSpeed = 2f;           // the speed of mine down
 	private float m_miningRange = 3f;
+
 	// Range Detector
 	[SerializeField] RangeDetector rangeDetector;
 
@@ -145,8 +146,7 @@ public class Player : MonoBehaviour
 		}
 
 		RaycastHit hit;
-		int miniralLayer = 1 << LayerMask.NameToLayer("Mineral");
-		//Debug.Log("miniral layer " + miniralLayer);
+		int miniralLayer = LayerMask.GetMask("Mineral");
 		if (Physics.Raycast(transform.position, transform.forward * Time.deltaTime, out hit, this.m_miningRange, miniralLayer))
 		{
 			Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
@@ -163,6 +163,7 @@ public class Player : MonoBehaviour
 			this.m_isMining = false;
 			this.m_miningPickaxe.stopMining();
 		}
+
 		// �W�ߩ�player state
 		if (this.m_isMining)
 		{
@@ -175,9 +176,16 @@ public class Player : MonoBehaviour
 			}
 
 		}
-
+		
+		if (Input.GetMouseButton(0))
+		{
+			float deltaX = Input.GetAxis("Mouse X") * 10f;
+			float deltaY = Input.GetAxis("Mouse Y") * 10f;
+			this.m_camera.setPitch(this.m_camera.getPitch() - deltaY);
+			this.m_camera.setYaw(this.m_camera.getYaw() + deltaX);
+		}
 		float scrollInput = -Input.mouseScrollDelta.y;
-		float targetDistance = this.m_camera.getDistance() + Time.deltaTime * scrollInput * 50f/* scroll speed */;
+		float targetDistance = this.m_camera.getDistance() + Time.deltaTime * scrollInput * 5000f/* scroll speed */;
         if ( targetDistance >= 50f)
         {
 			targetDistance = 50f;

@@ -180,7 +180,7 @@ public class NSEnemyManager : MonoBehaviour
 
 
 
-					if (this.tileMapManager.tiles[x, z] == null)            // is a empty tile
+					if (this.tileMapManager.m_tiles[x, z] == null)            // is a empty tile
 						break;
 
 					retryCount++;

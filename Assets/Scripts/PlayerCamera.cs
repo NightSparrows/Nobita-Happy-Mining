@@ -18,8 +18,11 @@ public class PlayerCamera //: MonoBehaviour
 		this.m_object = new GameObject("PlayerCamera");
 
 		this.m_distance = new SmoothFloat(10f);
+		this.m_distance.setSpeed(5f);
 		this.m_pitch = new SmoothFloat(45f);
+		this.m_pitch.setSpeed(5f);
 		this.m_yaw = new SmoothFloat(-45f);
+		this.m_yaw.setSpeed(5f);
 	}
 
     // Update is called once per frame
@@ -56,6 +59,16 @@ public class PlayerCamera //: MonoBehaviour
 	public void setPitch(float pitch)
 	{
 		this.m_pitch.setTarget(pitch);
+	}
+
+	public float getYaw()
+	{
+		return this.m_yaw.getTarget();
+	}
+
+	public void setYaw(float yaw)
+	{
+		this.m_yaw.setTarget(yaw);
 	}
 
 	public Transform getTransform()
