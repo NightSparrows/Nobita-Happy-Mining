@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
 	// Range Detector
 	[SerializeField] RangeDetector rangeDetector;
 
+	[SerializeField] StaminaDecreaser sleepStaminaIncreaser;
+	WeaponHolder weaponHolder;
+
 	private void Awake()
 	{
 		this.m_state = PlayerState.Idle;
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour
 		stamina = GetComponent<Stamina>();
 		exp = GetComponent<PlayerExperience>();
 		animator = playerModelGameObject.GetComponent<Animator>();
+		weaponHolder = GetComponent<WeaponHolder>();
 
 		// test just follow
 		this.m_camera = new PlayerCamera(this);
@@ -80,6 +84,8 @@ public class Player : MonoBehaviour
 				{
 					animator.SetBool("isWalking", false);
 					animator.SetBool("isSleeping", false);
+					sleepStaminaIncreaser.enabled = false;
+					ToggleEnabilityWeapons(true);
 					if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
 						this.m_state = PlayerState.Walk;
 					else if (Input.GetKey(KeyCode.B))
@@ -90,6 +96,8 @@ public class Player : MonoBehaviour
 				{
 					animator.SetBool("isSleeping", false);
 					animator.SetBool("isWalking", true);
+					sleepStaminaIncreaser.enabled = false;
+					ToggleEnabilityWeapons(true);
 					Vector3 vector = new Vector3(0, 0, 0);
 					if (Input.GetKey(KeyCode.W))
 					{
@@ -131,9 +139,12 @@ public class Player : MonoBehaviour
 				{
 					animator.SetBool("isWalking", false);
 					animator.SetBool("isSleeping", true);
+					
 					Debug.Log("sleeping");
 					this.m_miningPickaxe.stopMining();
 					/// TODO: 回復Stamina
+					sleepStaminaIncreaser.enabled = true;
+					ToggleEnabilityWeapons(false);
 					if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
 						this.m_state = PlayerState.Walk;
 				}
@@ -208,6 +219,15 @@ public class Player : MonoBehaviour
 			exp.CurrentPlayerExp += 1;
         }
 	}
+
+	void ToggleEnabilityWeapons(bool enable)
+    {
+		foreach (var weapon in weaponHolder.WeaponList)
+        {
+			Debug.Log(String.Format("{0} {1}", weapon.name, enable));
+			weapon.SetActive(enable);
+        }
+    }
 
 	//private void OnTriggerEnter(Collider other)
 	//{

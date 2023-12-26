@@ -40,5 +40,6 @@ public class EscapeMenuController : MonoBehaviour
     public void OnRestartButtonPressed()
     {
         GameManager.Instance.Restart();
+        escapeMenuUI.SetActive(false);
     }
 }

@@ -17,7 +17,7 @@ public abstract class PeriodicGun : Gun
             _coolDown = GetComponent<CoolDown>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         //_shootCoroutine = StartCoroutine(ShootPeriodically());
         StartCoroutine(ShootPeriodically());

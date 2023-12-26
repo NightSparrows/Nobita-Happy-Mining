@@ -68,10 +68,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375556cc59853c3409f3a1e229989034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 12
-  _forward: {x: 0, y: 0, z: 0}
+  _baseValue: 10
+  _valueMultiplier: 1
+  _forward: {x: 0, y: 0, z: 1}
   _normalize: 1
   target: {fileID: 0}
+  rotateSpeed: 80
 --- !u!33 &1641838866970039917
 MeshFilter:
   m_ObjectHideFlags: 0

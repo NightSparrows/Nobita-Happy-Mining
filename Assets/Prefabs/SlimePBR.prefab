@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 1377413333884900984}
   - component: {fileID: 7137499072395110000}
   - component: {fileID: 7339054910956994075}
+  - component: {fileID: -1427374907837820803}
   - component: {fileID: 3622104787194234050}
   - component: {fileID: 5978530487519735855}
   - component: {fileID: 1425496966728770847}
@@ -409,6 +410,7 @@ MonoBehaviour:
   explosionOnDead: {fileID: 5384151872837848246, guid: d1107be12ef026b49a1bbba144c475e8, type: 3}
   deadSound: {fileID: 11400000, guid: 601adcd7dad4fa14193db0bcc9374203, type: 2}
   getHitSound: {fileID: 11400000, guid: 61a3637b659ebb64f9016528ef043b78, type: 2}
+  expPickUp: {fileID: 3361008469445427220, guid: 6a5d0ce819ee64741a96b50b226530cd, type: 3}
 --- !u!114 &1377413333884900984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +459,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+--- !u!114 &-1427374907837820803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905510326996118867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787daba7e17fb2d4980808ee5f841375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pfPopup: {fileID: 5351755017761741083, guid: ab60dd3980d05d349b41c7e4d0f69f29, type: 3}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!95 &3622104787194234050
 Animator:
   serializedVersion: 5

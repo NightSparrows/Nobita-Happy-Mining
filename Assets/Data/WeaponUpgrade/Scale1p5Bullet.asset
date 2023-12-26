@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb7cd323e850014aa83292474119fba, type: 3}
-  m_Name: Scale3
+  m_Script: {fileID: 11500000, guid: f0bf0861dba65bd42b7d04960150d8b8, type: 3}
+  m_Name: Scale1p5Bullet
   m_EditorClassIdentifier: 
-  multiplier: 3
+  <buff>k__BackingField: {fileID: 11400000, guid: 7131b215464ff894fb9ce97dbe8cf42c, type: 2}

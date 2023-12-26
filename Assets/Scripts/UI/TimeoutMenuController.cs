@@ -40,5 +40,6 @@ public class TimeoutMenuController : MonoBehaviour
     public void OnRestartButtonPressed()
     {
         GameManager.Instance.Restart();
+        timeoutMenuUI.SetActive(false);
     }
 }

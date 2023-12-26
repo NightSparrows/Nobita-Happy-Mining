@@ -26,4 +26,20 @@ public class PauseMenuController : MonoBehaviour
         }
 
     }
+
+    public void OnResumeButtonPressed()
+    {
+        GameManager.Instance.ResumeTime();
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void OnRestartButtonPressed()
+    {
+        GameManager.Instance.Restart();
+    }
+
+    public void OnOtherButtonPressed()
+    {
+        Debug.Log("other!");
+    }
 }

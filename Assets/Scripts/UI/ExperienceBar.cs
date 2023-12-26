@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ExperienceBar : MonoBehaviour
 {
     [SerializeField] private PlayerExperience _listen; // set to Player in default
     [SerializeField] private ValueBar _valueBar;
+
+    private TextMeshProUGUI text;
 
     private void Start()
     {
@@ -17,6 +20,9 @@ public class ExperienceBar : MonoBehaviour
             else
                 Debug.LogError("The target of Health Bar is missing!");
         }
+
+        text = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+
         _listen.OnMaxPlayerExpChanged += UpdateMaxValue;
         _listen.OnPlayerExpChanged += UpdateValue;
 
@@ -33,10 +39,12 @@ public class ExperienceBar : MonoBehaviour
     private void UpdateMaxValue(int newMaxValue)
     {
         _valueBar.MaxValue = newMaxValue;
+        text.text = string.Format("Lv.{0} {1}", _listen.PlayerLevel, text.text);
     }
 
     private void UpdateValue(int newValue)
     {
         _valueBar.Value = newValue;
+        text.text = string.Format("Lv.{0} {1}", _listen.PlayerLevel, text.text);
     }
 }

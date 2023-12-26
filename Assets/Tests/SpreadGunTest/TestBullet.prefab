@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8622774829106769509}
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f965b7ac84bee444081340c12c55fd5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseValue: 10
+  _baseValue: 50
   _valueMultiplier: 1
   _forward: {x: 0, y: 0, z: 1}
   _normalize: 1
@@ -80,10 +80,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24217d144bfb764e99c896e4705b35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BaseDamage>k__BackingField: 5
+  <BaseDamage>k__BackingField: 10
   <DamageMultiplier>k__BackingField: 1
-  <CriticalChance>k__BackingField: 0
-  <CriticalDamageMultiplier>k__BackingField: 1
+  <CriticalChance>k__BackingField: 0.3
+  <CriticalDamageMultiplier>k__BackingField: 2
 --- !u!114 &-1923468270730424975
 MonoBehaviour:
   m_ObjectHideFlags: 0

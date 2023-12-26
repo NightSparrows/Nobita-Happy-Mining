@@ -10,6 +10,7 @@ public class Slime : MonoBehaviour
     [SerializeField] private GameObject explosionOnDead;
     [SerializeField] private SoundEffectSO deadSound;
     [SerializeField] private SoundEffectSO getHitSound;
+    [SerializeField] private GameObject expPickUp;
 
     private Animator anim;
     private NavigationMove movement;
@@ -56,6 +57,7 @@ public class Slime : MonoBehaviour
         GetComponent<SphereCollider>().enabled = false;
         anim.SetBool(animIsAlive, false);
         movement.enableMove = false;
+        movement.baseValue = 0f;
         Instantiate(explosionOnDead, transform.position, Quaternion.identity);
         deadSound.Play();
     }
@@ -121,6 +123,7 @@ public class Slime : MonoBehaviour
         }
         else if (state == animDieState)
         {
+            Instantiate(expPickUp, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
             Destroy(gameObject); 
         }
     }

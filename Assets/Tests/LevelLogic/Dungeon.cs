@@ -78,6 +78,7 @@ public class Dungeon : ScriptableObject
                 return;
             }
 
+            //Debug.Log("teleporter bind!");
             teleporter.OnTeleport += GameManager.Instance.OnPlayerEscape;
         }
     }

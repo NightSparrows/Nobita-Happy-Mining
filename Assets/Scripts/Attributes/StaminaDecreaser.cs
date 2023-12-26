@@ -7,10 +7,38 @@ public class StaminaDecreaser : IntAttribute
 {
     private Stamina stamina;
 
+    //Coroutine decrease;
+    //bool isDecreasing = true;
+
+    float time = 0f;
+
     private void Start()
     {
         stamina = GetComponent<Stamina>();
-        StartCoroutine(Decrease());
+    }
+
+    private void Update()
+    {
+        if (time >= 1f)
+        {
+            stamina.CurrentStamina -= value;
+            time -= 1f;
+        }
+
+        time += Time.deltaTime;
+    }
+
+    /*private void OnEnable()
+    {
+        isDecreasing = true;
+        decrease = StartCoroutine(Decrease());
+    }
+
+    private void OnDisable()
+    {
+        if (isDecreasing)
+            StopCoroutine(decrease);
+        isDecreasing = false;
     }
 
     private IEnumerator Decrease()
@@ -20,5 +48,5 @@ public class StaminaDecreaser : IntAttribute
             stamina.CurrentStamina -= value;
             yield return new WaitForSeconds(1f);
         }
-    }
+    }*/
 }

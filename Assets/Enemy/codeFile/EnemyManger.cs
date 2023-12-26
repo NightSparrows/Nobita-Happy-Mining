@@ -28,6 +28,7 @@ public class EnemyManger : MonoBehaviour
         //Invoke("Wave1", 5f);
         //Invoke("Wave2", 12f);
         //InvokeRepeating("Wave1", 5f, 20f);
+        player = GameManager.Instance.player;
         GenerateWaves();
     }
 

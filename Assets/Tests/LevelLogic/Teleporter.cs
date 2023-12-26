@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -14,6 +14,7 @@ public class Teleporter : MonoBehaviour
     {
         if (isPlayerInRange && Input.GetKeyDown(activatKey))
         {
+            Debug.Log("teleporter invoke!");
             OnTeleport?.Invoke();
         }
     }

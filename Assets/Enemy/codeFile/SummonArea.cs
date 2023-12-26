@@ -25,7 +25,7 @@ public class SummonArea : MonoBehaviour
     {
         //Instantiate(creature, transform.position, Quaternion.identity);
 
-        Vector3 pos = transform.position + new Vector3(0, 3f, 0);
+        Vector3 pos = transform.position + new Vector3(0, 2f, 0);
         Instantiate(creature, pos, Quaternion.identity);
 
         Destroy(gameObject);

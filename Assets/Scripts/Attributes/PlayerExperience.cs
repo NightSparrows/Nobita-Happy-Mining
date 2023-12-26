@@ -75,9 +75,9 @@ public class PlayerExperience : MonoBehaviour
     {
         _exp -= _maxExp;
         _maxExp = levelUpSystem.ExpRequired(_level + 1);
+        ++PlayerLevel;
         OnPlayerExpChanged?.Invoke(_exp);
         OnMaxPlayerExpChanged?.Invoke(_maxExp);
-        ++PlayerLevel;
     }
 
     public event Action<int> OnMaxPlayerExpChanged;

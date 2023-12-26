@@ -13,13 +13,22 @@ public class WeaponHolder : MonoBehaviour
     {
         get
         {
-            int n = _container.childCount;
+            Weapon[] children = _container.GetComponentsInChildren<Weapon>(true);
+            int n = children.Length;
+            GameObject[] objs = new GameObject[n];
+            for (int i = 0; i < n; ++i)
+            {
+                objs[i] = children[i].gameObject;
+                Debug.Log("weapon! " + objs[i].name);
+            }
+            return objs;
+            /*int n = _container.childCount;
             GameObject[] objs = new GameObject[n];
             for (int i = 0; i < n; ++i)
             {
                 objs[i] = _container.GetChild(i).gameObject;
             }
-            return objs;
+            return objs;*/
         }
     }
 

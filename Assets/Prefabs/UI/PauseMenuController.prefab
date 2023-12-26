@@ -194,10 +194,14 @@ PrefabInstance:
     - target: {fileID: 4298479891636528512, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5872628900666306906}
+      objectReference: {fileID: 7386237648240694764}
     - target: {fileID: 4298479891636528512, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnMenuButtonPressed
+      value: OnRestartButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298479891636528512, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5407895526507197911, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_Pivot.x
@@ -314,10 +318,14 @@ PrefabInstance:
     - target: {fileID: 5804144008476707975, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5872628900666306906}
+      objectReference: {fileID: 7386237648240694764}
     - target: {fileID: 5804144008476707975, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnOtherPressed
+      value: OnOtherButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804144008476707975, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6516658965136228665, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_Name
@@ -330,10 +338,14 @@ PrefabInstance:
     - target: {fileID: 6875322815909394738, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5872628900666306906}
+      objectReference: {fileID: 7386237648240694764}
     - target: {fileID: 6875322815909394738, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnResumeButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875322815909394738, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8767659503228585954, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -351,22 +363,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 233
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8357777017674662971, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
---- !u!114 &5872628900666306906 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8357777017674662971, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}
-  m_PrefabInstance: {fileID: 2486845938031949153}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8713585640547759192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8affe3644ef16543970bd996b1914f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &7606502119036076214 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5407895526507197911, guid: 7c03dd36cae7a314ebc2cb25b57ef74f, type: 3}

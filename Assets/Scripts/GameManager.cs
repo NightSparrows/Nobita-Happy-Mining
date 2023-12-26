@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public DungeonManager dungeonManager;
 
-    public GameState state { get; private set; } = GameState.Playing;
+    [field : SerializeField] public GameState state { get; private set; } = GameState.Playing;
 
     public bool isPaused { get; private set; } = false;
     private float timeScale;
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneLoadingManager.Instance.LoadScene("LevelLogicScene");
+        SceneLoadingManager.Instance.LoadScene("TestScene1224");
         //SceneManager.LoadScene("LevelLogicScene");
     }
 
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerStaminaChanged(int value)
     {
-        if (value == 0)
+        if (value <= 0)
         {
             // player timeout
             UpdateGameState(GameState.Timeout);

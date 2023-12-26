@@ -26,9 +26,11 @@ public class WeaponBuff : Buff
             Debug.LogWarning("WeaponBuff is applied to Non-WeaponHolder object:" + target.name);
             return;
         }
+        Debug.Log("holder name " + target.name);
 
         foreach (var weapon in holder.WeaponList)
         {
+            //Debug.Log("weapon " + weapon.name);
             AttachBulletBuff(weapon);
         }
     }

@@ -40,5 +40,6 @@ public class DeadMenuController : MonoBehaviour
     public void OnRestartButtonPressed()
     {
         GameManager.Instance.Restart();
+        deadMenuUI.SetActive(false);
     }
 }
