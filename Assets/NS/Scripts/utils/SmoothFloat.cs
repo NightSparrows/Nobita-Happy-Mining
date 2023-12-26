@@ -21,6 +21,16 @@ public class SmoothFloat
 		this.m_currentValue = value;
 	}
 
+	public void setSpeed(float speed)
+	{
+		this.m_speed = speed;
+	}
+
+	public float getSpeed()
+	{
+		return this.m_speed;
+	}
+
 	public void setTarget(float target)
 	{
 		this.m_target = target;
