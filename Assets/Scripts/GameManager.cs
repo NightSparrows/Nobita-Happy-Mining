@@ -161,6 +161,22 @@ public class GameManager : MonoBehaviour
         }
         playerStamina.OnStaminaChanged += OnPlayerStaminaChanged;
 
+        PlayerExperience playerExp = player.GetComponent<PlayerExperience>();
+        if (playerExp == null)
+        {
+            Debug.LogWarning("player don't have PlayerExperience, SubscribeEndEvents() failed");
+            return;
+        }
+        playerExp.OnPlayerLevelChanged += OnPlayerLevelChanged;
+
+        UpgradeManager playerUpgrade = player.GetComponent<UpgradeManager>();
+        if (playerUpgrade == null)
+        {
+            Debug.LogWarning("player don't have UpgradeManager, SubscribeEndEvents() failed");
+            return;
+        }
+        playerUpgrade.OnUpgradeEnd += OnPlayerUpgradeEnd;
+
         // TODO: subscribe victory(escape) event
     }
 
@@ -178,10 +194,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnPlayerLevelChanged(int level)
+    {
+        UpdateGameState(GameState.Upgrading);
+    }
+
+    private void OnPlayerUpgradeEnd()
+    {
+        UpdateGameState(GameState.Playing);
+    }
+
     // Called by Teleporter
     public void OnPlayerEscape()
     {
-        PauseTime();
         UpdateGameState(GameState.Victory);
     }
 }

@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
     {
 		foreach (var weapon in weaponHolder.WeaponList)
         {
-			Debug.Log(String.Format("{0} {1}", weapon.name, enable));
+			//Debug.Log(String.Format("{0} {1}", weapon.name, enable));
 			weapon.SetActive(enable);
         }
     }

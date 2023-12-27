@@ -19,7 +19,7 @@ public class WeaponHolder : MonoBehaviour
             for (int i = 0; i < n; ++i)
             {
                 objs[i] = children[i].gameObject;
-                Debug.Log("weapon! " + objs[i].name);
+                //Debug.Log("weapon! " + objs[i].name);
             }
             return objs;
             /*int n = _container.childCount;

@@ -15,7 +15,7 @@ public class LinearUpgrader : Upgrader
         }
     }
 
-    public override void Upgrade(object indicator, GameObject target)
+    /*public override void Upgrade(int indicator, GameObject target)
     {
         int? level = indicator as int?;
         int realLevel = level ?? default(int);
@@ -26,7 +26,7 @@ public class LinearUpgrader : Upgrader
         }
 
         upgrades[realLevel].ApplyTo(target);
-    }
+    }*/
 
     //protected virtual void ApplyTo(Buff buff, GameObject target)
     //{

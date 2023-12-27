@@ -5,19 +5,20 @@ using UnityEngine;
 public class LinearUpgraderHelper : UpgraderHelper
 {
     [field: SerializeField] public LinearUpgrader upgrader { get; set; }
+    public string upgraderName;
 
     public int level { get; protected set; } = 0;
 
-    public override (Buff, object)[] GetAvailableUpgrades()
+    public string sourceName => upgraderName;
+
+    public override Upgrade[] GetAvailableUpgrades()
     {
-        if (level == upgrader.maxLevel) return new (Buff, object)[0];
-        return new (Buff, object)[1] { (upgrader.upgrades[level], level) };
+        if (level == upgrader.maxLevel) return new LinearUpgrade[0];
+        return new Upgrade[1] { new LinearUpgrade(level, upgrader.upgrades[level], this) };
     }
 
-    public override void Upgrade(object indicator, GameObject target)
+    public void Notified(LinearUpgrade upgrade)
     {
-        upgrader.Upgrade(indicator, target);
-        ++level;
+        level = upgrade.index + 1;
     }
-
 }
