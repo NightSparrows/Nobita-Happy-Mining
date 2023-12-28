@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Exp : MonoBehaviour
 {
-    [SerializeField] float amount = 10f;
-    [SerializeField] float radius = 10f;
-    [SerializeField] float speed = 10f;
+    float amount;
+    float radius;
+    float speed;
 
     [SerializeField] private Buff buff;
 

@@ -410,7 +410,7 @@ MonoBehaviour:
   explosionOnDead: {fileID: 5384151872837848246, guid: d1107be12ef026b49a1bbba144c475e8, type: 3}
   deadSound: {fileID: 11400000, guid: 601adcd7dad4fa14193db0bcc9374203, type: 2}
   getHitSound: {fileID: 11400000, guid: 61a3637b659ebb64f9016528ef043b78, type: 2}
-  expPickUp: {fileID: 3361008469445427220, guid: 6a5d0ce819ee64741a96b50b226530cd, type: 3}
+  expPickUp: {fileID: 3326821059830017366, guid: 62ec8f3afd878334792690bacfea108b, type: 3}
 --- !u!114 &1377413333884900984
 MonoBehaviour:
   m_ObjectHideFlags: 0
