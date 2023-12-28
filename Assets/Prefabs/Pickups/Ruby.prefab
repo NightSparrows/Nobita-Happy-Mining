@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3225065109366952786}
   - component: {fileID: 5264099514215990481}
-  - component: {fileID: 439997236059350261}
+  - component: {fileID: 1986419138927990534}
   - component: {fileID: 785366735803200355}
   - component: {fileID: 5064391708397997661}
   - component: {fileID: 1537315505500320684}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buff: {fileID: 11400000, guid: 8640e27999bff8c46bec40b64c69019c, type: 2}
---- !u!114 &439997236059350261
+--- !u!114 &1986419138927990534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,15 +59,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9124663723443002992}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375556cc59853c3409f3a1e229989034, type: 3}
+  m_Script: {fileID: 11500000, guid: a896a681f6e5a394c90e6184a48867a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _baseValue: 10
   _valueMultiplier: 1
-  _forward: {x: 0, y: 0, z: 1}
-  _normalize: 1
   target: {fileID: 0}
-  rotateSpeed: 80
 --- !u!114 &785366735803200355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +140,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5447679534057977662, guid: 2143bb2cc03ab544f8d16a83d6239d1c, type: 3}
+      propertyPath: rotationSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6671362735204019974, guid: 2143bb2cc03ab544f8d16a83d6239d1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -186,6 +187,10 @@ PrefabInstance:
     - target: {fileID: 8932422245026544298, guid: 2143bb2cc03ab544f8d16a83d6239d1c, type: 3}
       propertyPath: m_Name
       value: RubyMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932422245026544298, guid: 2143bb2cc03ab544f8d16a83d6239d1c, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
