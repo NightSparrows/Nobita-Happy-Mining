@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Because this level can't be dulipcate so just use static method
 public class NSLevelGameManager : MonoBehaviour
 {
     public enum LevelState
@@ -27,7 +28,12 @@ public class NSLevelGameManager : MonoBehaviour
 		s_Instance = this;
 	}
 
-    public void updateLevelState(LevelState newState)
+    public static void StartLevel()
+	{
+		s_Instance.updateLevelState(LevelState.Init);
+	}
+
+    protected void updateLevelState(LevelState newState)
     {
         this.m_state = newState;
 
@@ -62,7 +68,6 @@ public class NSLevelGameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		updateLevelState(LevelState.Init);
 	}
 
     // Update is called once per frame

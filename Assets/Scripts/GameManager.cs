@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
         playerHealth.OnDead += OnPlayerDead;
 
         Stamina playerStamina = player.GetComponent<Stamina>();
-        if (playerHealth == null)
+        if (playerStamina == null)
         {
             Debug.LogWarning("player don't have Stamina, SubscribeEndEvents() failed");
             return;

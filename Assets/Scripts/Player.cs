@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
 
 		RaycastHit hit;
 		int miniralLayer = LayerMask.GetMask("Mineral");
-		if (Physics.Raycast(transform.position, transform.forward * Time.deltaTime, out hit, this.m_miningRange, miniralLayer))
+		if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward * Time.deltaTime, out hit, this.m_miningRange, miniralLayer))
 		{
 			Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
 			if (hit.collider.gameObject.CompareTag("Mineral") && this.m_state != PlayerState.Sleep)
@@ -187,7 +187,10 @@ public class Player : MonoBehaviour
 			}
 
 		}
-		
+
+		//////////////////////////////////////////
+		/// Write in player but can be otherway
+		//////////////////////////////////////////
 		if (Input.GetMouseButton(0))
 		{
 			float deltaX = Input.GetAxis("Mouse X") * 10f;
@@ -205,7 +208,10 @@ public class Player : MonoBehaviour
 			targetDistance = 10f;
 		}
 		this.m_camera.setDistance(targetDistance);
-        this.m_camera.update(Time.deltaTime);
+		//////////////////////////////////////////
+		/// END Write in player but can be otherway
+		//////////////////////////////////////////
+		this.m_camera.update(Time.deltaTime);
 
 		/*
 		 * ---- Test the Update of Health, Stamina, Exp ----
