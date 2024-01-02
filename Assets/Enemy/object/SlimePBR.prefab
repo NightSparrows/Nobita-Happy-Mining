@@ -362,14 +362,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5904414622889308093}
   - component: {fileID: 6198585904026079535}
-  - component: {fileID: 1377413333884900984}
+  - component: {fileID: -2554612576695855767}
   - component: {fileID: 7137499072395110000}
   - component: {fileID: 7339054910956994075}
+  - component: {fileID: -4877743879076117438}
   - component: {fileID: 3622104787194234050}
   - component: {fileID: 5978530487519735855}
   - component: {fileID: 1425496966728770847}
-  - component: {fileID: -4877743879076117438}
-  - component: {fileID: -2554612576695855767}
   m_Layer: 9
   m_Name: SlimePBR
   m_TagString: Enemy
@@ -409,25 +408,22 @@ MonoBehaviour:
   explosionOnDead: {fileID: 5384151872837848246, guid: d1107be12ef026b49a1bbba144c475e8, type: 3}
   deadSound: {fileID: 11400000, guid: 601adcd7dad4fa14193db0bcc9374203, type: 2}
   getHitSound: {fileID: 11400000, guid: 61a3637b659ebb64f9016528ef043b78, type: 2}
-  expPickUp: {fileID: 3361008469445427220, guid: 6a5d0ce819ee64741a96b50b226530cd, type: 3}
---- !u!114 &1377413333884900984
+  expPickUp: {fileID: 3326821059830017366, guid: 62ec8f3afd878334792690bacfea108b, type: 3}
+--- !u!114 &-2554612576695855767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7905510326996118867}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375556cc59853c3409f3a1e229989034, type: 3}
+  m_Script: {fileID: 11500000, guid: 82ee3edf717ec1240b24665c09d159b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseValue: 2
+  _baseValue: 3
   _valueMultiplier: 1
-  _forward: {x: 0, y: 0, z: 1}
-  _normalize: 1
   target: {fileID: 0}
-  rotateSpeed: 80
 --- !u!114 &7137499072395110000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +454,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+--- !u!195 &-4877743879076117438
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905510326996118867}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!95 &3622104787194234050
 Animator:
   serializedVersion: 5
@@ -527,43 +545,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.3, z: 0}
---- !u!195 &-4877743879076117438
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7905510326996118867}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &-2554612576695855767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7905510326996118867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82ee3edf717ec1240b24665c09d159b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseValue: 3
-  _valueMultiplier: 1
-  target: {fileID: 0}
 --- !u!1 &8014439361219273202
 GameObject:
   m_ObjectHideFlags: 0

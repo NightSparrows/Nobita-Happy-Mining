@@ -258,9 +258,9 @@ public class Player : MonoBehaviour
 		if (other.tag == "Exp")
 		{
 			Debug.Log("exp in range");
-			other.gameObject.GetComponent<TargetMovement>().enabled = true;
+			//other.gameObject.GetComponent<TargetMovement>().enabled = true;
 			//
-			//other.gameObject.GetComponent<BaseMovement>().enableMove = true;
+			other.gameObject.GetComponent<SimpleTargetMovement>().enabled = true;
 		}
 	}
 }

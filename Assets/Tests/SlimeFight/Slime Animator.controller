@@ -14,13 +14,13 @@ AnimatorStateMachine:
     m_Position: {x: 160, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6766518490342359237}
-    m_Position: {x: -80, y: 190, z: 0}
+    m_Position: {x: -180, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4034573205173306331}
-    m_Position: {x: -310, y: 380, z: 0}
+    m_Position: {x: -310, y: 500, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5878560629865744066}
-    m_Position: {x: -310, y: 280, z: 0}
+    m_Position: {x: -330, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3849160731197917163}
     m_Position: {x: 30, y: 480, z: 0}
@@ -366,25 +366,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: get hit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: is alive
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
