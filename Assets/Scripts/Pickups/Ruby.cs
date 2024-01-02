@@ -11,7 +11,7 @@ public class Ruby : MonoBehaviour
     private void Start()
     {
         player = GameManager.Instance.player;
-        GetComponent<TargetMovement>().SetTarget(player.transform);
+        //GetComponent<TargetMovement>().SetTarget(player.transform);
         GetComponent<SimpleTargetMovement>().SetTarget(player.transform);
     }
 

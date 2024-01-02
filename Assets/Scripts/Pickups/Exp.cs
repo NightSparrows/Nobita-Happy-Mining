@@ -25,7 +25,7 @@ public class Exp : MonoBehaviour
     private void Start()
     {
         player = GameManager.Instance.player;
-        GetComponent<TargetMovement>().SetTarget(player.transform);
+        GetComponent<SimpleTargetMovement>().SetTarget(player.transform);
     }
 
     // Update is called once per frame

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0afd8772506a40e49b42526e7e0fad67, type: 3}
+  m_Name: NormalWaveSO1
+  m_EditorClassIdentifier: 
+  enemyGenerator: {fileID: 92713520968290542, guid: 7453a6285f3e8f24cbe690f9ee0c57d8, type: 3}
+  duration: 1000
+  startTime: 0
+  enemy: {fileID: 7905510326996118867, guid: 108523f16b1fa47468733f7dc7ec3eae, type: 3}
+  spawnArea: {fileID: 2076986632165806887, guid: a4e09ea9e04ae144b82e4ce42399b891, type: 3}
+  coolDown: 20
+  enemyNumber: 10
+  minRadius: 40
+  maxRadius: 60

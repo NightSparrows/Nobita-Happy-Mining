@@ -11,7 +11,7 @@ public class SimpleTargetMovement : BaseMovement
     {
         if (target == null)
         {
-            Debug.LogWarning("Target movement's target not found");
+            Debug.LogWarning("Simple target movement's target not found");
             return;
         }
         Vector3 p1 = transform.position;
