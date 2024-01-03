@@ -25,6 +25,11 @@ public class GameCamera : MonoBehaviour
         this.m_currentTarget = transform;
     }
 
+    public void setViewType(ViewType viewType)
+    {
+        this.m_viewType = viewType;
+    }
+
     // Update is called once per frame
     void Update()
     {

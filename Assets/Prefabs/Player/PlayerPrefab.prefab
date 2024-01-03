@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 622286099468465525}
   - component: {fileID: 8309177558780516198}
   - component: {fileID: 3672917390813467768}
+  - component: {fileID: 6325029972255723775}
   m_Layer: 6
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -57,6 +58,7 @@ MonoBehaviour:
   playerModelGameObject: {fileID: 948310794798203566}
   m_canShoot: 1
   rangeDetector: {fileID: 8322983465867298743}
+  sleepStaminaIncreaser: {fileID: 6325029972255723775}
 --- !u!143 &4421998855139199501
 CharacterController:
   m_ObjectHideFlags: 0
@@ -149,6 +151,20 @@ MonoBehaviour:
   _exp: 0
   _level: 0
   <levelUpSystem>k__BackingField: {fileID: 11400000, guid: 85a19517edaa3fe4c9c391c97747a1d1, type: 2}
+--- !u!114 &6325029972255723775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358749893906087180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f44672f1770a88408cdd4fd333a39e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseValue: 0
+  _valueMultiplier: 1
 --- !u!1001 &137494433050443775
 PrefabInstance:
   m_ObjectHideFlags: 0

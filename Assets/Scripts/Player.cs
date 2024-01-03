@@ -87,10 +87,13 @@ public class Player : MonoBehaviour
 					animator.SetBool("isSleeping", false);
 					sleepStaminaIncreaser.enabled = false;
 					ToggleEnabilityWeapons(true);
-					if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-						this.m_state = PlayerState.Walk;
-					else if (Input.GetKey(KeyCode.B))
-						this.m_state = PlayerState.Sleep;
+					if (this.canMove)
+					{
+						if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+							this.m_state = PlayerState.Walk;
+						else if (Input.GetKey(KeyCode.B))
+							this.m_state = PlayerState.Sleep;
+					}
 				}
 				break;
 			case PlayerState.Walk:
@@ -263,4 +266,8 @@ public class Player : MonoBehaviour
 			other.gameObject.GetComponent<SimpleTargetMovement>().enabled = true;
 		}
 	}
+
+	public PlayerCamera playerCamera { get { return m_camera; } }
+
+	public bool canMove { get { return m_canMove; } set { m_canMove = value; } }
 }
