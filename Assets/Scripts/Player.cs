@@ -126,6 +126,8 @@ public class Player : MonoBehaviour
 					vector.Normalize();
 					if (vector.magnitude != 0)
 					{
+						vector = Quaternion.AngleAxis(this.m_camera.getYaw(), Vector3.up) * vector;
+
 						// smooth rotation to direction
 						Quaternion targetRotation = Quaternion.LookRotation(vector, Vector3.up);
 						transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
