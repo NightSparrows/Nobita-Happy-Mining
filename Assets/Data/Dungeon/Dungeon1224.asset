@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelPrefabs:
   - {fileID: 698307121920191190, guid: 07e8b5ec23d6d0e499ee8388e2ceae16, type: 3}
+  - {fileID: 5432978406627243487, guid: 720f2ff936b7ee240955e81928d2c494, type: 3}
   initLevelIdx: 0
-  escapeLevelIndex: 00000000
-  escapeTeleporterIndex: 00000000
+  escapeLevelIndex: 01000000
+  escapeTeleporterIndex: 01000000
+  teleporterLinkLevelFrom: 00000000
+  teleporterLinkFrom: 00000000
+  teleporterLinkLevelTo: 01000000
+  teleporterLinkTo: 00000000
