@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
         //UpdateGameState(GameState.Playing);
         //FindPlayer();
         //SubscribePlayerEvents();
-        SubscribeDungeonEvent();
+        //SubscribeDungeonEvent();
     }
 
     public void PauseTime()
@@ -142,10 +142,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("on scene loaded " + scene.name);
         state = GameState.Playing;
-        FindPlayer();
+        //FindPlayer();
         SubscribePlayerEvents();
 
-        FindDungeonManager();
+        //FindDungeonManager();
         SubscribeDungeonEvent();
 
         if (isPaused)
