@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <upgrader>k__BackingField: {fileID: 11400000, guid: e4ab2cbbb7839144791812f23b11e08a, type: 2}
+  upgraderName: TestGun
 --- !u!114 &4807973225783541238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2201cb1a9c76ec47a5175ee488465ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 7625184989536799310, guid: 8772d1f6b7d78cd45817ea343e097b9b, type: 3}
 --- !u!114 &2391064882350693523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,4 +119,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5293405924681549928, guid: c1dac7594355bb0408e33d5268b669b6, type: 3}
   shootSound: {fileID: 11400000, guid: 262f3614420575f4980068989a05eb11, type: 2}
-  shootFX: {fileID: 5120628163253013467, guid: d934c4877e9166f4c9940cd950846011, type: 3}

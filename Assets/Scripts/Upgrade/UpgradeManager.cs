@@ -2,129 +2,124 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
-[RequireComponent(typeof(PlayerExperience))]
 [RequireComponent(typeof(WeaponHolder))]
 [RequireComponent(typeof(ItemHolder))]
 public class UpgradeManager : MonoBehaviour
 {
     public int numberOfChoices { get; set; } = 3;
+    public event Action OnUpgradeEnd; 
 
-    [SerializeField] private Buff[] guaranteedBuffs;
-    [SerializeField] private UpgradeSystemMenu menu;
+    [SerializeField] private DefaultUpgraderHelper defaultUpgrades;
+    [SerializeField] private GameObject menuPrefab;
 
     private WeaponHolder weaponHolder;
     private ItemHolder itemHolder;
-    
 
-    private List<(GameObject, Buff, object)> availibles;
-
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //Upgrade();
-        }
+        weaponHolder = GetComponent<WeaponHolder>();
+        itemHolder = GetComponent<ItemHolder>();
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.OnGameStateEnter += (GameState prv, GameState cur) => {
+            if (cur == GameState.Upgrading)
+            {
+                GameManager.Instance.PauseTime();
+                Upgrade();
+            }
+        };
+
+        GameManager.Instance.OnGameStateExit += (GameState cur, GameState nxt) => {
+            if (cur == GameState.Upgrading)
+            {
+                GameManager.Instance.ResumeTime();
+            }
+        };
     }
 
     // Pause the game, Generate upgrade choices and Show the choices
     // Intended to be Called when Player Level up
     private void Upgrade()
     {
-        Time.timeScale = 0f;
-        GeneratePool();
-        var choicesNumber = GenerateChoices();
-        List<(GameObject, Buff, object)> choices = new List<(GameObject, Buff, object)>();
+        var menuObj = Instantiate(menuPrefab);
+        var menu = menuObj.GetComponent<UpgradeSystemMenu>();
+
+        List<Upgrade> availibles = GeneratePool();
+        var choicesNumber = GenerateChoices(availibles.Count, numberOfChoices);
+
+        List<Upgrade> choices = new List<Upgrade>();
         foreach (var v in choicesNumber)
         {
             choices.Add(availibles[v]);
         }
-        menu.gameObject.SetActive(true);
-        menu.ShowChoices(choices);
+
+        menu.ShowChoices(choices, this);
     }
 
-    private void Awake()
-    {
-        PlayerExperience exp = GetComponent<PlayerExperience>();
-        exp.OnPlayerLevelChanged += x => Upgrade();
-
-        weaponHolder = GetComponent<WeaponHolder>();
-        itemHolder = GetComponent<ItemHolder>();
-
-        if (menu == null)
-        {
-            Debug.LogError("UpgradeSystemMenu not found for UpgradeManager");
-        }
+    public void OnUpgradeChosen(Upgrade upgrade)
+    {        
+        upgrade.Activate(gameObject);
+        OnUpgradeEnd?.Invoke();
     }
 
-    // the Player choose a certain Upgrade, we apply it
-    // Intended to be called by Upgrade Menu
-    public void ChooseBuff(GameObject owner, Buff buff, object indicator)
+    public List<int> GenerateChoices(int n, int k)
     {
-        if (owner != null)
-        {
-            owner.GetComponent<UpgraderHelper>().Upgrade(indicator, gameObject);
-        }
-        else
-        {
-            buff.ApplyTo(gameObject);
-        }
-        menu.gameObject.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
-    public List<int> GenerateChoices()
-    {
+        // choose `numberOfChoices` numbers from `availibles.Count` numbers randomly
         // https://stackoverflow.com/questions/26931528/random-number-generator-with-no-duplicates
         var rnd = new System.Random();
-        var randomNumbers = Enumerable.Range(0, availibles.Count).OrderBy(x => rnd.Next()).Take(numberOfChoices).ToList();
+        var randomNumbers = Enumerable.Range(0, n).OrderBy(x => rnd.Next()).Take(k).ToList();
 
         return randomNumbers;
     }
 
-    private void GeneratePool()
+    private List<Upgrade> GeneratePool()
     {
-        availibles = new List<(GameObject, Buff, object)>();
+        List<Upgrade> availibles = new List<Upgrade>();
 
-        GenerateWeaponPoll();
-        GenerateItemPoll();
+        availibles.AddRange(GenerateWeaponPoll());
+        availibles.AddRange(GenerateItemPoll());
         // GenerateEvolutionPoll
-        GenerateGuaranteePoll();
+        availibles.AddRange(GenerateDefaultPoll());
+        return availibles;
     }
 
-    private void GenerateWeaponPoll()
+    private List<Upgrade> GenerateWeaponPoll()
     {
-        if (weaponHolder == null) return;
+        List<Upgrade> availibles = new List<Upgrade>();
+        if (weaponHolder == null) return availibles;
         foreach (var weapon in weaponHolder.WeaponList)
         {
             UpgraderHelper helper = weapon.GetComponent<UpgraderHelper>();
             if (helper == null) continue;
-            foreach (var (buff, indicator) in helper.GetAvailableUpgrades())
-            {
-                availibles.Add((weapon, buff, indicator));
-            }
+            availibles.AddRange(helper.GetAvailableUpgrades());
         }
+        return availibles;
     }
 
-    private void GenerateItemPoll()
+    private List<Upgrade> GenerateItemPoll()
     {
-        if (itemHolder == null) return;
+        List<Upgrade> availibles = new List<Upgrade>();
+        if (itemHolder == null) return availibles;
         foreach (var item in itemHolder.itemList)
         {
             UpgraderHelper helper = item.GetComponent<UpgraderHelper>();
             if (helper == null) continue;
-            foreach (var (buff, indicator) in helper.GetAvailableUpgrades())
-            {
-                availibles.Add((item, buff, indicator));
-            }
+            availibles.AddRange(helper.GetAvailableUpgrades());
         }
+        return availibles;
     }
 
-    private void GenerateGuaranteePoll()
+    private List<Upgrade> GenerateDefaultPoll()
     {
-        for (int i = 0; i < guaranteedBuffs.Length && availibles.Count < numberOfChoices; ++i)
+        List<Upgrade> availibles = new List<Upgrade>();
+        foreach (Upgrade upgrade in defaultUpgrades.GetAvailableUpgrades())
         {
-            availibles.Add((null, guaranteedBuffs[i], null));
+            availibles.Add(upgrade);
         }
+        return availibles;
     }
 }

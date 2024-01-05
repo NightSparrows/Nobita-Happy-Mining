@@ -7,6 +7,7 @@ public class Teleporter : MonoBehaviour
 {
     public KeyCode activatKey = KeyCode.F;
     public event Action OnTeleport;
+    public int teleportCounter = 0;
 
     private bool isPlayerInRange = false;
 
@@ -15,6 +16,7 @@ public class Teleporter : MonoBehaviour
         if (isPlayerInRange && Input.GetKeyDown(activatKey))
         {
             Debug.Log("teleporter invoke!");
+            teleportCounter++;
             OnTeleport?.Invoke();
         }
     }

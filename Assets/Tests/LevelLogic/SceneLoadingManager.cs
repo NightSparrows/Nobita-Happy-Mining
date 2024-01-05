@@ -10,6 +10,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadingManager : MonoBehaviour
 {
+    #region Scene Names
+    public string startSceneName
+    {
+        get => "StartScene";
+    }
+    public string gameSceneName
+    {
+        get => "TestScene by tykuo";
+    }
+    #endregion
+
+
     #region Loading Menu
     [SerializeField] private GameObject loadingMenu;
     [SerializeField] private Image progressBar;
@@ -36,8 +48,12 @@ public class SceneLoadingManager : MonoBehaviour
     }
     #endregion
 
+    public void LoadGameScene() => LoadScene(gameSceneName);
+    public void LoadStartScene() => LoadScene(startSceneName);
+
     public void LoadScene(string sceneName)
     {
+        Debug.Log("load scene " + sceneName);
         StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
@@ -58,10 +74,10 @@ public class SceneLoadingManager : MonoBehaviour
             targetProgress = scene.progress / 0.9f;
         } while (targetProgress < 1f || progressBar.fillAmount < 1f);
 
-        yield return new WaitForSecondsRealtime(0.5f);
-
         StopCoroutine(updateCoroutine);
         scene.allowSceneActivation = true;
+
+        yield return new WaitForSeconds(0.3f);
         loadingMenu.SetActive(false);
     }
 

@@ -6,13 +6,11 @@ public class UpgradeSystemMenu : MonoBehaviour
 {
     [SerializeField] private GameObject optionButtomPrefab;
     [SerializeField] private Transform optionContainer;
-    [SerializeField] private UpgradeManager manager;
 
     [SerializeField] private float gapOfChoices = 100f;
 
     private float buttonWidth;
 
-    private List<(GameObject, Buff, object)> choices;
     private List<GameObject> optionButtons;
 
     private void Awake()
@@ -21,11 +19,10 @@ public class UpgradeSystemMenu : MonoBehaviour
     }
 
     // called by UpgradeManager, where the choices are given
-    public void ShowChoices(List<(GameObject, Buff, object)> choices)
+    public void ShowChoices(List<Upgrade> choices, UpgradeManager manager)
     {
-        Debug.Log("Choice count= " + choices.Count);
+        //Debug.Log("Choice count= " + choices.Count);
         optionButtons = new List<GameObject>();
-        this.choices = choices;
 
         int n = choices.Count;
 
@@ -37,36 +34,20 @@ public class UpgradeSystemMenu : MonoBehaviour
             optionButtons.Add(button);
 
             OptionButton option = button.GetComponent<OptionButton>();
-            var (source, buff, _) = choices[i];
+            Buff buff = choices[i].buff;
             option.buffText = buff.description;
-            option.ownerText = "Default";// (source != null)? source.name : "";
-            if (source != null)
-            {
-                if (source.GetComponent<Weapon>())
-                {
-                    option.ownerText = "Weapon";
-                }
-                else if (source.GetComponent<Item>())
-                {
-                    option.ownerText = "Item";
-                }
-            }
+            option.ownerText = choices[i].sourceName;
             
-
             int cur = i;
-            option.OnClick += () => Choose(cur);
+            option.OnClick += () =>
+            {
+                manager.OnUpgradeChosen(choices[cur]);
+                Destroy(gameObject);
+            };
         }
     }
 
-    // callback function from Choice Buttons
-    public void Choose(int index)
-    {
-        ClearButton();
-        var (source, buff, indicator) = choices[index];
-        manager.ChooseBuff(source, buff, indicator);
-    }
-
-    private void ClearButton()
+    public void ClearButton()
     {
         foreach (var button in optionButtons)
         {

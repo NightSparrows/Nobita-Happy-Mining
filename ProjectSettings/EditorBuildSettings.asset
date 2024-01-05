@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: f484a1f6cebefb34b8acbd3cd123b927
+  - enabled: 1
+    path: Assets/Scenes/TestScene by tykuo.unity
+    guid: d5c1a205950429f42aaf94edae6bc6bb
   m_configObjects: {}

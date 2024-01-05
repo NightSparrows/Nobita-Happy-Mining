@@ -5,10 +5,11 @@ using System;
 
 public class DungeonManager : MonoBehaviour
 {
-    [SerializeField] private Dungeon dungeonSO;
+    public Dungeon dungeonSO;
     [SerializeField] private GameObject player;
 
-    public event Action OnLevelChanged;
+    // <Level from, Level to, teleporter from, teleporter to>
+    public event Action<int, int, Teleporter, Teleporter> OnTeleportToLevel;
 
     public Level currentLevel
     {
@@ -21,14 +22,28 @@ public class DungeonManager : MonoBehaviour
     private GameObject[] levels;
     private int currentLevelIdx;
 
+    public Teleporter GetTeleporterFrom(int teleporterIndex)
+    {
+        int level = dungeonSO.teleporterLinkLevelFrom[teleporterIndex];
+        int teleporter = dungeonSO.teleporterLinkFrom[teleporterIndex];
+        return levels[level].GetComponent<Level>().teleporters[teleporter];
+    }
+
+    public Teleporter GetTeleporterTo(int teleporterIndex)
+    {
+        int level = dungeonSO.teleporterLinkLevelTo[teleporterIndex];
+        int teleporter = dungeonSO.teleporterLinkTo[teleporterIndex];
+        return levels[level].GetComponent<Level>().teleporters[teleporter];
+    }
+
     private void Start()
     {
         GenerateDungeon();
-        OnLevelChanged += () => DestroyByTag("PlayerBullet");
-        OnLevelChanged += () => DestroyByTag("Exp");
+        //OnLevelChanged += () => DestroyByTag("PlayerBullet");
+        //OnLevelChanged += () => DestroyByTag("Exp");
     }
 
-    private void Teleport(int newLevelIdx, Teleporter teleporter)
+    public void Teleport(int newLevelIdx, Transform teleporter)
     {
         if (newLevelIdx != currentLevelIdx)
         {
@@ -36,8 +51,13 @@ public class DungeonManager : MonoBehaviour
             levels[newLevelIdx].SetActive(true);
             currentLevelIdx = newLevelIdx;
         }
-        player.transform.position = teleporter.transform.position;
-        player.transform.rotation = teleporter.transform.rotation;
+        player.transform.position = teleporter.position;
+        player.transform.rotation = teleporter.rotation;
+    }
+
+    public void OnTeleporterCallback(int levelFrom, int levelTo, Teleporter teleporterFrom, Teleporter teleporterTo)
+    {
+        OnTeleportToLevel?.Invoke(levelFrom, levelTo, teleporterFrom, teleporterTo);
     }
 
     private void Update()
