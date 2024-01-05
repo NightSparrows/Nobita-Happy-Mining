@@ -18,7 +18,7 @@ public class PlayerCamera //: MonoBehaviour
 		this.m_object = new GameObject("PlayerCamera");
 
 		this.m_distance = new SmoothFloat(10f);
-		this.m_distance.setSpeed(5f);
+		this.m_distance.setSpeed(2.5f);
 		this.m_pitch = new SmoothFloat(45f);
 		this.m_pitch.setSpeed(5f);
 		this.m_yaw = new SmoothFloat(-45f);

@@ -84,6 +84,11 @@ public class NSBossBehaviorScript : MonoBehaviour
 
 	public void changeBossState(BossState state)
 	{
+		/// TODO 
+		/// 
+		// the state end api
+		/// 
+
 		this.m_state = state;
 		switch (state)
 		{

@@ -204,7 +204,7 @@ public class Player : MonoBehaviour
 			this.m_camera.setYaw(this.m_camera.getYaw() + deltaX);
 		}
 		float scrollInput = -Input.mouseScrollDelta.y;
-		float targetDistance = this.m_camera.getDistance() + Time.deltaTime * scrollInput * 5000f/* scroll speed */;
+		float targetDistance = this.m_camera.getDistance() + Time.deltaTime * scrollInput * 1000f/* scroll speed */;
         if ( targetDistance >= 50f)
         {
 			targetDistance = 50f;
