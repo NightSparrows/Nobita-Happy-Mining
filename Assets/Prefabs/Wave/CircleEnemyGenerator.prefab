@@ -52,4 +52,4 @@ MonoBehaviour:
   radius: 0
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1052672

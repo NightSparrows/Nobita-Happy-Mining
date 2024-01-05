@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d7de84906c6aa4bae7fae82e8b517b, type: 3}
-  m_Name: RandomWaveSO1
+  m_Script: {fileID: 11500000, guid: a2e411ce87d46074d81f00f05139c18e, type: 3}
+  m_Name: Ghost0Circle_1
   m_EditorClassIdentifier: 
-  enemyGenerator: {fileID: 4523194699839881240, guid: 93dc00c16d8926d469de25d67c71a022, type: 3}
+  enemyGenerator: {fileID: 6904254914265684531, guid: 85a27754906899547a552246a6e73b7f, type: 3}
   duration: 4
-  startTime: 10
-  enemy: {fileID: 7905510326996118867, guid: 108523f16b1fa47468733f7dc7ec3eae, type: 3}
+  startTime: 1
+  enemy: {fileID: 2474471417010685727, guid: d2979fadca44b434d8343f18b99ea06a, type: 3}
   spawnArea: {fileID: 2076986632165806887, guid: a4e09ea9e04ae144b82e4ce42399b891, type: 3}
-  coolDown: 2
-  enemyNumber: 5
-  radius: 10
+  coolDown: 3
+  enemyNumber: 3
+  radius: 15
