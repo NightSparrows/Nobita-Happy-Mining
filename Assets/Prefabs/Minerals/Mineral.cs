@@ -49,21 +49,21 @@ public class Mineral : MonoBehaviour
     {
         // drop exp
         float r = Random.Range(0.0f, 1.0f);
-        if (r >= expDropRate)
+        if (r < expDropRate)
         {
             Instantiate(expPickUp, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
         }
 
         // drop ruby
         r = Random.Range(0.0f, 1.0f);
-        if (r >= rubyDropRate)
+        if (r < rubyDropRate)
         {
             Instantiate(rubyPickUp, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
         }
 
         // drop diamond
         r = Random.Range(0.0f, 1.0f);
-        if (r >= diamondDropRate)
+        if (r < diamondDropRate)
         {
             Instantiate(diamondPickUp, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
         }
