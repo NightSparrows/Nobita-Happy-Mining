@@ -6,6 +6,7 @@ using UnityEngine;
 public class RangeDetector : MonoBehaviour
 {
     public event Action<Collider> OnRangeEnter;
+    public event Action<Collider> OnRangeStay;
     public event Action<Collider> OnRangeExit;
     [SerializeField] float mRadius;
     private SphereCollider mCollider;
@@ -47,7 +48,7 @@ public class RangeDetector : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
+        OnRangeStay?.Invoke(other);
     }
 
     private void OnTriggerExit(Collider other)

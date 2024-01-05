@@ -26,10 +26,12 @@ public class NormalEnemyGenerator : EnemyGenerator
         {
             for (int i = 0; i < enemyNumber; ++i)
             {
-                bool hasHitObstacle = true;
+                bool hasObstacleInRange = true;
+
+                //bool hasHitObstacle = true;
                 bool hasHitPlane = false;
                 Vector3 pos = target.position;
-                while (hasHitObstacle || !hasHitPlane)
+                while (!hasHitPlane || hasObstacleInRange)
                 {
                     pos = target.position;
 
@@ -41,16 +43,21 @@ public class NormalEnemyGenerator : EnemyGenerator
                     float theta = Random.Range(0.0f, 360f);
                     pos += new Vector3(r * Mathf.Cos(theta), 0, r * Mathf.Sin(theta));
                     RaycastHit hit;
-                    hasHitObstacle = Physics.Raycast(pos, Vector3.up, out hit, 3.0f, obstructionMask);
+                    //hasHitObstacle = Physics.Raycast(pos, Vector3.up, out hit, 5.0f, obstructionMask);
                     hasHitPlane = Physics.Raycast(pos, Vector3.down, out hit, 3.0f, planeMask);
+                    hasObstacleInRange = Physics.CheckSphere(pos, 0.5f, obstructionMask);
 
                     if (hasHitPlane)
                     {
                         Debug.Log("NormalWaveRay hit plane");
                     }
-                    if (hasHitObstacle)
+                    //if (hasHitObstacle)
+                    //{
+                    //    Debug.Log("NormalWaveRay hit obstacle");
+                    //}
+                    if (hasObstacleInRange)
                     {
-                        Debug.Log("NormalWaveRay hit obstacle");
+                        Debug.Log("Obstacle in range");
                     }
                 }
 

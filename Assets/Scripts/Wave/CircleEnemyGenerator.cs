@@ -29,11 +29,14 @@ public class CircleEnemyGenerator : EnemyGenerator
 
                 float theta = (2f / enemyNumber) * i * Mathf.PI;
                 pos += new Vector3(radius * Mathf.Cos(theta), 0, radius * Mathf.Sin(theta));
-                RaycastHit hit;
-                bool hasHitObstacle = Physics.Raycast(pos, Vector3.up, out hit, 3.0f, obstructionMask);
-                if (hasHitObstacle)
+                //RaycastHit hit;
+                //bool hasHitObstacle = Physics.Raycast(pos, Vector3.up, out hit, 3.0f, obstructionMask);
+                bool hasHitObstacle = Physics.CheckSphere(pos, 0.5f, obstructionMask);
+                
+                if (hasHitObstacle && enemy.name != "Ghost0")
                 {
-                    //continue;
+                    Debug.Log("CircleWave hit obstacle");
+                    continue;
                 }
 
                 //  create obj

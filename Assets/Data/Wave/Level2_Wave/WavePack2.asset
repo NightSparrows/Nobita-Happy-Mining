@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3e506abec0135245b0bef6cabc82ff3, type: 3}
-  m_Name: WavePack
+  m_Name: WavePack2
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: 09200ee7e84aa824ba1f1c1ba1ead97b, type: 2}
-  - {fileID: 11400000, guid: 1910803da2738414ab3c8d56b08a280f, type: 2}
-  - {fileID: 11400000, guid: 100f5bd8bd226b441bdcdfaaeb946edc, type: 2}
+  - {fileID: 11400000, guid: 14c8d8821baf5f8469662f691c6b9275, type: 2}
+  - {fileID: 11400000, guid: 825b5594343dad747aaac04203dd9c81, type: 2}
   - {fileID: 11400000, guid: ca7be35699a30ad4c90ce42046502d5e, type: 2}
   - {fileID: 11400000, guid: 5f26b622b5dc9e24c86447744f0b3878, type: 2}
-  - {fileID: 11400000, guid: 14c8d8821baf5f8469662f691c6b9275, type: 2}
+  - {fileID: 11400000, guid: 705a3d6a2e5aeae4eb6125053ceea82d, type: 2}
+  - {fileID: 11400000, guid: 361ed6d6ef1dcd54d9894f35cc114e8c, type: 2}

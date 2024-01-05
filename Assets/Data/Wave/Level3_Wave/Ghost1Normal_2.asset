@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec8f53d1ff9a6644d85f60640a94b909, type: 3}
-  m_Name: LinearWaveSO3
+  m_Script: {fileID: 11500000, guid: 0afd8772506a40e49b42526e7e0fad67, type: 3}
+  m_Name: Ghost1Normal_2
   m_EditorClassIdentifier: 
-  enemyGenerator: {fileID: 6494507192331502893, guid: 2d4a36c700d9e0c499007d5b6b495e58, type: 3}
-  duration: 2.5
-  startTime: 20
-  enemy: {fileID: 2474471417010685727, guid: d2979fadca44b434d8343f18b99ea06a, type: 3}
+  enemyGenerator: {fileID: 92713520968290542, guid: 7453a6285f3e8f24cbe690f9ee0c57d8, type: 3}
+  duration: 10000
+  startTime: 100
+  enemy: {fileID: 2474471417010685727, guid: 35336375456e877438d333022adfdec4, type: 3}
   spawnArea: {fileID: 2076986632165806887, guid: a4e09ea9e04ae144b82e4ce42399b891, type: 3}
-  coolDown: 0.7
+  coolDown: 10
+  enemyNumber: 6
+  minRadius: 60
+  maxRadius: 80
