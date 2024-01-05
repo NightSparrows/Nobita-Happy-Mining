@@ -604,7 +604,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0feced11e6da73a4bbec5ee6d2ccf961, type: 2}
+  - {fileID: 2100000, guid: 68af7c6339d34274e844a7a92b7d0104, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5629,7 +5629,7 @@ PrefabInstance:
     - target: {fileID: 557481051219594253, guid: 96a83bfa62547944287d3e4aacb8a20c, type: 3}
       propertyPath: waves
       value: 
-      objectReference: {fileID: 11400000, guid: f39a6a6d103efff4994001bdbe3c76f6, type: 2}
+      objectReference: {fileID: 11400000, guid: 0ebe3ebe0d2da03438bc116d7b8e300d, type: 2}
     - target: {fileID: 557481051219594253, guid: 96a83bfa62547944287d3e4aacb8a20c, type: 3}
       propertyPath: enemy1
       value: 

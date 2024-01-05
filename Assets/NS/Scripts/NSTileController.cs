@@ -33,6 +33,14 @@ public class NSTileController : MonoBehaviour
 		this.m_tileManager.m_tiles[this.m_position.x, this.m_position.y] = null;
 		Destroy(this.gameObject);
 	}
+	private void OnDestroy()
+	{
+		// destroy all of the child game object in this tile
+		foreach (Transform child in this.transform)
+		{
+			Destroy(child.gameObject);
+		}
+	}
 
 	public void init(NSTileMapManager tileManager, Vector2Int position)
 	{

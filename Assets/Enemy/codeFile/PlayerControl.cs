@@ -80,7 +80,7 @@ public class PlayerControl : MonoBehaviour
         if (other.tag == "Exp")
         {
             Debug.Log("exp in range");
-            other.gameObject.GetComponent<TargetMovement>().enabled = true;
+            other.gameObject.GetComponent<BaseMovement>().enabled = true;
         }
     }
 }

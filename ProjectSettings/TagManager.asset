@@ -31,9 +31,10 @@ TagManager:
   - Plane
   - 
   - Obstacle
+  - Area
   - 
-  - 
-  - 
+  - EnemyAttackRange
+  - EnemyBullet
   - 
   - 
   - 

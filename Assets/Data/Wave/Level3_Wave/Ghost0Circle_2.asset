@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e411ce87d46074d81f00f05139c18e, type: 3}
+  m_Name: Ghost0Circle_2
+  m_EditorClassIdentifier: 
+  enemyGenerator: {fileID: 6904254914265684531, guid: 85a27754906899547a552246a6e73b7f, type: 3}
+  duration: 1
+  startTime: 43.5
+  enemy: {fileID: 2474471417010685727, guid: d2979fadca44b434d8343f18b99ea06a, type: 3}
+  spawnArea: {fileID: 2076986632165806887, guid: a4e09ea9e04ae144b82e4ce42399b891, type: 3}
+  coolDown: 3
+  enemyNumber: 5
+  radius: 15

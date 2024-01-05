@@ -127,16 +127,17 @@ public class NSTileMapManager : MonoBehaviour
 		return Mathf.Abs(from.x - to.x) + Mathf.Abs(from.y - to.y);
 	}
 
-	List<Vector2Int> GetNeighbors(Vector2Int position)
-	{
-		List<Vector2Int> neighbors = new List<Vector2Int>();
-
-		Vector2Int[] directions = {
+	static Vector2Int[] directions = {
 			new Vector2Int(0, 1),   // 上
             new Vector2Int(0, -1),  // 下
             new Vector2Int(1, 0),   // 右
             new Vector2Int(-1, 0)   // 左
         };
+	List<Vector2Int> GetNeighbors(Vector2Int position)
+	{
+		List<Vector2Int> neighbors = new List<Vector2Int>();
+
+		
 
 		foreach (var dir in directions)
 		{
