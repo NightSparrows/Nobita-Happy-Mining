@@ -39,7 +39,11 @@ public class UpgradeSystemMenu : MonoBehaviour
             option.ownerText = choices[i].sourceName;
             
             int cur = i;
-            option.OnClick += () => manager.OnUpgradeChosen(choices[cur]);
+            option.OnClick += () =>
+            {
+                manager.OnUpgradeChosen(choices[cur]);
+                Destroy(gameObject);
+            };
         }
     }
 

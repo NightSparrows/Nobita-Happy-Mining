@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +12,13 @@ public class GameManager : MonoBehaviour
 
     [field : SerializeField] public GameState state { get; private set; } = GameState.Playing;
 
+    // Time
     public bool isPaused { get; private set; } = false;
     private float timeScale;
+
+    // Teleporter
+    private int levelAfterShop;
+    private Transform teleportAfterShop;
 
     /*
      * ---- Singleton Pattern of GameManager ----
@@ -45,11 +51,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (_instance)
+        {
+            Debug.Log("instance exist, destroy self");
             Destroy(gameObject);
+        }
         else
             _instance = this;
         DontDestroyOnLoad(gameObject);
-        FindPlayer();
+
+        Debug.Log("Subscribe on scene loaded");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     #endregion
@@ -60,8 +70,8 @@ public class GameManager : MonoBehaviour
      *      Ref: https://www.youtube.com/watch?v=4I0vonyqMi8
      *      
      *      Q: How to Attatch OnGameStateChanged event?
-     *      A: `GameManager.OnGameStateChanged += YourCallback;` in Awake()
-     *         `GameManager.OnGameStateChanged -= YourCallback;` in OnDestroy()
+     *      A: `GameManager.Instance.OnGameStateChanged += YourCallback;` in OnEnable()
+     *         `GameManager.Instance.OnGameStateChanged -= YourCallback;` in OnDisable()
      *         
      * ----                                  ----
      */
@@ -85,6 +95,7 @@ public class GameManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, "Unknown Game State");
         }*/
+        Debug.Log("update game state " + newState.ToString());
 
         OnGameStateExit?.Invoke(state, newState);
         var prevState = state;
@@ -95,8 +106,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //UpdateGameState(GameState.Playing);
-        FindPlayer();
-        SubscribeEndEvents();
+        //FindPlayer();
+        //SubscribePlayerEvents();
+        SubscribeDungeonEvent();
     }
 
     public void PauseTime()
@@ -116,15 +128,25 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneLoadingManager.Instance.LoadScene("TestScene1224");
+        SceneLoadingManager.Instance.LoadGameScene();
         //SceneManager.LoadScene("LevelLogicScene");
     }
 
+    /*
+     * Subscribe from `SceneManager.sceneLoaded += OnSceneLoaded;`
+     *      - called after a sscene is fully loaded
+     *      - after intial GameObject Awake()
+     *      - before Start()
+     */
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("on scene loaded " + scene.name);
         state = GameState.Playing;
         FindPlayer();
-        SubscribeEndEvents();
+        SubscribePlayerEvents();
+
+        FindDungeonManager();
+        SubscribeDungeonEvent();
 
         if (isPaused)
         {
@@ -134,50 +156,40 @@ public class GameManager : MonoBehaviour
 
     private void FindPlayer()
     {
+        if (player != null)
+        {
+            Debug.Log("player still!");
+        }
         player = GameObject.FindWithTag("Player");
     }
 
-    private void SubscribeEndEvents()
+    private void SubscribePlayerEvents()
     {
-        if (player == null)
-        {
-            Debug.LogWarning("player in GameManager not found, SubscribeEndEvents() failed");
-            return;
-        }
-
+        Debug.Log("subscribe");
         Health playerHealth = player.GetComponent<Health>();
-        if (playerHealth == null)
-        {
-            Debug.LogWarning("player don't have Health, SubscribeEndEvents() failed");
-            return;
-        }
         playerHealth.OnDead += OnPlayerDead;
 
         Stamina playerStamina = player.GetComponent<Stamina>();
-        if (playerHealth == null)
-        {
-            Debug.LogWarning("player don't have Stamina, SubscribeEndEvents() failed");
-            return;
-        }
         playerStamina.OnStaminaChanged += OnPlayerStaminaChanged;
 
         PlayerExperience playerExp = player.GetComponent<PlayerExperience>();
-        if (playerExp == null)
-        {
-            Debug.LogWarning("player don't have PlayerExperience, SubscribeEndEvents() failed");
-            return;
-        }
         playerExp.OnPlayerLevelChanged += OnPlayerLevelChanged;
 
         UpgradeManager playerUpgrade = player.GetComponent<UpgradeManager>();
-        if (playerUpgrade == null)
-        {
-            Debug.LogWarning("player don't have UpgradeManager, SubscribeEndEvents() failed");
-            return;
-        }
         playerUpgrade.OnUpgradeEnd += OnPlayerUpgradeEnd;
 
-        // TODO: subscribe victory(escape) event
+        ShopConsumer playerConsumer = player.GetComponent<ShopConsumer>();
+        playerConsumer.OnShoppingEnd += OnPlayerShoppingEnd;
+    }
+
+    private void FindDungeonManager()
+    {
+        dungeonManager = GameObject.FindGameObjectWithTag("DungeonManager").GetComponent<DungeonManager>();
+    }
+
+    private void SubscribeDungeonEvent()
+    {
+        dungeonManager.OnTeleportToLevel += OnTeleportToLevel;
     }
 
     private void OnPlayerDead()
@@ -204,6 +216,35 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.Playing);
     }
 
+    
+    private void OnPlayerShoppingEnd()
+    {
+        // telepport to the level by 
+        //      private int levelAfterShop;
+        //      private Transform teleportAfterShop;
+        dungeonManager.Teleport(levelAfterShop, teleportAfterShop);
+        UpdateGameState(GameState.Playing);
+    }
+
+    private void OnTeleportToLevel(int levelFrom, int levelTo, Teleporter teleporterFrom, Teleporter teleporterTo)
+    {
+        if (teleporterFrom.teleportCounter == 1 && teleporterTo.teleportCounter == 0)
+        {
+            // first time use this link
+            // go into shop first, then teleport to the new level
+            levelAfterShop = levelTo;
+            teleportAfterShop = teleporterTo.transform;
+            UpdateGameState(GameState.Shopping);
+        }
+        else
+        {
+            // this link has been used before
+            // teleport to the new level directly
+            dungeonManager.Teleport(levelTo, teleporterTo.transform);
+            UpdateGameState(GameState.Playing);
+        }
+    }
+
     // Called by Teleporter
     public void OnPlayerEscape()
     {
@@ -217,5 +258,6 @@ public enum GameState
     Upgrading,
     Victory,
     Dead,
-    Timeout
+    Timeout,
+    Shopping
 }   

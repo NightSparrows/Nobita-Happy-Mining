@@ -12,7 +12,7 @@ public class UpgradeManager : MonoBehaviour
     public event Action OnUpgradeEnd; 
 
     [SerializeField] private DefaultUpgraderHelper defaultUpgrades;
-    [SerializeField] private UpgradeSystemMenu menu;
+    [SerializeField] private GameObject menuPrefab;
 
     private WeaponHolder weaponHolder;
     private ItemHolder itemHolder;
@@ -21,11 +21,6 @@ public class UpgradeManager : MonoBehaviour
     {
         weaponHolder = GetComponent<WeaponHolder>();
         itemHolder = GetComponent<ItemHolder>();
-
-        if (menu == null)
-        {
-            Debug.LogError("UpgradeSystemMenu not found for UpgradeManager");
-        }
     }
 
     private void Start()
@@ -34,7 +29,6 @@ public class UpgradeManager : MonoBehaviour
             if (cur == GameState.Upgrading)
             {
                 GameManager.Instance.PauseTime();
-                menu.gameObject.SetActive(true);
                 Upgrade();
             }
         };
@@ -42,8 +36,6 @@ public class UpgradeManager : MonoBehaviour
         GameManager.Instance.OnGameStateExit += (GameState cur, GameState nxt) => {
             if (cur == GameState.Upgrading)
             {
-                menu.ClearButton();
-                menu.gameObject.SetActive(false);
                 GameManager.Instance.ResumeTime();
             }
         };
@@ -53,6 +45,9 @@ public class UpgradeManager : MonoBehaviour
     // Intended to be Called when Player Level up
     private void Upgrade()
     {
+        var menuObj = Instantiate(menuPrefab);
+        var menu = menuObj.GetComponent<UpgradeSystemMenu>();
+
         List<Upgrade> availibles = GeneratePool();
         var choicesNumber = GenerateChoices(availibles.Count, numberOfChoices);
 
@@ -67,7 +62,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void OnUpgradeChosen(Upgrade upgrade)
     {        
-        upgrade.Activate(this);
+        upgrade.Activate(gameObject);
         OnUpgradeEnd?.Invoke();
     }
 

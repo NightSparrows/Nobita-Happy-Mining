@@ -12,8 +12,10 @@ public class Dungeon : ScriptableObject
     public int[] escapeLevelIndex;
     public int[] escapeTeleporterIndex;
 
-    public (int, int)[] teleporterLinkFrom;
-    public (int, int)[] teleporterLinkTo;
+    public int[] teleporterLinkLevelFrom;
+    public int[] teleporterLinkFrom;
+    public int[] teleporterLinkLevelTo;
+    public int[] teleporterLinkTo;
 
     public GameObject[] Generate(DungeonManager manager)
     {
@@ -85,6 +87,16 @@ public class Dungeon : ScriptableObject
 
     private void BindTeleporterLinks(DungeonManager manager, GameObject[] levels)
     {
-        // TODO: links between teleporters by teleporterLinkFrom and teleporterLinkTo
+        // links between teleporters by teleporterLinkFrom and teleporterLinkTo
+        for (int i = 0; i < teleporterLinkLevelFrom.Length; ++i)
+        {
+            int levelFrom = teleporterLinkLevelFrom[i];
+            int levelTo = teleporterLinkLevelTo[i];
+            Teleporter teleporterFrom = levels[levelFrom].GetComponent<Level>().teleporters[teleporterLinkFrom[i]];
+            Teleporter teleporterTo = levels[levelTo].GetComponent<Level>().teleporters[teleporterLinkTo[i]];
+
+            // subscribe DungeonManager.OnTeleportToLevel for teleporterFrom
+            teleporterFrom.OnTeleport += () => manager.OnTeleporterCallback(levelFrom, levelTo, teleporterFrom, teleporterTo);
+        }
     }
 }

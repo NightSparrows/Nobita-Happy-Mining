@@ -6,9 +6,9 @@ public abstract class Upgrade
 {
     public Buff buff;
 
-    public virtual void Activate(UpgradeManager manager)
+    public virtual void Activate(GameObject target)
     {
-        buff.ApplyTo(manager.gameObject);
+        buff.ApplyTo(target);
         NotifyHelper();
     }
 
