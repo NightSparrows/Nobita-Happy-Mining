@@ -54,4 +54,6 @@ public class GameCamera : MonoBehaviour
                 break;
         }
     }
+
+    public Transform targetTransform { get { return this.m_currentTarget; } }
 }
