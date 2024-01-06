@@ -17,7 +17,6 @@ public class NSBossLaughMotion : IAnimationMotion
 	public void init()
 	{
 		this.m_motionCamera = new GameObject().transform;
-		Debug.Log(this.m_camera);
 		this.m_camera.setTarget(this.m_motionCamera);
 		this.m_camera.setViewType(GameCamera.ViewType.Immediate);
 

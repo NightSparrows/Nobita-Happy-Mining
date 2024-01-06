@@ -13,22 +13,24 @@ public class NSLevelGameManager : MonoBehaviour
         Init,                    // to initialize all the component of this level
         StartingDirector,        // the starting animation state
         WaitToGame,              // Wait a few time to prepare to enter game
+        EnterGame,               // initialization for game start
         InGame,                  // in game
         Victory
     }
 
+	// objects
+	[SerializeField] public GameCamera m_camera;                                 // the main camera in scene
+	[SerializeField] public GameObject player;
+    [SerializeField] private GameObject nsBoss;
+
+    [SerializeField] private AudioClip bossBGM;
+
 	// some manager or controller
 	private NSLevelStartDirector m_levelStartDirector;          // the director of the starting animation
 
-    // objects
-    public GameCamera m_camera;                                 // the main camera in scene
-    public GameObject player;
-    public GameObject nsBoss;
-    public NSTileMapManager tileMapManager;
-    public GameObject diamondOrePrefab;
-
-    private Player m_player;
+	private Player m_player;
     private NSBossBehaviorScript m_bossBehavior;
+    private AudioSource m_bgmPlayer;
 
     // variables
     public static NSLevelGameManager s_Instance;
@@ -44,7 +46,10 @@ public class NSLevelGameManager : MonoBehaviour
 	{
 		s_Instance = this;
         this.m_levelStartDirector = new NSLevelStartDirector();
-        StartLevel();
+        this.m_bgmPlayer = this.GetComponent<AudioSource>();
+		// test 
+		StartLevel();
+        // end test
 	}
 
     public static void StartLevel()
@@ -55,39 +60,36 @@ public class NSLevelGameManager : MonoBehaviour
 
     protected void updateLevelState(LevelState newState)
     {
+        // I dont know if the exit state api needed to be implement
+
         this.m_state = newState;
 
         switch(newState) { 
             case LevelState.Init:
                 {
-                    this.player.transform.position = new Vector3(50, 0, 30);
-
-					// for generation just for testing
-					//for (int i = 0; i < 100; i++)
-					//{
-					//	int x;
-					//	int z;
-     //                   NSTileController tileController;
-					//	do
-					//	{
-					//		x = UnityEngine.Random.Range(1, 100 - 1);
-					//		z = UnityEngine.Random.Range(1, 100 - 1);
-					//	} while ((tileController = this.tileMapManager.createTile(x,z)) == null);
-     //                   GameObject diamondOreObject = Instantiate(diamondOrePrefab);
-     //                   diamondOreObject.transform.SetParent(tileController.gameObject.transform, false);
-					//}
+                    this.updateLevelState(LevelState.StartingDirector);
 				}
                 break;
             case LevelState.StartingDirector:
-                {
-                    this.m_bossBehavior = this.nsBoss.GetComponent<NSBossBehaviorScript>();
+				{
+					this.player.transform.position = new Vector3(50, 0, 30);
+					this.nsBoss.transform.position = new Vector3(50, 0, 50);
+
+					this.m_bossBehavior = this.nsBoss.GetComponent<NSBossBehaviorScript>();
 
 					this.m_player = this.player.GetComponent<Player>();
                     this.m_player.canMove = false;
-                    // start the film initialize the camera position
-                    this.m_levelStartDirector.gameCamera = this.m_camera;
-                    this.m_levelStartDirector.nsBossGO = this.nsBoss;
-                    this.m_levelStartDirector.initDirector();
+
+                    this.m_bossBehavior.m_player = this.m_player;
+					// start the film initialize the camera position
+					var laughMotion = new NSBossLaughMotion();
+					laughMotion.gameCamera = this.m_camera;
+					laughMotion.nsBossGO = this.nsBoss;
+                    this.m_levelStartDirector.addMotion(laughMotion);
+					this.m_levelStartDirector.initDirector();
+                    this.m_bgmPlayer.clip = this.bossBGM;
+                    //this.m_bgmPlayer.pitch = 1.0833333333f;
+                    this.m_bgmPlayer.Play();
                 }
                 break;
             case LevelState.WaitToGame:
@@ -99,15 +101,25 @@ public class NSLevelGameManager : MonoBehaviour
 					this.m_camera.setTarget(this.player.GetComponent<Player>().playerCamera.getTransform());
 				}
                 break;
-            case LevelState.InGame:
+            case LevelState.EnterGame:
+				{
+					this.m_bossBehavior.init();
+					this.m_camera.setViewType(GameCamera.ViewType.Immediate);
+				}
+                break;
+
+			case LevelState.InGame:
                 {
                     Debug.Log("Enter in game state");
 					// init the game and start battle
-					this.m_camera.setViewType(GameCamera.ViewType.Immediate);
 					this.m_player.canMove = true;
-                    this.m_bossBehavior.init();
 					// TODO: start the boss ai
 				}
+                break;
+            case LevelState.Victory:
+                {
+                    this.m_bgmPlayer.Stop();
+                }
                 break;
                 default: break;
         }
@@ -138,9 +150,14 @@ public class NSLevelGameManager : MonoBehaviour
                 {
                     this.m_waitToGameCounter -= Time.deltaTime;
                     if (this.m_waitToGameCounter < 0)
-                        this.updateLevelState(LevelState.InGame);
+                        this.updateLevelState(LevelState.EnterGame);
                 }break;
-            case LevelState.InGame:
+			case LevelState.EnterGame:
+                {
+                    this.updateLevelState(LevelState.InGame);
+                }
+                break;
+			case LevelState.InGame:
                 {
 
                 }
