@@ -54,8 +54,8 @@ public class NSLevelGameManager : MonoBehaviour
 
     public static void StartLevel()
 	{
-		//s_Instance.updateLevelState(LevelState.Init);
-		s_Instance.updateLevelState(LevelState.StartingDirector);
+		s_Instance.updateLevelState(LevelState.Init);
+		//s_Instance.updateLevelState(LevelState.StartingDirector);
 	}
 
     protected void updateLevelState(LevelState newState)
@@ -67,7 +67,6 @@ public class NSLevelGameManager : MonoBehaviour
         switch(newState) { 
             case LevelState.Init:
                 {
-                    this.updateLevelState(LevelState.StartingDirector);
 				}
                 break;
             case LevelState.StartingDirector:
@@ -137,6 +136,11 @@ public class NSLevelGameManager : MonoBehaviour
     {
         switch(this.m_state)
         {
+            case LevelState.Init:
+                {
+					this.updateLevelState(LevelState.StartingDirector);
+				}
+                break;
             case LevelState.StartingDirector:
                 {
                     if (this.m_levelStartDirector.update(Time.deltaTime))
