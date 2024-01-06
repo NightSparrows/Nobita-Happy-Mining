@@ -39,8 +39,6 @@ public class NSLevelGameManager : MonoBehaviour
     public event Action<LevelState> OnLevelStateChanged;
 
     // state info
-    // wait to game state
-    private float m_waitToGameCounter;
 
 	private void Awake()
 	{
@@ -71,7 +69,7 @@ public class NSLevelGameManager : MonoBehaviour
                 break;
             case LevelState.StartingDirector:
 				{
-					this.player.transform.position = new Vector3(50, 0, 30);
+					this.player.transform.position = new Vector3(50, 0, 80);
 					this.nsBoss.transform.position = new Vector3(50, 0, 50);
 
 					this.m_bossBehavior = this.nsBoss.GetComponent<NSBossBehaviorScript>();
@@ -85,6 +83,18 @@ public class NSLevelGameManager : MonoBehaviour
 					laughMotion.gameCamera = this.m_camera;
 					laughMotion.nsBossGO = this.nsBoss;
                     this.m_levelStartDirector.addMotion(laughMotion);
+
+                    var jumpMotion = new NSBossJumpMotion();
+                    jumpMotion.gameCamera = this.m_camera;
+                    jumpMotion.nsBossGO = this.nsBoss;
+					this.m_levelStartDirector.addMotion(jumpMotion);
+
+                    var startupMotion = new NSBossVehicleStartupMotion();
+					startupMotion.gameCamera = this.m_camera;
+					startupMotion.nsBossGO = this.nsBoss;
+					this.m_levelStartDirector.addMotion(startupMotion);
+
+
 					this.m_levelStartDirector.initDirector();
                     this.m_bgmPlayer.clip = this.bossBGM;
                     //this.m_bgmPlayer.pitch = 1.0833333333f;
@@ -93,26 +103,27 @@ public class NSLevelGameManager : MonoBehaviour
                 break;
             case LevelState.WaitToGame:
                 {
-                    this.m_waitToGameCounter = 2.25f;
 
                     // a smooth trans to player camera
-					this.m_camera.setViewType(GameCamera.ViewType.Smooth);
+					this.m_camera.setViewType(GameCamera.ViewType.Linear);
+                    this.m_camera.followSpeed = 25f;
 					this.m_camera.setTarget(this.player.GetComponent<Player>().playerCamera.getTransform());
 				}
                 break;
             case LevelState.EnterGame:
 				{
-					this.m_bossBehavior.init();
 					this.m_camera.setViewType(GameCamera.ViewType.Immediate);
+					this.m_camera.followSpeed = 2f;
 				}
                 break;
 
 			case LevelState.InGame:
                 {
                     Debug.Log("Enter in game state");
+					// start the boss battle ai
+					this.m_bossBehavior.init();
 					// init the game and start battle
 					this.m_player.canMove = true;
-					// TODO: start the boss ai
 				}
                 break;
             case LevelState.Victory:
@@ -137,7 +148,7 @@ public class NSLevelGameManager : MonoBehaviour
         switch(this.m_state)
         {
             case LevelState.Init:
-				{
+                {
 					this.updateLevelState(LevelState.StartingDirector);
 				}
                 break;
@@ -151,10 +162,11 @@ public class NSLevelGameManager : MonoBehaviour
                 }
                 break;
             case LevelState.WaitToGame:
-                {
-                    this.m_waitToGameCounter -= Time.deltaTime;
-                    if (this.m_waitToGameCounter < 0)
-                        this.updateLevelState(LevelState.EnterGame);
+				{
+					if (this.m_camera.transform.position == this.m_camera.targetTransform.position)
+					{
+						this.updateLevelState(LevelState.EnterGame);
+					}
                 }break;
 			case LevelState.EnterGame:
                 {

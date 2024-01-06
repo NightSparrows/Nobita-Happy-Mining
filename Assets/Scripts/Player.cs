@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
 
 		// test just follow
 		this.m_camera = new PlayerCamera(this);
+		this.m_gameCamera.GetComponent<GameCamera>().setTarget(this.m_camera.getTransform());
 
 	}
 
@@ -195,23 +196,34 @@ public class Player : MonoBehaviour
 		//////////////////////////////////////////
 		/// Write in player but can be otherway
 		//////////////////////////////////////////
-		if (Input.GetMouseButton(0))
+		if (this.m_canMove)
 		{
-			float deltaX = Input.GetAxis("Mouse X") * 10f;
-			float deltaY = Input.GetAxis("Mouse Y") * 10f;
-			this.m_camera.setPitch(this.m_camera.getPitch() - deltaY);
-			this.m_camera.setYaw(this.m_camera.getYaw() + deltaX);
+			if (Input.GetMouseButton(0))
+			{
+				float deltaX = Input.GetAxis("Mouse X") * 10f;
+				float deltaY = Input.GetAxis("Mouse Y") * 10f;
+				this.m_camera.setPitch(this.m_camera.getPitch() - deltaY);
+				this.m_camera.setYaw(this.m_camera.getYaw() + deltaX);
+				if (this.m_camera.getPitch() < 0)
+				{
+					this.m_camera.setPitch(0);
+				} else if (this.m_camera.getPitch() > 90)
+				{
+					this.m_camera.setPitch(90);
+				}
+			}
+			float scrollInput = -Input.mouseScrollDelta.y;
+			float targetDistance = this.m_camera.getDistance() + Time.deltaTime * scrollInput * 1000f/* scroll speed */;
+			if (targetDistance >= 50f)
+			{
+				targetDistance = 50f;
+			}
+			else if (targetDistance <= 10f)
+			{
+				targetDistance = 10f;
+			}
+			this.m_camera.setDistance(targetDistance);
 		}
-		float scrollInput = -Input.mouseScrollDelta.y;
-		float targetDistance = this.m_camera.getDistance() + Time.deltaTime * scrollInput * 1000f/* scroll speed */;
-        if ( targetDistance >= 50f)
-        {
-			targetDistance = 50f;
-        } else if (targetDistance <= 10f)
-		{
-			targetDistance = 10f;
-		}
-		this.m_camera.setDistance(targetDistance);
 		//////////////////////////////////////////
 		/// END Write in player but can be otherway
 		//////////////////////////////////////////
