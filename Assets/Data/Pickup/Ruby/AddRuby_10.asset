@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587f2cbca2040c747a16c31ccec1444e, type: 3}
   m_Name: AddRuby_10
   m_EditorClassIdentifier: 
-  increment: 0
+  increment: 10

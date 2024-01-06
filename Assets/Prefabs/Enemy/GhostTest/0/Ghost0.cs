@@ -169,7 +169,7 @@ public class Ghost0 : MonoBehaviour
         pos.y = 0;
         area.transform.LookAt(pos);
         area.transform.localScale += new Vector3(0, 0, 3);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.3f);
         Destroy(area);
         // TODO:MOVE
         GetComponent<ForwardMovement>().enabled = true;
