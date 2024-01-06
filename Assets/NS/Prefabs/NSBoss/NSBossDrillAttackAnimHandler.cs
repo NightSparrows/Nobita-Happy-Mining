@@ -19,6 +19,12 @@ public class NSBossDrillAttackAnimHandler : StateMachineBehaviour
 		float currentTime = stateInfo.normalizedTime % 1;
 		if (currentTime >= 0.4 && currentTime <= 0.6)
 		{
+			Vector3 vector = bossScript.m_player.transform.position - bossScript.m_vehicleGO.transform.position;
+			Quaternion targetRotation = Quaternion.LookRotation(vector, Vector3.up);
+			bossScript.m_vehicleGO.transform.rotation = Quaternion.RotateTowards(bossScript.m_vehicleGO.transform.rotation, targetRotation, bossScript.rotateSpeed * Time.deltaTime);
+
+			bossScript.m_drillAttackVector = bossScript.m_vehicleGO.transform.rotation * Vector3.forward;
+            bossScript.m_drillAttackVector.Normalize();
 			bossScript.m_drillAttackCurrentForwardSpeed += bossScript.moveSpeed * Time.deltaTime;
 		}
 		else if (currentTime > 0.6)

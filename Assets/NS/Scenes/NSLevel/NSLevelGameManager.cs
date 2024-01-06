@@ -39,8 +39,6 @@ public class NSLevelGameManager : MonoBehaviour
     public event Action<LevelState> OnLevelStateChanged;
 
     // state info
-    // wait to game state
-    private float m_waitToGameCounter;
 
 	private void Awake()
 	{
@@ -93,10 +91,10 @@ public class NSLevelGameManager : MonoBehaviour
                 break;
             case LevelState.WaitToGame:
                 {
-                    this.m_waitToGameCounter = 2.25f;
 
                     // a smooth trans to player camera
-					this.m_camera.setViewType(GameCamera.ViewType.Smooth);
+					this.m_camera.setViewType(GameCamera.ViewType.Linear);
+                    this.m_camera.followSpeed = 25f;
 					this.m_camera.setTarget(this.player.GetComponent<Player>().playerCamera.getTransform());
 				}
                 break;
@@ -104,6 +102,7 @@ public class NSLevelGameManager : MonoBehaviour
 				{
 					this.m_bossBehavior.init();
 					this.m_camera.setViewType(GameCamera.ViewType.Immediate);
+					this.m_camera.followSpeed = 2f;
 				}
                 break;
 
@@ -151,10 +150,11 @@ public class NSLevelGameManager : MonoBehaviour
                 }
                 break;
             case LevelState.WaitToGame:
-                {
-                    this.m_waitToGameCounter -= Time.deltaTime;
-                    if (this.m_waitToGameCounter < 0)
-                        this.updateLevelState(LevelState.EnterGame);
+				{
+					if (this.m_camera.transform.position == this.m_camera.targetTransform.position)
+					{
+						this.updateLevelState(LevelState.EnterGame);
+					}
                 }break;
 			case LevelState.EnterGame:
                 {

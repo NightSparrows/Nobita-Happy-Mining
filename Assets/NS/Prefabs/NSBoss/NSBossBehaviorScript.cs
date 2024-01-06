@@ -26,7 +26,7 @@ public class NSBossBehaviorScript : MonoBehaviour
 
 	// variables
 	[SerializeField] private float m_moveSpeed = 10f;
-	[SerializeField] private float m_rotateSpeed = 10f;
+	[SerializeReference] private float m_rotateSpeed = 90f;
 	[SerializeField] private BossState m_state;
 
 	// objects
@@ -36,7 +36,7 @@ public class NSBossBehaviorScript : MonoBehaviour
 	private AudioSource m_drNastyAudioSource;          // the speaker of boss
 
 	private GameObject m_drNastyGO;
-	private GameObject m_vehicleGO;
+	public GameObject m_vehicleGO;
 
 	private Animator m_drNastyAnimator;
 	private Animator m_vehicleAnimator;
@@ -119,7 +119,7 @@ public class NSBossBehaviorScript : MonoBehaviour
 				{
 					// if doing drill attack, need to initialize the vector
 					// this is just for testing 
-					this.m_drillAttackVector = this.m_player.transform.position - this.transform.position;
+					this.m_drillAttackVector = this.m_vehicleGO.transform.rotation * Vector3.forward;
 					this.m_drillAttackVector.Normalize();
 
 					// initialize the forward speed
@@ -142,10 +142,11 @@ public class NSBossBehaviorScript : MonoBehaviour
 					this.m_idleCounter -= Time.deltaTime;
 
                     // rotate to face the player
-                    Vector3 vector = this.m_player.transform.position - this.transform.position;
+                    Vector3 vector = this.m_player.transform.position - this.m_vehicleGO.transform.position;
 					vector.Normalize();
 					Quaternion targetRotation = Quaternion.LookRotation(vector, Vector3.up);
 					this.m_vehicleGO.transform.rotation = Quaternion.RotateTowards(this.m_vehicleGO.transform.rotation, targetRotation, this.m_rotateSpeed * Time.deltaTime);
+					//this.m_vehicleGO.transform.rotation = targetRotation;
 
 					if (this.m_idleCounter <= 0)
 					{
@@ -190,6 +191,11 @@ public class NSBossBehaviorScript : MonoBehaviour
 	public float moveSpeed
 	{
 		get { return this.m_moveSpeed; }
+	}
+
+	public float rotateSpeed
+	{
+		get { return this.m_rotateSpeed; }
 	}
 
 }
