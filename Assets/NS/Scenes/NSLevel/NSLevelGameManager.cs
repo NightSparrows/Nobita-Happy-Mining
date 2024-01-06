@@ -69,7 +69,7 @@ public class NSLevelGameManager : MonoBehaviour
                 break;
             case LevelState.StartingDirector:
 				{
-					this.player.transform.position = new Vector3(50, 0, 30);
+					this.player.transform.position = new Vector3(50, 0, 80);
 					this.nsBoss.transform.position = new Vector3(50, 0, 50);
 
 					this.m_bossBehavior = this.nsBoss.GetComponent<NSBossBehaviorScript>();
@@ -83,6 +83,18 @@ public class NSLevelGameManager : MonoBehaviour
 					laughMotion.gameCamera = this.m_camera;
 					laughMotion.nsBossGO = this.nsBoss;
                     this.m_levelStartDirector.addMotion(laughMotion);
+
+                    var jumpMotion = new NSBossJumpMotion();
+                    jumpMotion.gameCamera = this.m_camera;
+                    jumpMotion.nsBossGO = this.nsBoss;
+					this.m_levelStartDirector.addMotion(jumpMotion);
+
+                    var startupMotion = new NSBossVehicleStartupMotion();
+					startupMotion.gameCamera = this.m_camera;
+					startupMotion.nsBossGO = this.nsBoss;
+					this.m_levelStartDirector.addMotion(startupMotion);
+
+
 					this.m_levelStartDirector.initDirector();
                     this.m_bgmPlayer.clip = this.bossBGM;
                     //this.m_bgmPlayer.pitch = 1.0833333333f;
@@ -100,7 +112,6 @@ public class NSLevelGameManager : MonoBehaviour
                 break;
             case LevelState.EnterGame:
 				{
-					this.m_bossBehavior.init();
 					this.m_camera.setViewType(GameCamera.ViewType.Immediate);
 					this.m_camera.followSpeed = 2f;
 				}
@@ -109,9 +120,10 @@ public class NSLevelGameManager : MonoBehaviour
 			case LevelState.InGame:
                 {
                     Debug.Log("Enter in game state");
+					// start the boss battle ai
+					this.m_bossBehavior.init();
 					// init the game and start battle
 					this.m_player.canMove = true;
-					// TODO: start the boss ai
 				}
                 break;
             case LevelState.Victory:
