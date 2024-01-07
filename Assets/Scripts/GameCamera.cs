@@ -7,7 +7,8 @@ public class GameCamera : MonoBehaviour
 	public enum ViewType
 	{
 		Immediate,
-		Smooth
+		Smooth,
+        Linear
 	}
 
 	public float followSpeed = 2.0f;
@@ -45,8 +46,14 @@ public class GameCamera : MonoBehaviour
 				transform.position = Vector3.Slerp(transform.position, this.m_currentTarget.position, followSpeed * Time.deltaTime);
 				transform.rotation = Quaternion.Slerp(transform.rotation, this.m_currentTarget.rotation, followSpeed * Time.deltaTime);
 				break;
+            case ViewType.Linear:
+                transform.position = Vector3.MoveTowards(transform.position, this.m_currentTarget.position, followSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, this.m_currentTarget.rotation, followSpeed * Time.deltaTime);
+                break;
             default:
                 break;
         }
     }
+
+    public Transform targetTransform { get { return this.m_currentTarget; } }
 }

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae07892991f3ea5489eddf2e0b6a59cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: 8640e27999bff8c46bec40b64c69019c, type: 2}
+  buff: {fileID: 11400000, guid: 0d8c746d22a977143a9182e033ba61c3, type: 2}
 --- !u!114 &1986419138927990534
 MonoBehaviour:
   m_ObjectHideFlags: 0

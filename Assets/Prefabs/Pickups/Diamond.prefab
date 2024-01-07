@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f24a9d98bf5994e9c677c96aaa4c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 11400000, guid: 8640e27999bff8c46bec40b64c69019c, type: 2}
+  buff: {fileID: 11400000, guid: 12641cf693c12494aa7a9548ce18bba6, type: 2}
 --- !u!114 &-9102522930700922774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,9 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824ac4de585b8a04fabbfca7c01fec1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: {x: 0, y: 0, z: 0}
-  speed: 0
-  radius: 0
+  angle: {x: 0, y: 0, z: -1}
+  speed: 5
+  radius: 0.5
 --- !u!135 &747573916248949139
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -5,32 +5,28 @@ using UnityEngine;
 
 public class NSLevelStartDirector
 {
-	public delegate bool MotionUpdateFunPtr(float dt);
-	public delegate void MotionInitFunPtr();
 
-	private GameCamera m_gameCamera;
-    private GameObject m_nsBossGO;
-    
-    
     private int m_currentMotion;
 	private List<IAnimationMotion> m_motions;
+
+    public NSLevelStartDirector()
+	{
+		// init
+		this.m_motions = new List<IAnimationMotion>();
+	}
+
+    public void addMotion(IAnimationMotion motion)
+    {
+        this.m_motions.Add(motion);
+    }
 
 	/// <summary>
 	/// Initialize the for
 	/// </summary>
 	public void initDirector()
-    {
-        // init
-        this.m_currentMotion = 0;
-        this.m_motions = new List<IAnimationMotion>();
-
-        // add functions
-        var laughMotion = new NSBossLaughMotion();
-        laughMotion.gameCamera = this.m_gameCamera;
-        laughMotion.nsBossGO = this.m_nsBossGO;
-		this.m_motions.Add(laughMotion);
-
-        this.m_motions[0].init();
+	{
+		this.m_currentMotion = 0;
+		this.m_motions[0].init();
     }
 
     /// <summary>
@@ -54,24 +50,5 @@ public class NSLevelStartDirector
             this.m_motions[this.m_currentMotion].init();
 		}
         return false;
-    }
-
-    // getter setter
-    public GameCamera gameCamera
-    {
-        get { return this.m_gameCamera; }
-        set
-        {
-            this.m_gameCamera = value;
-        }
-    }
-
-    public GameObject nsBossGO
-    {
-        get { return this.m_nsBossGO; }
-        set
-        {
-            this.m_nsBossGO = value;
-        }
     }
 }
