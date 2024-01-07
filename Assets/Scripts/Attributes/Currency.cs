@@ -8,7 +8,7 @@ public class Currency : MonoBehaviour
     [SerializeField] private int _ruby = 0;
 
     public event Action<int, int> OnRubyChanged;
-    public event Action<int, int> OnDiamonaChanged;
+    public event Action<int, int> OnDiamondChanged;
 
     public int ruby
     {
@@ -35,7 +35,7 @@ public class Currency : MonoBehaviour
             int org = PlayerPrefs.GetInt("Diamond", 0);
             if (org == value) return;
             PlayerPrefs.SetInt("Diamond", value);
-            OnDiamonaChanged?.Invoke(org, value);
+            OnDiamondChanged?.Invoke(org, value);
         }
     }
 

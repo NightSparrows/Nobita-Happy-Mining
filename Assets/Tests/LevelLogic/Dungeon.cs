@@ -97,6 +97,7 @@ public class Dungeon : ScriptableObject
 
             // subscribe DungeonManager.OnTeleportToLevel for teleporterFrom
             teleporterFrom.OnTeleport += () => manager.OnTeleporterCallback(levelFrom, levelTo, teleporterFrom, teleporterTo);
+            teleporterTo.OnTeleport += () => manager.OnTeleporterCallback(levelTo, levelFrom, teleporterTo, teleporterFrom);
         }
     }
 }
