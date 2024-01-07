@@ -146,6 +146,12 @@ public class NSBossBehaviorScript : MonoBehaviour
 					this.m_drillController.enableDamage = true;
 				}
 				break;
+			case BossState.BarrelAttack:
+				{
+
+					this.m_vehicleAnimator.SetTrigger("BarrelAttackTrigger");
+				}
+				break;
 			default: break;
 		}
 	}
@@ -169,14 +175,28 @@ public class NSBossBehaviorScript : MonoBehaviour
 
 					if (this.m_idleCounter <= 0)
 					{
-						// TODO if ultimate is prepared use it
-						if (Vector3.Distance(this.m_player.transform.position, this.m_vehicleGO.transform.position) <= 20)
+						int behaviour = Random.Range(0, 3);
+						switch (behaviour)
 						{
-							this.changeBossState(BossState.DrillAttack);
-						} else
-						{
-							this.changeBossState(BossState.Moving);
+							case 0:
+								{
+									this.changeBossState(BossState.BarrelAttack);
+								}
+								break;
+							default:
+								{
+									if (Vector3.Distance(this.m_player.transform.position, this.m_vehicleGO.transform.position) <= 20)
+									{
+										this.changeBossState(BossState.DrillAttack);
+									}
+									else
+									{
+										this.changeBossState(BossState.Moving);
+									}
+								}
+								break;
 						}
+						// TODO if ultimate is prepared use it
 
 						// just for testing
 						// TODO change to wanted state
