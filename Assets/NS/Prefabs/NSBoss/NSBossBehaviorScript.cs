@@ -28,7 +28,7 @@ public class NSBossBehaviorScript : MonoBehaviour
 	// variables
 	[SerializeField] private float m_moveSpeed = 8f;
 	[SerializeReference] private float m_rotateSpeed = 90f;
-	[SerializeField] private BossState m_state;
+	[SerializeField] public BossState m_state;
 
 	// objects
 	private Health m_health;
@@ -58,7 +58,7 @@ public class NSBossBehaviorScript : MonoBehaviour
     public void init()
     {
 		this.m_health = this.GetComponent<Health>();
-		this.m_health.init(300000);
+		this.m_health.init(3000);
 
 		this.m_drNastyGO.transform.SetParent(this.m_vehicleMainBone.transform, false);
 		this.m_drNastyGO.transform.localPosition = new Vector3(0, 0.005f, 0.004f);
@@ -94,13 +94,14 @@ public class NSBossBehaviorScript : MonoBehaviour
 		{
 			Debug.LogError("Failed to get the animators");
 		}
+		this.m_state = BossState.None;
 
 	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		//this.m_vehicleAnimator.SetTrigger("StartUpTrigger");
+		this.m_state = BossState.None;
 	}
 
 	public void changeBossState(BossState state)
@@ -152,6 +153,12 @@ public class NSBossBehaviorScript : MonoBehaviour
 					this.m_vehicleAnimator.SetTrigger("BarrelAttackTrigger");
 				}
 				break;
+			case BossState.Death:
+				{
+					// TODO just disable it
+					this.gameObject.SetActive(false);
+				}
+				break;
 			default: break;
 		}
 	}
@@ -161,7 +168,8 @@ public class NSBossBehaviorScript : MonoBehaviour
     {
 		switch (this.m_state)
 		{
-			case BossState.None: break;		// do nothing
+			case BossState.None:
+				break;		// do nothing
 			case BossState.Idle:
 				{
 					this.m_idleCounter -= Time.deltaTime;

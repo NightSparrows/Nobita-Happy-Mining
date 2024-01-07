@@ -23,6 +23,7 @@ public class NSLevelGameManager : MonoBehaviour
 	[SerializeField] public GameObject player;
     [SerializeField] private GameObject nsBoss;
     [SerializeField] public GameObject m_backPortal;
+    [SerializeField] public NSLevelEnemyManager m_enemyManager;
 
     [SerializeField] private AudioClip bossBGM;
 
@@ -34,6 +35,7 @@ public class NSLevelGameManager : MonoBehaviour
 	private Player m_player;
     private NSBossBehaviorScript m_bossBehavior;
     private AudioSource m_bgmPlayer;
+    private Teleporter m_backPortalTeleporter;
 
     // variables
     public static NSLevelGameManager s_Instance;
@@ -52,6 +54,7 @@ public class NSLevelGameManager : MonoBehaviour
 		//StartLevel();
         // end test
         this.m_backPortal.SetActive(false);
+        this.m_backPortalTeleporter = this.m_backPortal.GetComponent<Teleporter>();
 	}
 
     public static void StartLevel()
@@ -69,14 +72,17 @@ public class NSLevelGameManager : MonoBehaviour
         switch(newState) { 
             case LevelState.Init:
                 {
+                    this.m_enemyManager.init();
 				}
                 break;
             case LevelState.StartingDirector:
 				{
 					this.player.transform.position = new Vector3(50, 0, 80);
 					this.nsBoss.transform.position = new Vector3(50, 0, 50);
+					this.player.transform.localScale = Vector3.one;
 
 					this.m_bossBehavior = this.nsBoss.GetComponent<NSBossBehaviorScript>();
+					this.m_bossBehavior.m_state = NSBossBehaviorScript.BossState.None;
 
 					this.m_player = this.player.GetComponent<Player>();
                     this.m_player.canMove = false;
@@ -107,9 +113,10 @@ public class NSLevelGameManager : MonoBehaviour
                 }
                 break;
             case LevelState.WaitToGame:
-                {
+				{
+					this.m_bossBehavior.m_state = NSBossBehaviorScript.BossState.None;
 
-                    // a smooth trans to player camera
+					// a smooth trans to player camera
 					this.m_camera.setViewType(GameCamera.ViewType.Linear);
                     this.m_camera.followSpeed = 25f;
 					this.m_camera.setTarget(this.player.GetComponent<Player>().playerCamera.getTransform());
@@ -117,6 +124,7 @@ public class NSLevelGameManager : MonoBehaviour
                 break;
             case LevelState.EnterGame:
 				{
+					this.m_bossBehavior.m_state = NSBossBehaviorScript.BossState.None;
 					this.m_camera.setViewType(GameCamera.ViewType.Immediate);
 					this.m_camera.followSpeed = 2f;
 				}
@@ -129,10 +137,16 @@ public class NSLevelGameManager : MonoBehaviour
 					this.m_bossBehavior.init();
 					// init the game and start battle
 					this.m_player.canMove = true;
+					this.m_enemyManager.startSpawn();
 				}
                 break;
             case LevelState.Victory:
-                {
+				{
+					this.m_enemyManager.stopSpawn();
+					this.m_bossBehavior.changeBossState(NSBossBehaviorScript.BossState.Death);
+                    this.m_backPortalTeleporter.OnTeleport += () => {
+                        this.player.transform.localScale = new Vector3(3, 3, 3);
+                    };
                     this.m_bgmPlayer.Stop();
 					this.m_backPortal.SetActive(true);
 				}

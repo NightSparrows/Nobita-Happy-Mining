@@ -102,7 +102,8 @@ MonoBehaviour:
   player: {fileID: 0}
   nsBoss: {fileID: 1617877680416291972}
   m_backPortal: {fileID: 2132526320875034571}
-  bossBGM: {fileID: 0}
+  m_enemyManager: {fileID: 7833200866922832789}
+  bossBGM: {fileID: 8300000, guid: 48afa33e82ff9334fb77c4876a13355a, type: 3}
   m_startupFX: {fileID: 100010, guid: c0a15d884e5e7a9468ab38bba8a32604, type: 3}
   m_state: 0
 --- !u!82 &2621686097353717621
@@ -382,6 +383,7 @@ GameObject:
   - component: {fileID: 6314351109374802046}
   - component: {fileID: 8722355591550300330}
   - component: {fileID: 5847496991769090778}
+  - component: {fileID: 1461152310042512377}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -463,6 +465,37 @@ TerrainCollider:
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 7ad862a12e13ed449bf35a789696d60d, type: 2}
   m_EnableTreeColliders: 1
+--- !u!114 &1461152310042512377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166590664321413978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 5a83753d3a45a2b40b256ec0e4ea3da9, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &6425350330412243266
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +558,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2167235033002462704}
+  - component: {fileID: 7833200866922832789}
   m_Layer: 0
   m_Name: EnemySpawnManager
   m_TagString: Untagged
@@ -547,6 +581,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2308322833738933078}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7833200866922832789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6736871977004475149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09602e2e52f78884a96085f4b95e4a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_spawnData:
+  - mobPrefab: {fileID: 2474471417010685727, guid: d2979fadca44b434d8343f18b99ea06a, type: 3}
+    minSpawnRate: 8
+    maxSpawnRate: 20
+    minRadius: 20
+    maxRadius: 80
+    spawnCount: 1
+  - mobPrefab: {fileID: 2474471417010685727, guid: 35336375456e877438d333022adfdec4, type: 3}
+    minSpawnRate: 3
+    maxSpawnRate: 10
+    minRadius: 25
+    maxRadius: 80
+    spawnCount: 5
+  - mobPrefab: {fileID: 25901200661331521, guid: a6df01c27a71c6d44aca919de85ddf70, type: 3}
+    minSpawnRate: 3
+    maxSpawnRate: 5
+    minRadius: 25
+    maxRadius: 80
+    spawnCount: 2
 --- !u!1 &6747427520582196612
 GameObject:
   m_ObjectHideFlags: 0
