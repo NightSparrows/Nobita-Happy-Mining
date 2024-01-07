@@ -22,6 +22,7 @@ public class NSLevelGameManager : MonoBehaviour
 	[SerializeField] public GameCamera m_camera;                                 // the main camera in scene
 	[SerializeField] public GameObject player;
     [SerializeField] private GameObject nsBoss;
+    [SerializeField] public GameObject m_backPortal;
 
     [SerializeField] private AudioClip bossBGM;
 
@@ -48,8 +49,9 @@ public class NSLevelGameManager : MonoBehaviour
         this.m_levelStartDirector = new NSLevelStartDirector();
         this.m_bgmPlayer = this.GetComponent<AudioSource>();
 		// test 
-		StartLevel();
+		//StartLevel();
         // end test
+        this.m_backPortal.SetActive(false);
 	}
 
     public static void StartLevel()
@@ -132,7 +134,8 @@ public class NSLevelGameManager : MonoBehaviour
             case LevelState.Victory:
                 {
                     this.m_bgmPlayer.Stop();
-                }
+					this.m_backPortal.SetActive(true);
+				}
                 break;
                 default: break;
         }
@@ -178,7 +181,10 @@ public class NSLevelGameManager : MonoBehaviour
                 break;
 			case LevelState.InGame:
                 {
-
+                    if (this.nsBoss.GetComponent<Health>().isDead())
+                    {
+                        this.updateLevelState(LevelState.Victory);
+                    }
                 }
                 break;
                 default: break;
