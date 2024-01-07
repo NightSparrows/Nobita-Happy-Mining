@@ -23,12 +23,14 @@ public class Teleporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Player enter teleporter");
         isPlayerInRange = true;
         
     }
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Player exit teleporter");
         isPlayerInRange = false;
     }
 }

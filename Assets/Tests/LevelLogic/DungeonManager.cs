@@ -47,10 +47,14 @@ public class DungeonManager : MonoBehaviour
     {
         if (newLevelIdx != currentLevelIdx)
         {
+            SaveCurrent();
             levels[currentLevelIdx].SetActive(false);
             levels[newLevelIdx].SetActive(true);
             currentLevelIdx = newLevelIdx;
         }
+
+        //CharacterController cc = player.GetComponent<CharacterController>();
+        //cc.Move(teleporter.position - player.transform.position);
         player.transform.position = teleporter.position;
         player.transform.rotation = teleporter.rotation;
     }
@@ -68,6 +72,13 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
+    private void SaveCurrent()
+    {
+        Transform container = currentLevel.container;
+        SetParentByTag("Exp", container);
+        SetParentByTag("Enemy", container);
+    }
+
     private void GenerateDungeon()
     {
         currentLevelIdx = dungeonSO.initLevelIdx;
@@ -75,12 +86,12 @@ public class DungeonManager : MonoBehaviour
         // TODO: set up player inital state
     }
 
-    private void DestroyByTag(string tag)
+    private void SetParentByTag(string tag, Transform parent)
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
         foreach (var obj in objs)
         {
-            Destroy(obj);
+            obj.transform.parent = parent;
         }
     }
 }

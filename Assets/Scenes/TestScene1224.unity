@@ -312,8 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c3d54d5312a6f46a4073d569052123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultUpgrades: {fileID: 0}
-  menuPrefab: {fileID: 0}
+  defaultUpgrades: {fileID: 592283073}
+  menuPrefab: {fileID: 4926378217743521439, guid: 7a6628f990d08204d807eecd7ccb1fa2, type: 3}
 --- !u!114 &592283067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a4971ce0c75ec4aa8e2171bd545d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ruby: 0
+  _ruby: 100
 --- !u!114 &592283073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,7 +808,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -863,10 +863,18 @@ PrefabInstance:
       propertyPath: _listen
       value: 
       objectReference: {fileID: 592283056}
+    - target: {fileID: 1559417355723261779, guid: b591742456067ce4e970f1a76d483583, type: 3}
+      propertyPath: currency
+      value: 
+      objectReference: {fileID: 592283072}
     - target: {fileID: 1564858917371607616, guid: b591742456067ce4e970f1a76d483583, type: 3}
       propertyPath: _listen
       value: 
       objectReference: {fileID: 592283054}
+    - target: {fileID: 2192464180019204233, guid: b591742456067ce4e970f1a76d483583, type: 3}
+      propertyPath: currency
+      value: 
+      objectReference: {fileID: 592283072}
     - target: {fileID: 4934256316938683505, guid: b591742456067ce4e970f1a76d483583, type: 3}
       propertyPath: m_Name
       value: Player Stat
