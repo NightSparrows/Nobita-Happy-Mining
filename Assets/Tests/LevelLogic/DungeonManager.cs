@@ -53,6 +53,16 @@ public class DungeonManager : MonoBehaviour
             currentLevelIdx = newLevelIdx;
         }
 
+        if (newLevelIdx == 2)
+        {
+            // boss level
+            Debug.Log("Enter boss level!");
+            var mng = levels[newLevelIdx].transform.Find("Managers/LevelManager").GetComponent<NSLevelGameManager>();
+            mng.player = player;
+            mng.m_camera = GameObject.Find("GameCamera").GetComponent<GameCamera>();
+            NSLevelGameManager.StartLevel();
+        }
+
         //CharacterController cc = player.GetComponent<CharacterController>();
         //cc.Move(teleporter.position - player.transform.position);
         player.transform.position = teleporter.position;

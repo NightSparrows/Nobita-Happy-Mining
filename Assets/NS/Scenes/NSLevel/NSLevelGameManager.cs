@@ -37,7 +37,7 @@ public class NSLevelGameManager : MonoBehaviour
 
     // variables
     public static NSLevelGameManager s_Instance;
-    public LevelState m_state;
+    public LevelState m_state = LevelState.Init;
 
     public event Action<LevelState> OnLevelStateChanged;
 
