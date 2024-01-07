@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42dd8aca8e0b40f4abafebd8380c6cbf, type: 3}
-  m_Name: Dungeon1224
+  m_Name: Dungeon0107
   m_EditorClassIdentifier: 
   levelPrefabs:
   - {fileID: 698307121920191190, guid: 07e8b5ec23d6d0e499ee8388e2ceae16, type: 3}
@@ -19,7 +19,7 @@ MonoBehaviour:
   initLevelIdx: 0
   escapeLevelIndex: 
   escapeTeleporterIndex: 
-  teleporterLinkLevelFrom: 0000000001000000
-  teleporterLinkFrom: 0000000001000000
-  teleporterLinkLevelTo: 0100000002000000
-  teleporterLinkTo: 0000000000000000
+  teleporterLinkLevelFrom: 
+  teleporterLinkFrom: 
+  teleporterLinkLevelTo: 
+  teleporterLinkTo: 
