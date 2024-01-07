@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f44672f1770a88408cdd4fd333a39e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseValue: -1
+  _baseValue: -7
   _valueMultiplier: 1
 --- !u!114 &592283063
 MonoBehaviour:
@@ -353,7 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec9e7773f78b654888eacd889c6230d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffs: []
+  buffs:
+  - {fileID: 11400000, guid: 00575b6537a389a418d44ad01b1136a2, type: 2}
 --- !u!114 &592283074
 MonoBehaviour:
   m_ObjectHideFlags: 0

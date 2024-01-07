@@ -236,18 +236,6 @@ public class Player : MonoBehaviour
 		 *		
 		 * -------------------------------------------------
 		 */
-		if (Input.GetKey(KeyCode.Z))
-        {
-			stamina.CurrentStamina -= 1;
-        }
-		if (Input.GetKey(KeyCode.X))
-        {
-			health.takeDamage(1);
-        }
-		if (Input.GetKey(KeyCode.C))
-        {
-			exp.CurrentPlayerExp += 1;
-        }
 	}
 
 	void ToggleEnabilityWeapons(bool enable)
@@ -283,4 +271,6 @@ public class Player : MonoBehaviour
 	public PlayerCamera playerCamera { get { return m_camera; } }
 
 	public bool canMove { get { return m_canMove; } set { m_canMove = value; } }
+
+	public Stamina Stamina { get { return this.stamina; } }
 }

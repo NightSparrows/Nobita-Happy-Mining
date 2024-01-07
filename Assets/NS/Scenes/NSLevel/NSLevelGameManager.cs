@@ -179,6 +179,7 @@ public class NSLevelGameManager : MonoBehaviour
                         // switch to in game state
                         this.updateLevelState(LevelState.WaitToGame);
                     }
+                    this.m_player.Stamina.CurrentStamina = this.m_player.Stamina.MaxStamina;
                 }
                 break;
             case LevelState.WaitToGame:
