@@ -183,6 +183,11 @@ public class NSBossBehaviorScript : MonoBehaviour
 									this.changeBossState(BossState.BarrelAttack);
 								}
 								break;
+							case 1:
+								{
+									this.changeBossState(BossState.BarrelAttack);
+								}
+								break;
 							default:
 								{
 									if (Vector3.Distance(this.m_player.transform.position, this.m_vehicleGO.transform.position) <= 20)

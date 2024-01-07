@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_redSpot: {fileID: 2075069190673024242}
+  m_selfDestroyExplosionPrefab: {fileID: 3343901385971451344, guid: b5eda6d66b87fdb428cf7158bcd5a7b4, type: 3}
   m_player: {fileID: 0}
 --- !u!1001 &2829852329046977164
 PrefabInstance:

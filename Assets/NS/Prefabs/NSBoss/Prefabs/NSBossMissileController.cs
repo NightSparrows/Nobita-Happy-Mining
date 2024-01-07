@@ -5,6 +5,7 @@ using UnityEngine;
 public class NSBossMissileController : MonoBehaviour
 {
     [SerializeField] private GameObject m_redSpot;
+    [SerializeField] private GameObject m_selfDestroyExplosionPrefab;
 
     public Player m_player;
 
@@ -28,6 +29,7 @@ public class NSBossMissileController : MonoBehaviour
                 Health health = this.m_player.GetComponent<Health>();
                 health.takeDamage((int)((float)health.MaxHealth * 0.1f));
             }
+            GameObject.Instantiate(this.m_selfDestroyExplosionPrefab, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

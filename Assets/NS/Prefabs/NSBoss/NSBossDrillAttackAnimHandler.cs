@@ -11,8 +11,9 @@ public class NSBossDrillAttackAnimHandler : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		var bossScript = animator.transform.parent.GetComponent<NSBossBehaviorScript>();
+		bossScript.m_drillAttackCurrentForwardSpeed = 0;
 
-    }
+	}
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

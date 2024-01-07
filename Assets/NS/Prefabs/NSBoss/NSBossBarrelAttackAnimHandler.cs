@@ -38,7 +38,7 @@ public class NSBossBarrelAttackAnimHandler : StateMachineBehaviour
             var missileGO = GameObject.Instantiate(this.m_missilePrefab, bossScript.m_player.transform.position + new Vector3(0, 40f, 0), Quaternion.identity);
             missileGO.GetComponent<NSBossMissileController>().player = bossScript.m_player;
 
-            for(int i = 0; i < 4; i++)
+            for(int i = 0; i < 9; i++)
 			{
 				float offsetX = Random.Range(-10, 10);
 				float offsetZ = Random.Range(-10, 10);

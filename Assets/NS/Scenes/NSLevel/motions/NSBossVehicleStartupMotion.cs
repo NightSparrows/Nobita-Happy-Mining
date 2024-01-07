@@ -49,7 +49,7 @@ public class NSBossVehicleStartupMotion : IAnimationMotion
 			GameObject.Instantiate(this.m_startupFX, this.m_drNastyVehicleGO.transform);
 			this.m_triggerStartupFX = true;
 		}
-		if (animTime >= 1)
+		if (animTime >= 0.98)
 		{
 			Debug.Log("done!");
 			return true;
