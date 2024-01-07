@@ -27,6 +27,8 @@ public class NSLevelGameManager : MonoBehaviour
 
 	// some manager or controller
 	private NSLevelStartDirector m_levelStartDirector;          // the director of the starting animation
+    // startup fx
+    [SerializeField] private GameObject m_startupFX;
 
 	private Player m_player;
     private NSBossBehaviorScript m_bossBehavior;
@@ -92,6 +94,7 @@ public class NSLevelGameManager : MonoBehaviour
                     var startupMotion = new NSBossVehicleStartupMotion();
 					startupMotion.gameCamera = this.m_camera;
 					startupMotion.nsBossGO = this.nsBoss;
+                    startupMotion.startupFX = this.m_startupFX;
 					this.m_levelStartDirector.addMotion(startupMotion);
 
 

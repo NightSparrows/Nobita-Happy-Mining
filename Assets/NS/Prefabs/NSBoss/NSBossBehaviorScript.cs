@@ -23,16 +23,17 @@ public class NSBossBehaviorScript : MonoBehaviour
     [SerializeField] public Player m_player;
     [SerializeField] public MultiAimConstraint m_multiAimConstraint;
 	[SerializeField] public GameObject m_vehicleMainBone;
+	[SerializeField] public NSBossDrillController m_drillController;
 
 	// variables
-	[SerializeField] private float m_moveSpeed = 10f;
+	[SerializeField] private float m_moveSpeed = 8f;
 	[SerializeReference] private float m_rotateSpeed = 90f;
 	[SerializeField] private BossState m_state;
 
 	// objects
 	private Health m_health;
-	private CharacterController m_characterController;
 
+	private CharacterController m_characterController;
 	private AudioSource m_drNastyAudioSource;          // the speaker of boss
 
 	private GameObject m_drNastyGO;
@@ -45,6 +46,9 @@ public class NSBossBehaviorScript : MonoBehaviour
 
 	// idle variable
 	private float m_idleCounter;
+
+	// move variable
+	private float m_moveCounter;
 
 	// drill attack variable
 	public Vector3 m_drillAttackVector;
@@ -74,7 +78,7 @@ public class NSBossBehaviorScript : MonoBehaviour
 
 	private void Awake()
 	{
-		this.m_characterController = GetComponent<CharacterController>();
+		this.m_characterController = this.GetComponent<CharacterController>();
 
 		this.m_state = BossState.None;
 		this.m_drNastyGO = this.transform.Find("DrNastyModel").gameObject;
@@ -105,6 +109,15 @@ public class NSBossBehaviorScript : MonoBehaviour
 		/// 
 		// the state end api
 		/// 
+		switch (this.m_state)
+		{
+			case BossState.DrillAttack:
+				this.m_drillController.enableDamage = false;
+				break;
+			default:
+				break;
+
+		}
 
 		this.m_state = state;
 		switch (state)
@@ -112,7 +125,12 @@ public class NSBossBehaviorScript : MonoBehaviour
 			case BossState.Idle:
 				{
 					// TODO: set a timer to decide  moving or attacking, or ultimate
-					this.m_idleCounter = Random.Range(3, 5);
+					this.m_idleCounter = Random.Range(0, 5);
+				}
+				break;
+			case BossState.Moving:
+				{
+					this.m_moveCounter = Random.Range(3, 5);
 				}
 				break;
 			case BossState.DrillAttack:
@@ -125,6 +143,7 @@ public class NSBossBehaviorScript : MonoBehaviour
 					// initialize the forward speed
 					this.m_drillAttackCurrentForwardSpeed = 0;
 					this.m_vehicleAnimator.SetTrigger("drillAttackTrigger");
+					this.m_drillController.enableDamage = true;
 				}
 				break;
 			default: break;
@@ -150,9 +169,17 @@ public class NSBossBehaviorScript : MonoBehaviour
 
 					if (this.m_idleCounter <= 0)
 					{
+						// TODO if ultimate is prepared use it
+						if (Vector3.Distance(this.m_player.transform.position, this.m_vehicleGO.transform.position) <= 20)
+						{
+							this.changeBossState(BossState.DrillAttack);
+						} else
+						{
+							this.changeBossState(BossState.Moving);
+						}
+
 						// just for testing
 						// TODO change to wanted state
-						this.changeBossState(BossState.DrillAttack);
 					}
 
 				}
@@ -160,8 +187,26 @@ public class NSBossBehaviorScript : MonoBehaviour
 			case BossState.Moving:
 				{
 					// TODO: rotate or move toward player
-					
+					this.m_moveCounter -= Time.deltaTime;
+					// rotate to face the player
+					Vector3 vector = this.m_player.transform.position - this.m_vehicleGO.transform.position;
+					Vector3 unitVector = Vector3.Normalize(vector);
+					Quaternion targetRotation = Quaternion.LookRotation(unitVector, Vector3.up);
+					this.m_vehicleGO.transform.rotation = Quaternion.RotateTowards(this.m_vehicleGO.transform.rotation, targetRotation, this.m_rotateSpeed * Time.deltaTime);
+
+					Vector3 moveVector = this.m_vehicleGO.transform.rotation * Vector3.forward;
+					moveVector.Normalize();
+
+					if (vector.magnitude > 5)
+					{
+						this.move(moveVector * this.m_moveSpeed * Time.deltaTime);
+					}
+
 					// after finish switch to idle
+					if (this.m_moveCounter <= 0)
+					{
+						this.changeBossState(BossState.Idle);
+					}
 				}
 				break;
 			case BossState.DrillAttack:
@@ -184,8 +229,8 @@ public class NSBossBehaviorScript : MonoBehaviour
 
 	public void move(Vector3 vector)
 	{
-
 		this.m_characterController.Move(vector);
+		//this.transform.position += vector;
 	}
 
 	public float moveSpeed

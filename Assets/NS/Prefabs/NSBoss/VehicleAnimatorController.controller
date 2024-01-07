@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0840de51190e7be42beb10f10c472ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_speedModifier: 1.05
+  m_drillFX: {fileID: 100006, guid: 4a208ba3b61f6e24595fe9f17926de8e, type: 3}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -124,7 +126,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

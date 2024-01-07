@@ -5,11 +5,14 @@ using static NSBossBehaviorScript;
 
 public class NSBossDrillAttackAnimHandler : StateMachineBehaviour
 {
+    [SerializeField] private float m_speedModifier = 1.05f;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	{
+		var bossScript = animator.transform.parent.GetComponent<NSBossBehaviorScript>();
+
+    }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,7 +28,7 @@ public class NSBossDrillAttackAnimHandler : StateMachineBehaviour
 
 			bossScript.m_drillAttackVector = bossScript.m_vehicleGO.transform.rotation * Vector3.forward;
             bossScript.m_drillAttackVector.Normalize();
-			bossScript.m_drillAttackCurrentForwardSpeed += bossScript.moveSpeed * Time.deltaTime;
+			bossScript.m_drillAttackCurrentForwardSpeed += bossScript.moveSpeed * this.m_speedModifier * Time.deltaTime;
 		}
 		else if (currentTime > 0.6)
 		{
@@ -39,7 +42,6 @@ public class NSBossDrillAttackAnimHandler : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         var bossScript = animator.transform.parent.GetComponent<NSBossBehaviorScript>();
-
 
 		bossScript.changeBossState(BossState.Idle);
 	}
