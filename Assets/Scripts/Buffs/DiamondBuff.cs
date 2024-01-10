@@ -23,6 +23,7 @@ public class DiamondBuff : Buff
             Debug.LogWarning("DiamondBuff is applied to No DiamondBuff object: " + target.name);
             return;
         }
+        
 
         coin.diamond += increment;
     }

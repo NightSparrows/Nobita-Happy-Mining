@@ -8,6 +8,14 @@ public class HealthBuff : Buff
     public int healthIncrement = 0;
     public int maxHealthIncrement = 0;
 
+    public override string description
+    {
+        get
+        {
+            return "Health +" + healthIncrement;
+        }
+    }
+
     public override void ApplyTo(GameObject target)
     {
         Health hp = target.GetComponent<Health>();
@@ -16,6 +24,7 @@ public class HealthBuff : Buff
             Debug.LogWarning("HealthBuff is applied to Non-attackable object:" + target.name);
             return;
         }
+        Debug.Log("heakth!");
 
         hp.MaxHealth += maxHealthIncrement;
         hp.CurrentHealth += healthIncrement;

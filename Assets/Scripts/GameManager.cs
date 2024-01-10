@@ -132,6 +132,15 @@ public class GameManager : MonoBehaviour
         //SceneManager.LoadScene("LevelLogicScene");
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("Z");
+            Application.Quit();
+        }
+    }
+
     /*
      * Subscribe from `SceneManager.sceneLoaded += OnSceneLoaded;`
      *      - called after a sscene is fully loaded

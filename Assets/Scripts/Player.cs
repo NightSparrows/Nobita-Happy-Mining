@@ -238,7 +238,7 @@ public class Player : MonoBehaviour
 		 */
 	}
 
-	void ToggleEnabilityWeapons(bool enable)
+	public void ToggleEnabilityWeapons(bool enable)
     {
 		foreach (var weapon in weaponHolder.WeaponList)
         {

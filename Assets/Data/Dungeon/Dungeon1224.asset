@@ -17,8 +17,8 @@ MonoBehaviour:
   - {fileID: 5432978406627243487, guid: 720f2ff936b7ee240955e81928d2c494, type: 3}
   - {fileID: 9053260995704712237, guid: 7e620db7f3e936844b18646d2c1b6a53, type: 3}
   initLevelIdx: 0
-  escapeLevelIndex: 
-  escapeTeleporterIndex: 
+  escapeLevelIndex: 00000000
+  escapeTeleporterIndex: 01000000
   teleporterLinkLevelFrom: 0000000001000000
   teleporterLinkFrom: 0000000001000000
   teleporterLinkLevelTo: 0100000002000000

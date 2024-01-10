@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a4971ce0c75ec4aa8e2171bd545d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ruby: 100
+  _ruby: 0
 --- !u!114 &592283073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +354,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs:
-  - {fileID: 11400000, guid: 00575b6537a389a418d44ad01b1136a2, type: 2}
+  - {fileID: 11400000, guid: fe6f5ec1d97914547ac3a5ead531702e, type: 2}
+  - {fileID: 11400000, guid: 761a41bc47076034fadcfc1b28fd877f, type: 2}
 --- !u!114 &592283074
 MonoBehaviour:
   m_ObjectHideFlags: 0

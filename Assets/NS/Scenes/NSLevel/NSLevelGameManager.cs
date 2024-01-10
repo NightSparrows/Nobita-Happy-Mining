@@ -86,6 +86,7 @@ public class NSLevelGameManager : MonoBehaviour
 
 					this.m_player = this.player.GetComponent<Player>();
                     this.m_player.canMove = false;
+                    this.m_player.ToggleEnabilityWeapons(false);
 
                     this.m_bossBehavior.m_player = this.m_player;
 					// start the film initialize the camera position
@@ -137,7 +138,8 @@ public class NSLevelGameManager : MonoBehaviour
 					this.m_bossBehavior.init();
 					// init the game and start battle
 					this.m_player.canMove = true;
-					this.m_enemyManager.startSpawn();
+                    this.m_player.ToggleEnabilityWeapons(true);
+                    this.m_enemyManager.startSpawn();
 				}
                 break;
             case LevelState.Victory:
