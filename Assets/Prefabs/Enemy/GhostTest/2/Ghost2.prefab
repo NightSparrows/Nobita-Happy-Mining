@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24217d144bfb764e99c896e4705b35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BaseDamage>k__BackingField: 5
+  <BaseDamage>k__BackingField: 2
   <DamageMultiplier>k__BackingField: 1
   <CriticalChance>k__BackingField: 0
   <CriticalDamageMultiplier>k__BackingField: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e407bb49d500597489dc2804751ccdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 200
   currentHealth: 0
 --- !u!114 &7938144259892797489
 MonoBehaviour:
