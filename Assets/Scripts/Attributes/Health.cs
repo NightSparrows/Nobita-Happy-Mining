@@ -26,7 +26,6 @@ public class Health : MonoBehaviour
         }
         set
         {
-			maxHealth = value;
 			UpdateMaxHealth(value);
         }
     }
@@ -39,7 +38,6 @@ public class Health : MonoBehaviour
         }
         set
         {
-			currentHealth = value;
 			UpdateHealth(value);
         }
     }
@@ -76,6 +74,7 @@ public class Health : MonoBehaviour
 
 	private void UpdateHealth(int newHealth)
     {
+		newHealth = Mathf.Min(newHealth, MaxHealth);
 		int orgHealth = currentHealth;
 		currentHealth = newHealth;
 		if (orgHealth != newHealth)

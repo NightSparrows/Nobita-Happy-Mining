@@ -28,5 +28,6 @@ public class HealthBuff : Buff
 
         hp.MaxHealth += maxHealthIncrement;
         hp.CurrentHealth += healthIncrement;
+
     }
 }

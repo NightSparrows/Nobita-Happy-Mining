@@ -64,7 +64,6 @@ public class ValueBar : MonoBehaviour
     private void Start()
     {
         _valueText.gameObject.SetActive(_enableText);
-        MaxValue = 10;
         switch (initValue)
         {
             case InitValue.Empty:

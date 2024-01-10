@@ -356,6 +356,7 @@ MonoBehaviour:
   buffs:
   - {fileID: 11400000, guid: fe6f5ec1d97914547ac3a5ead531702e, type: 2}
   - {fileID: 11400000, guid: 761a41bc47076034fadcfc1b28fd877f, type: 2}
+  - {fileID: 11400000, guid: 92e8a75301150c44d88bae646683f874, type: 2}
 --- !u!114 &592283074
 MonoBehaviour:
   m_ObjectHideFlags: 0

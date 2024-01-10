@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LinearLevelUpSystem
   m_EditorClassIdentifier: 
   baseExp: 10
-  increment: 5
+  increment: 20
